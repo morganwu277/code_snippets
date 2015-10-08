@@ -1,2 +1,2 @@
 # code_snippets
-here is useful code snippets
+here are some useful code snippets
