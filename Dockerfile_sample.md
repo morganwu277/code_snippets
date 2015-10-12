@@ -1,3 +1,5 @@
+This is a sample Dockerfile containing all the useful points how to build a image
+```
  FROM ubuntu:latest
  MAINTAINER xxx "xxx@qq.com"
  
@@ -42,3 +44,4 @@
  # 设置子镜像的触发操作, 在其子镜像中执行
  ONBUILD ADD . /app/src
  ONBUILD RUN echo "on build executed" >> onbuild.txt
+```
