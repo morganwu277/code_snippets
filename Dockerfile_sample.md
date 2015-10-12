@@ -27,7 +27,7 @@ This is a sample Dockerfile containing all the useful points how to build a imag
  ADD https://www.baidu.com/img/bd_log1.png /opt/
  
  # 设置环境变量
- ENV WEBAPP_PORT=9090
+ ENV WEBAPP_PORT 9090
  
  # 设置工作目录 
  WORKDIR /opt/
