@@ -45,3 +45,6 @@ This is a sample Dockerfile containing all the useful points how to build a imag
  ONBUILD ADD . /app/src
  ONBUILD RUN echo "on build executed" >> onbuild.txt
 ```
+
+Best practise:
+- Always update $PATH variable
