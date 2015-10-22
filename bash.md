@@ -11,3 +11,11 @@ let alias to be expanded
 ```
 [root@centos7-node-226 ~]# echo "shopt -s expand_aliases" >> ~/.bashrc 
 ```
+
+## HEX DEC Conversion
+```
+$ printf %d 0xac
+172
+$ printf %x 172
+ac
+```
