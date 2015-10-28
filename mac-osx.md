@@ -3,9 +3,10 @@
 brew tap jeffreywildman/homebrew-virt-manager
 brew install virt-manager virt-viewer
 ```
-## get LISTEN connections
-```
+## lsof connections
+```bash
 lsof -n -i4TCP:$PORT | grep LISTEN
+lsof -P -iTCP # 显示端口
 ```
 ## modify IntelliJ java version
 ```
