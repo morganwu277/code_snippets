@@ -21,7 +21,7 @@ ac
 ```
 ## debug selinux rule 
 ```bash
-# grep 1415714880.156:29 /var/log/audit/audit.log | audit2why
+$ grep 1415714880.156:29 /var/log/audit/audit.log | audit2why
 type=AVC msg=audit(1415714880.156:29): avc:  denied  { name_connect } for  pid=1349 \
   comm="nginx" dest=8080 scontext=unconfined_u:system_r:httpd_t:s0 \
   tcontext=system_u:object_r:http_cache_port_t:s0 tclass=tcp_socket
