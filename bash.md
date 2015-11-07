@@ -39,3 +39,7 @@ type=AVC msg=audit(1415714880.156:29): avc:  denied  { name_connect } for  pid=1
         Allow access by executing:
         # setsebool -P httpd_can_network_connect 1
 ```
+## ssh withouth host confirmation
+```bash
+scp -o "StrictHostKeyChecking no"
+```
