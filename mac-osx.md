@@ -15,3 +15,10 @@ lsof -P -iTCP # 显示端口
       <key>JVMVersion</key>
       <string>1.8*</string> // modify  this to be 1.8* or 1.6+ or any version you want
 ```
+
+## install sshpass on Mac-OSX
+```
+brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
+```
+reference: [Installing SSHPass](https://gist.github.com/arunoda/7790979)
+
