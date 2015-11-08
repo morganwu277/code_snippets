@@ -20,5 +20,5 @@ lsof -P -iTCP # 显示端口
 ```
 brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb
 ```
-reference: [Installing SSHPass](https://gist.github.com/arunoda/7790979)
+> reference: [Installing SSHPass](https://gist.github.com/arunoda/7790979)
 
