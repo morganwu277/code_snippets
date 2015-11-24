@@ -17,7 +17,7 @@ This is a sample Dockerfile containing all the useful points how to build a imag
  # 对外暴露端口
  EXPOSE 80 8080 1038
  
- # 添加文件，如果ADD压缩文件，会先解压缩，如果是挽留过文件，会先下载
+ # 添加文件，如果ADD压缩文件，会先解压缩，如果是网络文件，会先下载
  ADD abc.txt /opt/
  
  # 添加文件夹
