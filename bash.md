@@ -44,7 +44,7 @@ type=AVC msg=audit(1415714880.156:29): avc:  denied  { name_connect } for  pid=1
 scp -o "StrictHostKeyChecking no"
 ```
 ## network debug
-* ss -a 
-* netstat -nalp 
-* lsof -P -i:22
+* `ss -a `
+* `netstat -nalp` 
+* `lsof -P -i:22`
 
