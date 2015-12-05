@@ -48,3 +48,10 @@ scp -o "StrictHostKeyChecking no"
 * `netstat -nalp` 
 * `lsof -P -i:22`
 
+## GMT+0 standard time
+```bash 
+[01:58 PM morganwu@morgan-yinnut local]$ date
+Sat Dec  5 13:58:52 CST 2015
+[01:58 PM morganwu@morgan-yinnut local]$ date -u +%FT%H:%M:%SZ 
+2015-12-05T05:58:53Z
+```
