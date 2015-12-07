@@ -1,4 +1,8 @@
-This is a sample Dockerfile containing all the useful points how to build a image
+## use alpine as minimal image, alpine best practices
+* use `http://nl.alpinelinux.org/alpine/v3.2/main` as mirror repository /etc/apk/respositories
+* `RUN apk -U add bind-tools` to make sure dns works correctly under k8s cluster.
+
+## This is a sample Dockerfile containing all the useful points how to build a image
 ```
  FROM ubuntu:latest
  MAINTAINER xxx "xxx@qq.com"
