@@ -13,3 +13,8 @@ git branch -r -d origin/branch-name
 # delete remote branch by push
 git push origin :branch-name
 ```
+
+## remove those files `git add` but not yet `git commit`
+```bash
+git rm --cached <added_file_to_undo>
+```
