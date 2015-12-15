@@ -55,3 +55,13 @@ Sat Dec  5 13:58:52 CST 2015
 [01:58 PM morganwu@morgan-yinnut local]$ date -u +%FT%H:%M:%SZ 
 2015-12-05T05:58:53Z
 ```
+
+## zip && unzip
+```bash
+## view files in zip
+$ unzip -l file.zip
+## zip all files under a directory
+$ zip -r file.zip file_dir
+```
+
+
