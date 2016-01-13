@@ -63,11 +63,12 @@ $ unzip -l file.zip
 ## zip all files under a directory
 $ zip -r file.zip file_dir
 ```
-## list installed/uninstalled rpm content( or to know what will be influenced after installation or uninstallation)
+## query list of rpm package 
+list installed/uninstalled rpm content( or to know what will be influenced after installation or uninstallation)
 ```bash
 # for uninstalled rpm ( there should be a package.rpm file in the current directory)
-[root@kube0 ~]$ rpm -qlp package.rpm (query list of package)
+[root@kube0 ~]$ rpm -qlp package.rpm
 # for installed rpm (eg. get the name from `rpm -qa|grep ${name}` )
-[root@kube0 ~]$ rpm -ql package (query list of package) 
+[root@kube0 ~]$ rpm -ql package  
 ```
 
