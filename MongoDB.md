@@ -1,4 +1,5 @@
-Opeartions about MongoDB
+Opeartions about MongoDB 
+OS: Mac OSX, for other system, please view docs in official website.
 
 ## 1. Installing the MongoDB by `brew`
 About [brew](http://brew.sh/)   
