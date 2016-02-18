@@ -4,7 +4,7 @@ OS: Mac OSX, for other system, please view docs in official website.
 
 ## 1. Installing the MongoDB by `brew`
 About [brew](http://brew.sh/)   
-Here is the easy steps
+Here are the easy steps:
 ```bash
 $ # install the mongodb
 $ brew update && brew install mongodb
