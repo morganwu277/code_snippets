@@ -71,4 +71,8 @@ list installed/uninstalled rpm content( or to know what will be influenced after
 # for installed rpm (eg. get the name from `rpm -qa|grep ${name}` )
 [root@kube0 ~]$ rpm -ql package  
 ```
-
+## get gateway IP from bash
+```bash
+[07:34 PM morganwu@morgan-yinnut start-point]$ curl ifconfig.me
+45.62.218.226
+```
