@@ -75,4 +75,4 @@ $ rm -rf app/ && unzip -q app.jar -d app
 $ docker build .
 $ # ... here we can make use of the docker cache mechanism
 ```
-But we should use *Spring Boot 1.3.0 or newer* for changes on the timestamps of the extracted jars by prior Spring Boot version.
+But we should use **Spring Boot 1.3.0 or newer** for changes on the timestamps of the extracted jars by prior Spring Boot version.
