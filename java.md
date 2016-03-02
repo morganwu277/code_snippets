@@ -8,10 +8,11 @@ wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u40-b26/jdk-8u40-linux-x64.tar.gz
 ```
 
-### convert between Gradle and Maven
+### Convert between Gradle and Maven
 1. Gradle -> Maven
+
 Your build.gradle should be like 
-```gradle
+ ```gradle
 apply plugin: 'java'
 apply plugin: 'maven'
  
@@ -24,5 +25,7 @@ compile 'commons-lang:commons-lang:2.3'
 }
 ```
 Execute the `./gradlew install` command, after that, you'll get a `pom-default.xml` under your `build/poms` subfolder. 
-2. Maven -> Gradle 
+
+2. Maven -> Gradle
+
 Execute the `gradle init` after you installing the Gradle from the official site and you'll get a `setting.gradle` and `build.gradle`, That's all. 
