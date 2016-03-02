@@ -59,3 +59,20 @@ Best practise:
 docker ps -aqf status=exited | xargs docker rm
 docker images -qf dangling=true | xargs docker rmi
 ```
+
+## single Spring Boot jar, make use of docker cache  
+Dockerfile: note that we use `java -cp` to run our app instead of `java -jar app.jar`
+```bash
+FROM java:8-jre
+ADD app/lib/ /app/lib/
+ADD app/ /app/
+CMD ["java", "-cp", "/app/", "org.springframework.boot.loader.JarLauncher"]
+EXPOSE 8080
+```
+Actually we can run the with the extracted jar files
+```bash
+$ rm -rf app/ && unzip -q app.jar -d app
+$ docker build .
+$ # ... here we can make use of the docker cache mechanism
+```
+But we should use *Spring Boot 1.3.0 or newer* for changes on the timestamps of the extracted jars by prior Spring Boot version.
