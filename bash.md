@@ -76,3 +76,9 @@ list installed/uninstalled rpm content( or to know what will be influenced after
 [07:34 PM morganwu@morgan-yinnut start-point]$ curl ifconfig.me
 45.62.218.226
 ```
+
+## operate json from CLI in an easy way
+```bash
+[09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
+https://avatars.githubusercontent.com/u/3008959?v=3
+```
