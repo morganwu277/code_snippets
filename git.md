@@ -1,3 +1,9 @@
+## ensure a linear history by preventing unnecessary merge commits when doing `git pull`
+actually, with a --rebase option we can achieve this. 
+```bash
+git config --global branch.autosetuprebase always
+```
+
 # delete remote tag && remote branch
 ```bash
 # show local tags
