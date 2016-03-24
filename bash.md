@@ -82,3 +82,8 @@ list installed/uninstalled rpm content( or to know what will be influenced after
 [09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
 https://avatars.githubusercontent.com/u/3008959?v=3
 ```
+## rsync files, include, exclude, hidden files
+```bash
+rsync --progress -avz --delete-excluded="*node_modules*" --include='.*' update/dist/* dist/
+```
+We sync all files from `update/dist` directory to `dist` directory, including those hidden files from source directory. But we won't delete the files with "*node_modules*" pattern if target directory already exist while source directory doesn't contains.
