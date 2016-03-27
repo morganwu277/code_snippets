@@ -24,3 +24,11 @@ git push origin :branch-name
 ```bash
 git rm --cached <added_file_to_undo>
 ```
+
+## merge using theirs stragtegy 
+```bash
+$ git pull -X theirs
+$ git merge -X theirs
+$ git rebase -X theirs
+```
+
