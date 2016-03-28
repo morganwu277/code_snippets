@@ -20,9 +20,18 @@ git branch -r -d origin/branch-name
 git push origin :branch-name
 ```
 
-## remove those files `git add` but not yet `git commit`
+## about those 'removes' in git
+remove those files `git add` but not yet `git commit`,  simply removes a file from being tracked
 ```bash
 git rm --cached <added_file_to_undo>
+```
+This simply continues to keep tracking changes to the file, but will place it back into the 'unstaged' area.
+```bash
+git reset HEAD [file]
+```
+This simply continues to keep tracking changes to the file, but will remove all the 'unstaged' changes.
+```bash
+git checkout [file]
 ```
 
 ## merge using theirs stragtegy 
