@@ -87,3 +87,33 @@ https://avatars.githubusercontent.com/u/3008959?v=3
 rsync --progress -avz --delete-excluded="*node_modules*" --include='.*' update/dist/* dist/
 ```
 We sync all files from `update/dist` directory to `dist` directory, including those hidden files from source directory. But we won't delete the files with "*node_modules*" pattern if target directory already exist while source directory doesn't contains.
+
+## crontab examples 
+Overall Rule: 
+```bash
+# Minute   Hour   Day of Month       Month          Day of Week        Command    
+# (0-59)  (0-23)     (1-31)    (1-12 or Jan-Dec)  (0-6 or Sun-Sat)                
+    0        2          12             *                *            /usr/bin/find
+```
+This line executes the `ping` command **every minute of every hour of every day of every month**. The standard output is redirected to dev null so we will get no e-mail but will allow the standard error to be sent as a e-mail. 
+```bash
+*       *       *       *       *       /sbin/ping -c 1 192.168.0.1 > /dev/null
+```
+This line executes the `ping` and the `ls` command **every 12am and 12pm on the 1st day of every 2nd month**. 
+```bash
+0 0,12 1 */2 * /sbin/ping -c 192.168.0.1; ls -la >>/var/log/cronrun
+```
+This line executes the disk usage command to get the directory sizes **every 2am on the 1st through the 10th of each month**. E-mail is sent to the email addresses specified with the MAILTO line. The PATH is also set to something different.
+```bash
+PATH=/usr/local/sbin:/usr/local/bin:/home/user1/bin
+MAILTO=user1@nowhere.org,user2@somewhere.org
+0 2 1-10 * * du -h --max-depth=1 /
+```
+This line is and example of running a cron job **every month at 4am on Mondays, and on the days between 15-21**. This is because using the day of month and day of week fields with restrictions (no *) makes this an "or" condition not an "and" condition. Both will be executed.
+```bash
+0 4 15-21 * 1 /command
+```
+Run on **every second Sunday of every month**. The test has to be run first because of the issue mentioned in the example above.
+```bash
+0 4 8-14 * *  test $(date +\%u) -eq 7 && echo "2nd Sunday"
+```
