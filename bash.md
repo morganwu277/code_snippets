@@ -117,3 +117,8 @@ Run on **every second Sunday of every month**. The test has to be run first beca
 ```bash
 0 4 8-14 * *  test $(date +\%u) -eq 7 && echo "2nd Sunday"
 ```
+## search PDF via `pdfgrep`
+could be installed by `brew install pdfgrep` under OSX
+```bash
+$ find /path -iname '*.pdf' -exec pdfgrep pattern {} +
+```
