@@ -122,3 +122,8 @@ could be installed by `brew install pdfgrep` under OSX
 ```bash
 $ find /path -iname '*.pdf' -exec pdfgrep pattern {} +
 ```
+
+## find files more than 100MB
+```bash
+$ find . -type f -size +1000000k 
+```
