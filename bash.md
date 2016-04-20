@@ -127,3 +127,8 @@ $ find /path -iname '*.pdf' -exec pdfgrep pattern {} +
 ```bash
 $ find . -type f -size +1000000k 
 ```
+## forward local port 3307 to remote 3306
+```bash
+$ ssh -p 16688 -L 3307:me-db-1:3306 root@m159.203.44.228
+```
+If we connect to 127.0.0.1:3307 locally, it's like we're connecting me-db-1:3306 by loggin into root@m159.203.44.228 server.
