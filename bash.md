@@ -133,6 +133,12 @@ $ ssh -p 16688 -L 3307:me-db-1:3306 root@159.203.44.228
 ```
 If we connect to 127.0.0.1:3307 locally, it's like we're connecting me-db-1:3306 by loggin into root@m159.203.44.228 server.
 
+## ssh by using local port as SOCKS5 proxy
+```bash
+$ ssh -D 9999 -C user@host
+```
+http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/ 
+
 ## ssh generate pub key from existing private key
 ```bash
 $ ssh ssh-keygen -f private_key -y
