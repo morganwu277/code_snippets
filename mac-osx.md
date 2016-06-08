@@ -24,3 +24,8 @@ brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Librar
 
 ## crontab location
 **/usr/lib/cron/tabs/morganwu**
+
+## change display langeuage of Chrome under OSX
+```bash
+defaults write com.google.Chrome AppleLanguages '(zh-CN)'
+```
