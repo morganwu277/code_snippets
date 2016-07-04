@@ -8,7 +8,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>(whatever version is current)</version>
+        <version>3.5.1<</version>
         <configuration>
           <!-- or whatever version you use -->
           <source>1.7</source>
