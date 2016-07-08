@@ -82,6 +82,11 @@ list installed/uninstalled rpm content( or to know what will be influenced after
 [09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
 https://avatars.githubusercontent.com/u/3008959?v=3
 ```
+
+## curl via socks5 proxy 
+```bash
+$ curl --socks5 127.0.0.1:9050
+```
 ## rsync files, include, exclude, hidden files
 ```bash
 rsync --progress -avz --delete-excluded="*node_modules*" --include='.*' update/dist/* dist/
