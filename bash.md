@@ -132,6 +132,10 @@ $ find /path -iname '*.pdf' -exec pdfgrep pattern {} +
 ```bash
 $ find . -type f -size +1000000k 
 ```
+## find & grep combination
+```bash
+$ find . -name "bluestack" -exec grep -i 'camera' {} \;
+```
 ## forward local port 3307 to remote 3306
 ```bash
 $ ssh -p 16688 -L 3307:me-db-1:3306 root@159.203.44.228
