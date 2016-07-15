@@ -133,8 +133,9 @@ $ find /path -iname '*.pdf' -exec pdfgrep pattern {} +
 $ find . -type f -size +1000000k 
 ```
 ## find & grep combination
+Delete all files whose name include `bluestack` but path name exclude `Desktop` characters。
 ```bash
-$ sudo find . -iname "*bluestack*" -exec grep -i 'camera' {} \;
+$ sudo find . -iname "*bluestack*" ! -path "*Desktop*" -exec grep -i 'camera' {} \;
 ```
 ## forward local port 3307 to remote 3306
 ```bash
