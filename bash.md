@@ -134,7 +134,7 @@ $ find . -type f -size +1000000k
 ```
 ## find & grep combination
 ```bash
-$ find . -name "bluestack" -exec grep -i 'camera' {} \;
+$ sudo find . -iname "*bluestack*" -exec grep -i 'camera' {} \;
 ```
 ## forward local port 3307 to remote 3306
 ```bash
