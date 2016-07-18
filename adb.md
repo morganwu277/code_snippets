@@ -1,3 +1,5 @@
+adb connect/disconnect
+
 pm list packages   
 
 pm install/uninstall   
