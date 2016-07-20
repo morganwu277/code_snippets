@@ -145,7 +145,7 @@ If we connect to 127.0.0.1:3307 locally, it's like we're connecting me-db-1:3306
 
 ## ssh by using local port as SOCKS5 proxy
 ```bash
-$ ssh -D 9999 -C user@host
+$ ssh -D 0.0.0.0:9999 -C user@host
 ```
 http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/ 
 
