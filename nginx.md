@@ -1,3 +1,9 @@
+Create SSL certificates 
+```bash
+$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+```
+Deploy http & https website best-practice
+```bash
 upstream today {
     ip_hash;
     server me-app-1:8181 weight=5;
@@ -57,3 +63,4 @@ server {
 #        expires max;
 #    }
 }
+```
