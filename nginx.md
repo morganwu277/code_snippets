@@ -1,8 +1,8 @@
-Create SSL certificates 
+### Create SSL certificates 
 ```bash
 $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 ```
-Deploy http & https website best-practice
+### Deploy http & https website best-practice
 ```bash
 upstream today {
     ip_hash;
@@ -64,3 +64,7 @@ server {
 #    }
 }
 ```
+### Optimization 
+1. https://www.sysgeek.cn/nginx-optimized-performance/ 
+2. http://www.360doc.com/content/10/0106/11/11991_12790368.shtml 
+3. https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration  
