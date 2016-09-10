@@ -29,3 +29,7 @@ brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Librar
 ```bash
 defaults write com.google.Chrome AppleLanguages '(zh-CN)'
 ```
+## list routing talbe
+```bash
+$ netstat -r
+```
