@@ -7,6 +7,8 @@ brew install virt-manager virt-viewer
 ```bash
 lsof -n -i4TCP:$PORT | grep LISTEN
 lsof -P -iTCP # 显示端口
+netstat -nat |grep LISTEN
+lsof -n -P -i TCP -s TCP:LISTEN
 ```
 ## modify IntelliJ java version
 ```
