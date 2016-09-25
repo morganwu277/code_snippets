@@ -65,3 +65,12 @@ __Interpreted + native__: This figure shows the ticks used by the JVM while exec
 __Compiled + native__: This figure shows the ticks used by the methods that were already parsed by the JIT compiler. After running your program a while, most of your major consumers from the interpreted section should appear as "Compiled" as JIT will compile them.       
 __Stubs + native__: This figure is for JNI calls. This will likely to use the "native" column only as JNI is of course executed as a series of native calls.   
 __Thread-local ticks__: This is listed as "miscellaneous" other entries and was written somewhere that "should not raise concerns from performance optimization perspective". I am not sure how much we want to trust that, but XProf is really not a documented tool just as you stated above.    
+
+
+### Java exception, bad performance
+Two causes:    
+1. the method `public synchronized native Throwable fillInStackTrace()` which is from Throwable.java, the base class of all Exceptions.   
+2. Fills in the execution stack trace.    
+Reference: http://www.blogjava.net/stone2083/archive/2010/07/09/325649.html    
+What brings:    
+Exception object need __4 times more time__ to be created than the normal object.   
