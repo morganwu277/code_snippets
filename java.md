@@ -74,3 +74,6 @@ Two causes:
 Reference: http://www.blogjava.net/stone2083/archive/2010/07/09/325649.html    
 What brings:    
 Exception object need __4 times more time__ to be created than the normal object.   
+
+### Fork/Join Framework vs. Parallel Streams vs. ExecutorService: The Ultimate Fork/Join Benchmark 
+http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice-the-ultimate-benchmark/ Compare the IO or Non-IO and check out the selections. 
