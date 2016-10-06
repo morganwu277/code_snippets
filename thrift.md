@@ -5,5 +5,5 @@
   - use TThreadedSelectorServer first. 
   - if you know how many clients will be, then use the TThreadPoolServer 
   
-3. 
-  
+3. **The Missing Thrift Specification**
+ https://erikvanoosten.github.io/thrift-missing-specification/
