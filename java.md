@@ -86,6 +86,7 @@ http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice
    [Full GC 243120K->241951K(629760K), 1,5589690 secs]
    ```
 - -XX:+PrintGCDetails
+
    Here is a sample of _Simple GC_
    
    ```bash
@@ -107,6 +108,7 @@ http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice
    [Times: user=10,96 sys=0,06, real=1,53 secs]
    ```
 - -XX:+PrintGCTimeStamps and -XX:+PrintGCDateStamps
+
    Here is for _GC Timestamps_
    
    ```bash
