@@ -77,3 +77,51 @@ Exception object need __4 times more time__ to be created than the normal object
 
 ### Fork/Join Framework vs. Parallel Streams vs. ExecutorService: The Ultimate Fork/Join Benchmark 
 http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice-the-ultimate-benchmark/ Compare the IO or Non-IO and check out the selections. 
+
+### Print Java GC
+- -XX:+PrintGC (or the alias -verbose:gc)
+
+   ```bash
+   [GC 246656K->243120K(376320K), 0,0929090 secs]
+   [Full GC 243120K->241951K(629760K), 1,5589690 secs]
+   ```
+- -XX:+PrintGCDetails
+   Here is a sample of _Simple GC_
+   
+   ```bash
+   [GC
+      [PSYoungGen: 142816K->10752K(142848K)] 246648K->243136K(375296K),
+      0,0935090 secs
+   ]
+   [Times: user=0,55 sys=0,10, real=0,09 secs]
+   ```
+   Here is a sample of _Full GC_
+
+   ```bash
+   [Full GC
+      [PSYoungGen: 10752K->9707K(142848K)]
+      [ParOldGen: 232384K->232244K(485888K)] 243136K->241951K(628736K)
+      [PSPermGen: 3162K->3161K(21504K)],
+      1,5265450 secs
+   ]
+   [Times: user=10,96 sys=0,06, real=1,53 secs]
+   ```
+- -XX:+PrintGCTimeStamps and -XX:+PrintGCDateStamps
+   Here is for _GC Timestamps_
+   
+   ```bash
+   0,185: [GC 66048K->53077K(251392K), 0,0977580 secs]
+   0,323: [GC 119125K->114661K(317440K), 0,1448850 secs]
+   0,603: [GC 246757K->243133K(375296K), 0,2860800 secs]
+   ```
+   Here is for _GC DateStamps_
+   
+   ```bash
+   2014-01-03T12:08:38.102-0100: [GC 66048K->53077K(251392K), 0,0959470 secs]
+   2014-01-03T12:08:38.239-0100: [GC 119125K->114661K(317440K), 0,1421720 secs]
+   2014-01-03T12:08:38.513-0100: [GC 246757K->243133K(375296K), 0,2761000 secs]
+   ```
+
+
+
+
