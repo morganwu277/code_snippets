@@ -124,6 +124,29 @@ http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice
    2014-01-03T12:08:38.513-0100: [GC 246757K->243133K(375296K), 0,2761000 secs]
    ```
 
+### jstat command result description 
+```bash
+[03:32 PM morganwu@v1020-wn-202-109 ~]$ jstat -gc 9235
+ S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT   
+4352.0 4352.0  0.0   4352.0 34944.0  14774.9   103664.0   79205.4   62336.0 57163.3 9132.0 7734.2     19    0.192   4      0.030    0.222
+```
+- S0C  Current survivor space 0 capacity (KB).
+- S1C  Current survivor space 1 capacity (KB).
+- **S0U  Survivor space 0 utilization (KB).**
+- **S1U  Survivor space 1 utilization (KB).**
+- EC  Current eden space capacity (KB).
+- **EU  Eden space utilization (KB).**
+- **OC  Current old space capacity (KB).**
+- OU  Old space utilization (KB).
+- PC  Current permanent space capacity (KB).
+- **PU  Permanent space utilization (KB).**
+- YGC  Number of young generation GC Events.
+- YGCT  Young generation garbage collection time.
+- FGC  Number of full GC events.
+- FGCT  Full garbage collection time.
+- GCT  Total garbage collection time.
+OU,PU,EU,S0U,S1U are the most important
+
 
 
 
