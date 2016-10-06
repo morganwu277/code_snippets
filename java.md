@@ -130,6 +130,8 @@ http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice
  S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT   
 4352.0 4352.0  0.0   4352.0 34944.0  14774.9   103664.0   79205.4   62336.0 57163.3 9132.0 7734.2     19    0.192   4      0.030    0.222
 ```
+__OU,PU,EU,S0U,S1U are the most important__
+
 - S0C  Current survivor space 0 capacity (KB).
 - S1C  Current survivor space 1 capacity (KB).
 - **S0U  Survivor space 0 utilization (KB).**
@@ -145,7 +147,7 @@ http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice
 - FGC  Number of full GC events.
 - FGCT  Full garbage collection time.
 - GCT  Total garbage collection time.
-OU,PU,EU,S0U,S1U are the most important
+
 
 
 
