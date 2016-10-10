@@ -151,7 +151,7 @@ http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/
 
 ## ssh generate pub key from existing private key
 ```bash
-$ ssh ssh-keygen -f private_key -y
+$ ssh-keygen -f private_key -y
 ```
 
 ## write file by using heredoc 
