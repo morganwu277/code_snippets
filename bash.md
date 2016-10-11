@@ -1,3 +1,6 @@
+## if conditions 
+[what should be put in the if [] ](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
+
 ## use alias for sudo
 set alias sudo='sudo ' to use alias in your sudo command
 ```
