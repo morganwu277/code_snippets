@@ -26,3 +26,10 @@ knot-dnsutils - Clients provided with Knot DNS (kdig, knslookup, knsupdate)
 libnet-nslookup-perl - simple DNS lookup module for perl
 root@fluentd-elasticsearch-centos7-node-224:/$ apt-get install dnsutils
 ```
+
+## [Ubuntu] auto start service
+
+```bash
+$ sudo update-rc.d <service_name> defaults
+```
+
