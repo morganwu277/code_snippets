@@ -1,3 +1,15 @@
+## use `ps` to see the threads inside some process
+
+```bash
+[02:32 PM morganwu@v1020-wn-185-212 producer]$ ps -Mfc -p 3066 
+USER       PID   TT   %CPU STAT PRI     STIME     UTIME COMMAND   UID  PPID   C STIME   TTY           TIME
+morganwu  3066 s001    0.0 S    31T   0:00.00   0:00.00 thread    501  2757   0  2:30PM ttys001    0:00.00
+          3066         0.0 S    31T   0:00.00   0:00.00           501  2757   0  2:30PM ttys001    0:00.00
+          3066         0.0 S    31T   0:00.00   0:00.00           501  2757   0  2:30PM ttys001    0:00.00
+
+```
+
+
 ## virt-manager on Mac OSX
 ```
 brew tap jeffreywildman/homebrew-virt-manager
