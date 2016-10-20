@@ -1,8 +1,9 @@
 ## use `ps` to see the threads inside some process
 
--M: show thread
--f: long format
--c: show full process command
+- -M: show thread
+- -f: long format
+- -c: show full process command
+
 ```bash
 [02:32 PM morganwu@v1020-wn-185-212 producer]$ ps -Mfc -p 3066 
 USER       PID   TT   %CPU STAT PRI     STIME     UTIME COMMAND   UID  PPID   C STIME   TTY           TIME
