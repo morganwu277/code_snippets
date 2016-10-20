@@ -1,3 +1,14 @@
+## use `ps` to see the threads inside some process
+
+`-L: show thread`
+
+```bash
+[m92wu@ecelinux3 ~]$ ps -efL | grep out
+m92wu     6684  6482  6684  0    3 15:38 pts/2    00:00:00 ./a.out 1 1
+m92wu     6684  6482  6685  0    3 15:38 pts/2    00:00:00 ./a.out 1 1
+m92wu     6684  6482  6686  0    3 15:38 pts/2    00:00:00 ./a.out 1 1
+m92wu     6734  6691  6734  0    1 15:38 pts/3    00:00:00 grep --color=auto out
+```
 ## if conditions 
 [what should be put in the if [] ](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
