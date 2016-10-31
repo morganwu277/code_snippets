@@ -12,6 +12,16 @@ m92wu     6734  6691  6734  0    1 15:38 pts/3    00:00:00 grep --color=auto out
 ## if conditions 
 [what should be put in the if [] ](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
+## bash calculator for floating point
+```bash
+[11:04 PM morganwu@morgan-yinnut producer]$ printf "%.6f\n" `bc -l <<< '100/3'` 
+33.333333
+[11:04 PM morganwu@morgan-yinnut producer]$ a=`bc -l <<< '100/3'`
+[11:04 PM morganwu@morgan-yinnut producer]$ echo $a
+33.33333333333333333333
+
+```
+
 ## use alias for sudo
 set alias sudo='sudo ' to use alias in your sudo command
 ```
