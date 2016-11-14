@@ -57,3 +57,16 @@ print(a)
 ## call C library from python
 same as above, the only difference is that when building library, you need to use `gcc` instead of `g++`
 
+1. write hello.c & hello.h
+
+2. compile with `gcc hello.c -fPIC -shared -o libhello.so`
+
+3. in python use 
+
+    ```python 
+    from ctypes import cdll
+    
+    lib=cdll.LoadLibrary("./libhello.so")
+    lib.hello('Amy')
+    ```
+
