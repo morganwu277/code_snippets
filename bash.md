@@ -191,4 +191,4 @@ EOF
 ```
 
 ## cygwin basic packages
-`curl` `wget` `ssh`
+`curl` `wget` `ssh` `tree`
