@@ -189,3 +189,6 @@ gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
 EOF
 ```
+
+## cygwin basic packages
+`curl` `wget` `ssh`
