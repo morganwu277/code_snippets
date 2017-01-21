@@ -113,7 +113,7 @@ $ curl --socks5 127.0.0.1:9050
 ```
 ## rsync files, include, exclude, hidden files
 ```bash
-rsync --progress -avz --delete --delete-excluded="*node_modules*" --include='.*' update/dist/* dist/
+rsync --progress -avz --delete --excluded="*node_modules*" --include='.*' update/dist/* dist/
 ```
 We sync all files from `update/dist` directory to `dist` directory, including those hidden files from source directory. But we won't delete the files with "*node_modules*" pattern if target directory already exist while source directory doesn't contains.
 
