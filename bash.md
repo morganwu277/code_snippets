@@ -113,9 +113,17 @@ $ curl --socks5 127.0.0.1:9050
 ```
 ## rsync files, include, exclude, hidden files
 ```bash
-rsync --progress -avz --delete --excluded="*node_modules*" --include='.*' update/dist/* dist/
+rsync --progress -avz --delete --recursive --exclude-from=".exclude" . -e 'ssh -p REMOTE_PORT' root@xxx.xxx.xxx.xxx:~
 ```
-We sync all files from `update/dist` directory to `dist` directory, including those hidden files from source directory. But we won't delete the files with "*node_modules*" pattern if target directory already exist while source directory doesn't contains.
+We sync all files from current directory to remote machine directory by using ssh protocol with a `REMOTE_PORT` specific port, `.exclude` content is listed as below:  leading + means include, leading - means exclude 
+```txt
++ ./*
+- .idea/
+- .git/
+- target/
+- input/
+- logs/
+```
 
 ## crontab examples 
 Overall Rule: 
