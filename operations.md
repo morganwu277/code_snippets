@@ -17,5 +17,5 @@
     #		for information on rule syntax.
     #		See 'man tcpd' for information on tcp_wrappers
     #
-    sshd: /etc/hosts_ssh.deny  内容是上述ssh.txt的结果
+    sshd: /etc/hosts_ssh.deny  #内容是上述ssh.txt的结果
     ```
