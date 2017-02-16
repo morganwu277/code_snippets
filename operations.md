@@ -1,6 +1,6 @@
 1. 如非必要，永远不要对外开放3306等之类的端口，只对本地开放，或者防火墙关闭IP地址访问    
 
-2. 禁止ssh login的列表 http://lists.blocklist.de/lists/ssh.txt 
+2. 禁止ssh login的列表 http://lists.blocklist.de/lists/ssh.txt  http://www.blocklist.de/en/view.html?ip=116.31.116.51 
 
     ```bash
     [root@ip-*-*-*-* log]# cat /etc/hosts.deny 
