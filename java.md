@@ -79,6 +79,8 @@ Exception object need __4 times more time__ to be created than the normal object
 http://blog.takipi.com/forkjoin-framework-vs-parallel-streams-vs-executorservice-the-ultimate-benchmark/ Compare the IO or Non-IO and check out the selections. 
 
 ### Print Java GC
+Here is a simple combination : `java -Xmx400m -Xms400m -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:/tmp/gc-paper77.log ...` 
+
 - -XX:+PrintGC (or the alias -verbose:gc)
 
    ```bash
