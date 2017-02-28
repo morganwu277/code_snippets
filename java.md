@@ -18,6 +18,7 @@ apt-get update
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
 apt-get install oracle-java8-installer -y
 java -version
+apt-get install oracle-java8-set-default -y
 ```
 
 For Debian, we need next commands extra: 
