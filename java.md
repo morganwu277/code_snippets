@@ -1,13 +1,24 @@
 ### Download the jre from bash
+
 ```
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jre.tar.gz http://download.oracle.com/otn-pub/java/jre/8u40-b26/jre-8u40-linux-x64.tar.gz
 ```
 
 ### Download the jdk from bash
+
 ```
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" -O /tmp/jdk.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.tar.gz
 ```
 
+### Automatically install jdk in ubuntu
+
+```bash
+apt-add-repository ppa:webupd8team/java
+apt-get update
+echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+apt-get install oracle-java8-installer -y
+java -version
+```
 ### Convert between Gradle and Maven
 1. **Gradle -> Maven**   
    Your build.gradle should be like 
