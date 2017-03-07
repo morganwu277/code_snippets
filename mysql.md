@@ -15,3 +15,8 @@ And when you’re done, don’t forget to turn it back on with:
   SET FOREIGN_KEY_CHECKS = 1;
   SET SESSION tx_isolation='READ-REPEATABLE';
 ```
+
+## All kinds of join.
+   Problems like how to calculate SetA-SetB question.    
+   Here is all kinds of join in sql. 
+   ![sql_join](sql_join.jpg)
