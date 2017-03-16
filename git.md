@@ -40,4 +40,7 @@ $ git pull -X theirs
 $ git merge -X theirs
 $ git rebase -X theirs
 ```
-
+## ignore white space changes
+```bash
+$ git diff --ignore-space-change
+```
