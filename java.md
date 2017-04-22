@@ -175,6 +175,14 @@ __OU,PU,EU,S0U,S1U are the most important__
 - GCT  Total garbage collection time.
 
 
-
+### install jar into local maven repository
+```bash
+mvn install:install-file -Dfile=./lib/GlobalPayWSClient.jar \
+   -DgroupId=westernunion.com.partnerapiwebservice \
+   -DartifactId=GlobalPayWSClient \
+   -Dversion=1.0 \
+   -Dpackaging=jar \
+   -DlocalRepositoryPath="$HOME/.m2/repository/"
+```
 
 
