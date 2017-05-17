@@ -199,7 +199,7 @@ EOF
 ```
 
 ## cygwin basic packages
-`curl` `wget` `ssh` `tree`
+`curl` `wget` `ssh` `tree` `rsync`
 
 ### cygwin terminal color
 ``` bash 
