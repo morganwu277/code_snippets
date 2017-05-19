@@ -179,13 +179,25 @@ If we connect to 127.0.0.1:3307 locally, it's like we're connecting me-db-1:3306
 ```bash
 $ ssh -D 0.0.0.0:9999 -C user@host
 ```
+-D: Dynamic forwarding 
+-C: Compress communication
 http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/ 
 
 ## ssh generate pub key from existing private key
 ```bash
 $ ssh-keygen -f private_key -y
 ```
+## ssh hostbased authentication
+Write next config for `srv1` server with username/hostname/port/Identity, and even doesn't check the hostname matching.
+```bash
+Host srv1
+    User vagrant
+    Port 2222
+    Hostname 127.0.0.1
+    IdentityFile /Users/morganwu/Developer/workspace/ssh_port_forward/server1/.vagrant/machines/default/virtualbox/private_key
+    StrictHostKeyChecking no
 
+```
 ## write file by using heredoc 
 ```bash
 sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
