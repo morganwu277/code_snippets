@@ -238,3 +238,8 @@ BoldWhite=255,255,255
 BoldAsFont=-1
 FontHeight=9
 ```
+
+### bash script current working directory
+```bash
+$ echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+```
