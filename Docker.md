@@ -86,3 +86,9 @@ vagrant@vagrant-ubuntu-trusty-64:~$ docker run -d --privileged centos:7 /usr/sbi
 
 1. Connect to the VM with screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty and then login as root by type `su && id`
 2. execute `fstrim /var` and then reboot the docker VM. 
+
+## source the script inside a Dockerfile
+please use `/bin/bash -c`, or you will get error `sh: 1: source: not found`. 
+```
+RUN /bin/bash -c "source /usr/local/bin/virtualenvwrapper.sh"
+```
