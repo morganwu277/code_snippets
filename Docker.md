@@ -92,3 +92,28 @@ please use `/bin/bash -c`, or you will get error `sh: 1: source: not found`.
 ```
 RUN /bin/bash -c "source /usr/local/bin/virtualenvwrapper.sh"
 ```
+
+## Docker Environment Probing
+Via next command result, we can see `vxlan` support is missing. 
+```bash
+curl -sSL https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh | bash
+```
+
+```bash
+// more is here....... 
+- Network Drivers:
+  - "overlay":
+    - CONFIG_VXLAN: missing
+      Optional (for encrypted networks):
+      - CONFIG_CRYPTO: enabled
+      - CONFIG_CRYPTO_AEAD: enabled
+      - CONFIG_CRYPTO_GCM: enabled
+      - CONFIG_CRYPTO_SEQIV: enabled
+      - CONFIG_CRYPTO_GHASH: enabled
+      - CONFIG_XFRM: enabled
+      - CONFIG_XFRM_USER: enabled
+      - CONFIG_XFRM_ALGO: enabled
+      - CONFIG_INET_ESP: enabled
+      - CONFIG_INET_XFRM_MODE_TRANSPORT: enabled
+// more is here....... 
+```
