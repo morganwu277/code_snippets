@@ -261,3 +261,9 @@ tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes 
 ```
 for more, please review [tcpdump](https://tldr.ostera.io/tcpdump) and [tcpdump chinese blog](http://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
+
+## firewall-cmd uses
+```bash
+firewall-cmd --zone=public --add-port=5060-5061/udp --permanent
+```
+add `5060-5061/udp` to white list of `public` zone and make `--permanent`, you need restart firewalld service. 
