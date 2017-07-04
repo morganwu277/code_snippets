@@ -244,12 +244,20 @@ BoldAsFont=-1
 FontHeight=9
 ```
 
-### bash script current working directory
+## bash script current working directory
 ```bash
 $ echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ```
 
-### Crontab check a process and retart if dead
+## Crontab check a process and retart if dead
 ```bash
 ps -ef | grep jenkins | grep -v grep | grep -v 'su jenkins' || /usr/sbin/service jenkins restart >/tmp/startjenkins.log 2>&1
 ```
+## tcpdump commands
+monitor the network flow of 30006 port. 
+```bash
+[root@node-3-slave-codential wktang]# tcpdump -i eth0 tcp port 30006
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes 
+```
+for more, please review [tcpdump](https://tldr.ostera.io/tcpdump)
