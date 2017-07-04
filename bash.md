@@ -248,3 +248,8 @@ FontHeight=9
 ```bash
 $ echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 ```
+
+### Crontab check a process and retart if dead
+```bash
+ps -ef | grep jenkins | grep -v grep | grep -v 'su jenkins' || /usr/sbin/service jenkins restart >/tmp/startjenkins.log 2>&1
+```
