@@ -32,4 +32,8 @@ root@fluentd-elasticsearch-centos7-node-224:/$ apt-get install dnsutils
 ```bash
 $ sudo update-rc.d <service_name> defaults
 ```
+or 
+```bash
+$ update-rc.d <service_name> enable 
+```
 
