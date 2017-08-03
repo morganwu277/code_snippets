@@ -67,6 +67,17 @@ type=AVC msg=audit(1415714880.156:29): avc:  denied  { name_connect } for  pid=1
 ```bash
 scp -o "StrictHostKeyChecking no"
 ```
+## ssh default config
+1. without host key checking 
+2. keep alive set
+```bash
+$ cat ~/.ssh/config
+Host *
+    ServerAliveInterval 240
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null
+```
+
 ## network debug
 * `ss -a `
 * `netstat -nalp` 
