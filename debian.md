@@ -36,4 +36,7 @@ or
 ```bash
 $ update-rc.d <service_name> enable 
 ```
-
+## [Ubuntu] start with daemon, but keep the log.
+```bash
+start-stop-daemon --start --background --quiet -u wpleetcode -g wpleetcode  --exec /usr/local/bin/uwsgi --  --ini /home/wpleetcode/leetcode.com/noj_uwsgi.ini
+```
