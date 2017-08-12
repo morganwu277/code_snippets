@@ -39,4 +39,6 @@ $ update-rc.d <service_name> enable
 ## [Ubuntu] start with daemon, but keep the log.
 ```bash
 start-stop-daemon --start --background --quiet -u wpleetcode -g wpleetcode  --exec /usr/local/bin/uwsgi --  --ini /home/wpleetcode/leetcode.com/noj_uwsgi.ini
+start-stop-daemon --start --quiet --background --pidfile ~/leetcode.com/noj_uwsgi.pid --exec /home/wpleetcode/virtualenvs/noj/bin/uwsgi -- --ini  /home/wpleetcode/leetcode.com/noj_uwsgi.ini
+
 ```
