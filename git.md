@@ -44,3 +44,8 @@ $ git rebase -X theirs
 ```bash
 $ git diff --ignore-space-change
 ```
+## remeber password locally
+```bash
+$ git config credential.helper store
+```
+https://git-scm.com/docs/git-credential-store 
