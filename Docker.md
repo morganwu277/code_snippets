@@ -117,3 +117,23 @@ curl -sSL https://raw.githubusercontent.com/docker/docker/master/contrib/check-c
       - CONFIG_INET_XFRM_MODE_TRANSPORT: enabled
 // more is here....... 
 ```
+
+## Clean Dangling Docker Volumes, since sometimes `docker rm -v` doesn't work
+```bash
+#!/bin/bash
+
+LIST=""
+count=0
+batch_count=20
+for i in `docker volume ls -qf dangling=true`; 
+do
+  LIST="$LIST $i"
+  count=$((count+1))
+  if [[ "$count" == "$batch_count" ]]; then
+    docker volume rm $LIST
+    sleep 0.01
+    LIST=""
+    count=0
+  fi
+done
+```
