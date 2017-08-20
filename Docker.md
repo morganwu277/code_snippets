@@ -137,3 +137,4 @@ do
   fi
 done
 ```
+Installed such script as crontab job `0 5 * * * /root/clean_docker_volume.sh`.
