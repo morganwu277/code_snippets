@@ -4,6 +4,7 @@
 2. AppArmor modfication:
  - comment out the `include <local/usr.sbin.mysqld>` in `/etc/apparmor.d/usr.sbin.mysqld`
  - edit `/etc/apparmor.d/local/usr.sbin.mysqld` 
+
    ```
    /mnt/volume-sgp1-01/mysql/ r,
    /mnt/volume-sgp1-01/mysql/** rwk,
