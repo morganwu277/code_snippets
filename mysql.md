@@ -1,3 +1,14 @@
+## move mysql data files to a new node(Ubuntu)
+1. rsync files and configuration
+
+2. AppArmor modfication:
+ - comment out the `include <local/usr.sbin.mysqld>` in `/etc/apparmor.d/usr.sbin.mysqld`
+ - edit `/etc/apparmor.d/local/usr.sbin.mysqld` 
+   ```
+   /mnt/volume-sgp1-01/mysql/ r,
+   /mnt/volume-sgp1-01/mysql/** rwk,
+   ```
+
 ## accelerate mysql load speed 
 1. You can tell MySQL to not enforce foreign key and uniqueness constraints:
 
