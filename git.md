@@ -44,6 +44,11 @@ $ git rebase -X theirs
 ```bash
 $ git diff --ignore-space-change
 ```
+## use vimdiff as difftool
+```bash
+$ it config --global diff.tool vimdiff
+$ git difftool
+```
 ## remeber password locally
 ```bash
 $ git config credential.helper store
