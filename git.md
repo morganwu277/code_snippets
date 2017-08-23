@@ -46,7 +46,7 @@ $ git diff --ignore-space-change
 ```
 ## use vimdiff as difftool
 ```bash
-$ it config --global diff.tool vimdiff
+$ git config --global diff.tool vimdiff
 $ git difftool
 ```
 ## remeber password locally
