@@ -31,7 +31,7 @@ $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ss
 ```bash
 upstream today {
     ip_hash;
-    server me-app-1:8181 weight=5;
+    server me-app-1:8181 weight=5 fail_timeout=5s max_fails=5;
 
     # for tcp higher performance
     keepalive 60; 
