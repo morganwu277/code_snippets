@@ -283,3 +283,22 @@ add `5060-5061/udp` to white list of `public` zone and make `--permanent`, you n
 ufw allow proto tcp from 74.207.245.148 to any port 6379
 ```
 This allows tcp from `74.207.245.148` to access this machine `6379` port of any net interface card. 
+
+## `xargs` and apply command to each line
+```bash
+[root@RHEL7264Bit-7 temp]# find .|grep layer |xargs ls -ltrah
+-rw-r--r-- 1 root root  49M Aug 25 12:49 ./e396e1feba70f9da0f880c2fb7719d5e749bf8cfbb6fed02921ed2b78a282c77/layer.tar
+-rw-r--r-- 1 root root  53M Aug 25 12:49 ./d642a9532ee6b2288746712db1262d4c5a7ec1bead9d017be9af5efb222896f0/layer.tar
+-rw-r--r-- 1 root root 7.5K Aug 25 12:49 ./c6c9f58a01422d043ac79433669d75ac919a11fe118f8d800757614b648e3bdb/layer.tar
+-rw-r--r-- 1 root root  16K Aug 25 12:49 ./bd5b778776e7b7078ae7d092d2d4ab7f595c1bdc54039382b56760b1b7db8985/layer.tar
+-rw-r--r-- 1 root root 5.5K Aug 25 12:49 ./b55669c9130d2b008064030fbec347810c89ed3c49db993e2890be160c1cf39d/layer.tar
+-rw-r--r-- 1 root root  93M Aug 25 12:49 ./a38b6a23ef9916bac242e117d93b671d057053769fc6af0e670fc80e20cb8596/layer.tar
+-rw-r--r-- 1 root root 2.5K Aug 25 12:49 ./9e395f45ba84e52f725ce374e64dd7167b4a2d5db0c3a965013c545a3c16ebe9/layer.tar
+-rw-r--r-- 1 root root 3.0K Aug 25 12:49 ./693e42990d01db119b677337f7d47388d20692db0b07a0ab8ed05ab62913ecc2/layer.tar
+-rw-r--r-- 1 root root 368M Aug 25 12:49 ./5ad685d5a369a7263e35d38eefc68ec60dd723ad8fd3afb1239ade6653631169/layer.tar
+-rw-r--r-- 1 root root  27K Aug 25 12:49 ./5481d59c50807917e95aa6e96656405f46db02096b41220d47401033e90d122d/layer.tar
+-rw-r--r-- 1 root root  16K Aug 25 12:49 ./4cdeb608206b07a92bdeb3beef88ddbd84ff922cee342bea413be28734ad92fe/layer.tar
+-rw-r--r-- 1 root root 3.0K Aug 25 12:49 ./29d31c8f4e579e888d32bfe445b487dcbc72e9416de138718d615f0d4c3663c7/layer.tar
+-rw-r--r-- 1 root root 192M Aug 25 12:49 ./1f848715be222b4f94304d00bc5b265a03c1c1253c9e4a980387fa636cd0d76f/layer.tar
+-rw-r--r-- 1 root root  16M Aug 25 12:49 ./0b0141ebf39d736914c6858ddc84f6ee3d46371e077ed9ecee2e1e7b2d726e37/layer.tar
+```
