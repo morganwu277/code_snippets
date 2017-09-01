@@ -9,6 +9,11 @@ m92wu     6684  6482  6685  0    3 15:38 pts/2    00:00:00 ./a.out 1 1
 m92wu     6684  6482  6686  0    3 15:38 pts/2    00:00:00 ./a.out 1 1
 m92wu     6734  6691  6734  0    1 15:38 pts/3    00:00:00 grep --color=auto out
 ```
+
+## IFS using \n
+```bash
+IFS=$'\n'; for i in `head -n 10 slow.log `;do echo $i ;done;
+```
 ## if conditions 
 [what should be put in the if [] ](http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html)
 
