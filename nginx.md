@@ -27,6 +27,13 @@ root@xxxx:/var/log/nginx# cat /var/log/nginx/access.log | awk '{print $1}' | sor
 ```bash
 $ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
 ```
+For new certificate signed by self-signed CA. https://medium.com/@kennychen_49868/chrome-58%E4%B8%8D%E5%85%81%E8%A8%B1%E6%B2%92%E6%9C%89san%E7%9A%84%E8%87%AA%E7%B0%BD%E6%86%91%E8%AD%89-12ca7029a933 
+ and https://imququ.com/post/sth-about-switch-to-https-2.html 
+
+
+### Nginx Performance Recommendation
+https://www.linode.com/docs/web-servers/nginx/configure-nginx-for-optimized-performance
+
 ### Deploy http & https website best-practice
 ```bash
 upstream today {
