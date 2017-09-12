@@ -1,3 +1,13 @@
+## capture the time output
+```bash
+[12:13 AM morganwu@morgan-yinnut ~]$ { time sleep 1 ; } 2> time.txt
+[12:13 AM morganwu@morgan-yinnut ~]$ cat time.txt 
+
+real	0m1.010s
+user	0m0.001s
+sys	0m0.002s
+
+```
 ## use `ps` to see the threads inside some process
 
 `-L: show thread`
