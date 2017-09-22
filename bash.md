@@ -1,3 +1,14 @@
+## json string extraction inside the bash
+Python 2: 
+```bash
+export PYTHONIOENCODING=utf8
+curl -s 'https://api.github.com/users/lambda' | \
+    python -c "import sys, json; print json.load(sys.stdin)['name']"
+```
+Python 3: 
+curl -s 'https://api.github.com/users/lambda' | \
+    python3 -c "import sys, json; print(json.load(sys.stdin)['name'])"
+
 ## capture the time output
 ```bash
 [12:13 AM morganwu@morgan-yinnut ~]$ { time sleep 1 ; } 2> time.txt
