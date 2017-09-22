@@ -11,6 +11,30 @@ curl -s 'https://api.github.com/users/lambda' | \
     python3 -c "import sys, json; print(json.load(sys.stdin)['name'])"
 ```
 
+## master election inside the BASH
+```bash
+ETCD_SERVER=$ETCD_SERVER
+ETCD_URL_PREFIX="http://$ETCD_SERVER:2379/v2/keys"
+APPLICATION="noj"
+MASTER_NODE=false
+
+function master_election() {
+    [[ $ETCD_SERVER == "" ]] && echo "[ERROR]: can not find etcd server, master election failed. " && exit 1
+    # write the key
+    this_host=`hostname`
+    echo "[DEBUG]: write current hostname $this_host to $ETCD_URL_PREFIX/$APPLICATION_deploy ..."
+    curl "$ETCD_URL_PREFIX/$APPLICATION_deploy" -XPOST -d value=$this_host
+    first_host=$(curl -s "$ETCD_URL_PREFIX/$APPLICATION_deploy?recursive=true&sorted=true" | python -c "import sys, json; print json.load(sys.stdin)['node']['nodes'][0]['value']" )
+    echo "[DEBUG]: got the first_host is $first_host under $ETCD_URL_PREFIX/$APPLICATION_deploy ..."
+    [[ "$first_host" == "$this_host" ]] && MASTER_NODE=true
+}
+
+function delete_master_election_nodes() {
+    echo "[DEBUG]: complete deployment, delete the master election nodes $ETCD_URL_PREFIX/$APPLICATION_deploy"
+    curl "$ETCD_URL_PREFIX/$APPLICATION_deploy?recursive=true" -XDELETE
+}
+```
+
 ## capture the time output
 ```bash
 [12:13 AM morganwu@morgan-yinnut ~]$ { time sleep 1 ; } 2> time.txt
