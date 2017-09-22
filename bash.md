@@ -6,8 +6,10 @@ curl -s 'https://api.github.com/users/lambda' | \
     python -c "import sys, json; print json.load(sys.stdin)['name']"
 ```
 Python 3: 
+```bash
 curl -s 'https://api.github.com/users/lambda' | \
     python3 -c "import sys, json; print(json.load(sys.stdin)['name'])"
+```
 
 ## capture the time output
 ```bash
