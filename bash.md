@@ -1,3 +1,7 @@
+## reserved space for root user in Linux
+```bash
+tune2fs -m 5 /dev/sda 
+```
 ## json string extraction inside the bash
 Python 2: 
 ```bash
