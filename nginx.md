@@ -24,8 +24,70 @@ root@xxxx:/var/log/nginx# cat /var/log/nginx/access.log | awk '{print $1}' | sor
 ```
 
 ### Create SSL certificates 
-```bash
-$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+Here is the Makefile to generate SSL Certificate: 
+```Makefile
+SERVER-HOST=foo.bar.com
+CLIENT-HOST=morgan-yinnut.local
+
+SERVER_SIGNED_BY_CA=true
+define NEWLINE=
+
+endef
+
+all: prepare ca client server
+
+prepare:
+        @echo "step1. generate ca,client,server,conf directory..."
+        @echo "===================================================="
+        [[ -e ca ]] || mkdir ca client server conf
+
+        echo [req] > conf/openssl.conf
+        echo req_extensions = v3_req >> conf/openssl.conf
+        echo distinguished_name = req_distinguished_name >> conf/openssl.conf
+        echo [req_distinguished_name] >> conf/openssl.conf
+        echo [ v3_req ] >> conf/openssl.conf
+        echo basicConstraints = CA:FALSE >> conf/openssl.conf
+        echo keyUsage = nonRepudiation, digitalSignature, keyEncipherment >> conf/openssl.conf
+
+        echo authorityKeyIdentifier=keyid,issuer > conf/v3.ext
+        echo basicConstraints=CA:FALSE >> conf/v3.ext
+        echo keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment >> conf/v3.ext
+        echo subjectAltName = @alt_names >> conf/v3.ext
+        echo "" >> conf/v3.ext
+        echo [alt_names] >> conf/v3.ext
+        echo DNS.1 = $(SERVER-HOST) >> conf/v3.ext
+
+ca: prepare
+        @echo "$(NEWLINE)"
+        @echo "step2. generate CA ..."
+        @echo "===================================================="
+        [[ -e ca/ca.key ]] || openssl genrsa -out ca/ca.key 2048
+        [[ -e ca/ca.crt ]] || openssl req -x509 -new -nodes -key ca/ca.key -days 10000 -out ca/ca.crt -subj "/CN=example-ca"
+
+client: prepare ca
+        @echo "$(NEWLINE)"
+        @echo "===================================================="
+        @echo "step3. generate client key/certificate ..."
+        openssl genrsa -out client/client1.key 2048
+        openssl req -new -key client/client1.key -out client/client1.csr -subj "/CN=$(CLIENT-HOST)" -config conf/openssl.conf
+        openssl x509 -req -in client/client1.csr -CA ca/ca.crt -CAkey ca/ca.key -CAcreateserial -out client/client1.crt -days 365 -extfile conf/v3.ext -sha256
+        openssl pkcs12 -export -clcerts -in client/client1.crt -inkey client/client1.key -password pass:123456 -out client/client1.p12
+
+server: prepare
+        @echo "$(NEWLINE)"
+        @echo "===================================================="
+        @echo "step4. generate server key/certificate ..."
+ifeq ($(SERVER_SIGNED_BY_CA), false)
+        openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout server/tls.key -out server/tls.crt -subj "/CN=$(SERVER-HOST)"
+else
+        openssl genrsa -out server/tls.key 2048
+        openssl req -new -key server/tls.key -out server/tls.csr -subj "/CN=$(SERVER-HOST)" -config conf/openssl.conf
+        openssl x509 -req -in server/tls.csr -CA ca/ca.crt -CAkey ca/ca.key -CAcreateserial -out server/tls.crt -days 365 -extfile conf/v3.ext -sha256
+endif
+        openssl pkcs12 -export -clcerts -in server/tls.crt -inkey server/tls.key -password pass:123456 -out server/tls.p12
+
+clean:
+        rm -rf server client ca conf
 ```
 For new certificate signed by self-signed CA. https://medium.com/@kennychen_49868/chrome-58%E4%B8%8D%E5%85%81%E8%A8%B1%E6%B2%92%E6%9C%89san%E7%9A%84%E8%87%AA%E7%B0%BD%E6%86%91%E8%AD%89-12ca7029a933 
  and https://imququ.com/post/sth-about-switch-to-https-2.html 
