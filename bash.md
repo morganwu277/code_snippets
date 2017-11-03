@@ -363,3 +363,8 @@ This allows tcp from `74.207.245.148` to access this machine `6379` port of any 
 -rw-r--r-- 1 root root 192M Aug 25 12:49 ./1f848715be222b4f94304d00bc5b265a03c1c1253c9e4a980387fa636cd0d76f/layer.tar
 -rw-r--r-- 1 root root  16M Aug 25 12:49 ./0b0141ebf39d736914c6858ddc84f6ee3d46371e077ed9ecee2e1e7b2d726e37/layer.tar
 ```
+
+## output string to stderr
+```bash
+(>&2 echo "Certificate tls.crt does not exist! Please put it there or generate one!" )
+```
