@@ -54,3 +54,13 @@ $ git difftool
 $ git config credential.helper store
 ```
 https://git-scm.com/docs/git-credential-store 
+
+## manage different users for github.com 
+https://help.github.com/articles/connecting-to-github-with-ssh/ 
+`ssh -T git@github.com` works for each shell session. So for different session, using differnt `ssh-add` command in each shell window. 
+Also remember to use next commands to manage user info for each project.   
+```bash
+git config user.name user1 
+git config user.email email1@xxx.com 
+```
+
