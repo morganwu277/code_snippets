@@ -368,3 +368,53 @@ This allows tcp from `74.207.245.148` to access this machine `6379` port of any 
 ```bash
 (>&2 echo "Certificate tls.crt does not exist! Please put it there or generate one!" )
 ```
+## init.d script example
+Using this as an template: 
+```bash
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides: statsd
+# Required-Start: $remote_fs $syslog    
+# Required-Stop: $remote_fs $syslog    
+# Default-Start: 2 3 4 5    
+# Default-Stop: 0 1 6    
+# Short-Description: statsd
+# Description: This file starts and stops statsd server    
+# 
+### END INIT INFO    
+case "$1" in
+    start)
+        cd /opt/statsd && nohup /usr/bin/node ./stats.js ./myConfig.js > run.log 2>&1 & 
+    ;;
+    stop)
+        pkill statsd
+    ;;
+    restart)
+        pkill statsd
+        cd /opt/statsd && nohup /usr/bin/node ./stats.js ./myConfig.js > run.log 2>&1 &
+    ;;
+    status)
+        ps -ef | grep "statsd" | grep -v grep && exit 0 || exit $?
+    ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}" >&2
+        exit 3
+    ;;
+esac
+```
+After this, use `systemctl enable statsd` to added it to default level startup, so that it could be controlled by `systemctl`. 
+```bash
+root@leetcode:/opt/statsd# systemctl enable statsd
+statsd.service is not a native service, redirecting to systemd-sysv-install
+Executing /lib/systemd/systemd-sysv-install enable statsd
+root@leetcode:/opt/statsd# systemctl status statsd
+● statsd.service - LSB: statsd
+   Loaded: loaded (/etc/init.d/statsd; bad; vendor preset: enabled)
+   Active: active (running) since Mon 2017-11-06 22:00:22 PST; 3min 58s ago
+     Docs: man:systemd-sysv-generator(8)
+   CGroup: /system.slice/statsd.service
+           └─13194 statsd ./myConfig.js                  
+
+Nov 06 22:00:22 leetcode.com systemd[1]: Starting LSB: statsd...
+Nov 06 22:00:22 leetcode.com systemd[1]: Started LSB: statsd.
+```
