@@ -317,8 +317,10 @@ FontHeight=9
 ```
 
 ## bash script current working directory
+change current working dir to script directory.
 ```bash
-$ echo $( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
 ```
 
 ## Crontab check a process and retart if dead
