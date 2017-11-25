@@ -203,7 +203,7 @@ This line executes the `ping` command **every minute of every hour of every day 
 ```bash
 *       *       *       *       *       /sbin/ping -c 1 192.168.0.1 > /dev/null
 ```
-This line executes the `ping` and the `ls` command **every 12am and 12pm on the 1st day of every 2nd month**. 
+This line executes the `ping` and the `ls` command **every 12am and 12pm on the 1st day of every 2 month intervaly**. 
 ```bash
 0 0,12 1 */2 * /sbin/ping -c 192.168.0.1; ls -la >>/var/log/cronrun
 ```
