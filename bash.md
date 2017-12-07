@@ -420,3 +420,21 @@ root@leetcode:/opt/statsd# systemctl status statsd
 Nov 06 22:00:22 leetcode.com systemd[1]: Starting LSB: statsd...
 Nov 06 22:00:22 leetcode.com systemd[1]: Started LSB: statsd.
 ```
+
+### create a new disk partition and format the new disk partition
+Here is an example of the newly added disk `/dev/sdb`
+```bash
+echo "n \
+p
+
+
+
+
+w
+q" | fdisk /dev/sdb
+mkfs.xfs /dev/sdb1
+mkdir -p /mnt/largedisk
+mount /dev/sdb1 /mnt/largedisk
+echo 'mount /dev/sdb1 /mnt/largedisk' >> /etc/rc.local
+chmod +x /etc/rc.d/rc.local
+```
