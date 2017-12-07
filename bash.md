@@ -424,6 +424,7 @@ Nov 06 22:00:22 leetcode.com systemd[1]: Started LSB: statsd.
 ### create a new disk partition and format the new disk partition
 Here is an example of the newly added disk `/dev/sdb`
 ```bash
+# do not change space or newline of this echo 
 echo "n \
 p
 
