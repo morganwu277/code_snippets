@@ -241,6 +241,11 @@ $ sudo find . -iname "*bluestack*" ! -path "*Desktop*" -exec rm -rf {} \;
 $ ssh -p 16688 -L 3307:me-db-1:3306 root@159.203.44.228
 ```
 If we connect to 127.0.0.1:3307 locally, it's like we're connecting me-db-1:3306 by loggin into root@m159.203.44.228 server.
+```bash
+ssh -p 575 -L 9000:127.0.0.1:20001 xxxx@159.203.238.66
+```
+This will forward local 9000 port to remote machine 159.203.238.66's 20001 port and 20001 port is listening on 127.0.0.1. 
+
 
 ## ssh by using local port as SOCKS5 proxy
 ```bash
