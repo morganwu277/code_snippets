@@ -347,6 +347,29 @@ ufw allow proto tcp from 74.207.245.148 to any port 6379
 ```
 This allows tcp from `74.207.245.148` to access this machine `6379` port of any net interface card. 
 
+```bash
+root@discuss:~# ufw status |grep '/' | nl
+     1	80/tcp                     ALLOW       Anywhere
+     2	4567/tcp                   ALLOW       Anywhere
+     3	4568/tcp                   ALLOW       Anywhere
+     4	4569/tcp                   ALLOW       Anywhere
+     5	4570/tcp                   ALLOW       Anywhere
+     6	443/tcp                    ALLOW       Anywhere
+     7	575/tcp                    ALLOW       Anywhere
+     8	8649/udp                   ALLOW       Anywhere
+     9	8649/tcp                   ALLOW       Anywhere
+    10	80/tcp (v6)                ALLOW       Anywhere (v6)
+    11	4567/tcp (v6)              ALLOW       Anywhere (v6)
+    12	4568/tcp (v6)              ALLOW       Anywhere (v6)
+    13	4569/tcp (v6)              ALLOW       Anywhere (v6)
+    14	4570/tcp (v6)              ALLOW       Anywhere (v6)
+    15	443/tcp (v6)               ALLOW       Anywhere (v6)
+    16	575/tcp (v6)               ALLOW       Anywhere (v6)
+    17	8649/udp (v6)              ALLOW       Anywhere (v6)
+    18	8649/tcp (v6)              ALLOW       Anywhere (v6)
+```
+use `nl` to calculate the line number of output, this makes `ufw delete [LINE_NUM]` easier
+
 ## `xargs` and apply command to each line
 ```bash
 [root@RHEL7264Bit-7 temp]# find .|grep layer |xargs ls -ltrah
