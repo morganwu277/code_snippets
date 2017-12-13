@@ -467,3 +467,6 @@ mount /dev/sdb1 /mnt/largedisk
 echo 'mount /dev/sdb1 /mnt/largedisk' >> /etc/rc.local
 chmod +x /etc/rc.d/rc.local
 ```
+
+## Apache HTTPD Basic Auth 
+https://wiki.apache.org/httpd/PasswordBasicAuth
