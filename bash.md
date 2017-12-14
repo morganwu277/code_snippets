@@ -470,3 +470,13 @@ chmod +x /etc/rc.d/rc.local
 
 ## Apache HTTPD Basic Auth 
 https://wiki.apache.org/httpd/PasswordBasicAuth
+
+## Screen Management
+```bash
+screen -S lc -dm bash
+sleep 1
+screen -S lc -X screen tail -f /var/log/nginx/access.log
+```
+- use `screen -ls` to review 
+- use `screen -r id` to attach
+- use `Ctrl+ad` to detach
