@@ -480,3 +480,7 @@ screen -S lc -X screen tail -f /var/log/nginx/access.log
 - use `screen -ls` to review 
 - use `screen -r id` to attach
 - use `Ctrl+ad` to detach
+
+
+## Disk RAID 
+https://www.tecmint.com/understanding-raid-setup-in-linux/ 
