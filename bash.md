@@ -351,6 +351,14 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 ```
 for more, please review [tcpdump](https://tldr.ostera.io/tcpdump) and [tcpdump chinese blog](http://www.cnblogs.com/ggjucheng/archive/2012/01/14/2322659.html)
 
+**TCPDUMP file to Wireshark**
+
+ - This records all traffic from/to 153.71.28.115 and save it to SuccessC2Server.pcap.    
+ - The most import is to keep `-s` option.
+```bash
+tcpdump -i eth0 -s 0 -w SuccessC2Server.pcap host 153.71.28.115
+```
+
 ## firewall-cmd/ufw uses
 ```bash
 firewall-cmd --zone=public --add-port=5060-5061/udp --permanent
@@ -492,5 +500,6 @@ screen -S lc -X screen tail -f /var/log/nginx/access.log
 - use `Ctrl+ad` to detach
 
 
-## Disk RAID 
+## Disk RAID Setup in Linux
 https://www.tecmint.com/understanding-raid-setup-in-linux/ 
+
