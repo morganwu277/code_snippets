@@ -1,3 +1,8 @@
+## mtr command
+combing tracerout and ping command. 
+Simple Usage: `mtr -r [destination host]`, but sometimes the `???` of the result doesn't always mean bad router, please refer:     
+https://linode.com/docs/networking/diagnostics/diagnosing-network-issues-with-mtr/
+
 ## reserved space for root user in Linux
 ```bash
 tune2fs -m 5 /dev/sda 
@@ -502,4 +507,37 @@ screen -S lc -X screen tail -f /var/log/nginx/access.log
 
 ## Disk RAID Setup in Linux
 https://www.tecmint.com/understanding-raid-setup-in-linux/ 
+
+## shell and sed traps
+```bash
+There are two levels of interpretation here: the shell, and sed.
+
+In the shell, everything between single quotes is interpreted literally, except for single quotes themselves. You can effectively have a single quotes between single quotes by writing `'\''` (close single quote, one literal single quote, open single quote).
+
+Sed uses [basic regular expressions](https://en.wikipedia.org/wiki/Regular_expression#POSIX_basic_and_extended). In a BRE, the characters `$.*[\]^` need to be quoted by preceding them by a backslash, except inside character sets (`[…]`). Letters, digits and `(){}+?|` must not be quoted (you can get away with quoting some of these in some implementations). The sequences `\(`, `\)`, `\n`, and in some implementations `\{`, `\}, `\+`, `\?`, `\|` and other backslash+alphanumerics have special meanings. You can get away with not quoting `$^]` in some positions in some implementations.
+
+Furthermore, you need a backslash before `/` if it is to appear in the regex outside of bracket expressions. You can choose an alternate character as the delimiter by writing e.g. `s~/dir~/replacement~` or `\~/dir~p`; you'll need a backslash before the delimiter if you want to include it in the BRE. If you choose a character that has a special meaning in a BRE and you want to include it literally, you'll need three backslashes; I do not recommend this.
+
+In a nutshell, for `sed 's/…/…/'`:
+
+Write the regex between single quotes.
+Use `'\''` to end up with a single quote in the regex.
+Put a backslash before `$.*/[\]^` and only those characters (but not inside bracket expressions).
+Inside a bracket expression, for `-` to be treated literally, make sure it is first or last (`[abc-]` or `[-abc]`, not `[a-bc]`)
+Inside a bracket expression, for `^` to be treated literally, make sure it is not first (use `[abc^]`, not `[^abc]`)
+To include `]` in the list of characters matched by a bracket expression, make it the first character (or first after `^` for a negated set): `[]abc]` or `[^]abc]` (not `[abc]]` nor `[abc\]]`).
+In the replacement text:
+
+`&` and `\` need to be quoted, as do the delimiter (usually `/`) and newlines.
+\`` followed by a digit has a special meaning. \`` followed by a letter has a special meaning (special characters) in some implementations, and \ followed by some other character means \c or c depending on the implementation.
+With single quotes around the argument (`sed 's/…/…/'`), use `'\''` to put a single quote in the replacement text.
+If the regex or replacement text comes from a shell variable, remember that
+
+the regex is a BRE, not a literal string;
+in the regex, a newline needs to be expressed as `\n` (which will never match unless you have other `sed` code adding newline characters to the pattern space). But note that it won't work inside bracket expressions with some sed implementations;
+in the replacement text, `&`, `\` and newlines need to be quoted;
+the delimiter needs to be quoted (but not inside bracket expressions).
+Use double quotes for interpolation: `sed -e "s/$BRE/$REPL/"`
+```
+From https://unix.stackexchange.com/questions/32907/what-characters-do-i-need-to-escape-when-using-sed-in-a-sh-script 
 
