@@ -1,3 +1,6 @@
+### Control Groups, Resource Management
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/resource_management_guide/chap-introduction_to_control_groups 
+
 ### pipe how to use
 Here is pipe diagram:
 ![Pipe](http://tldp.org/LDP/lpg/img4.gif "Pipe")    
