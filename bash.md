@@ -1,3 +1,29 @@
+## add options into script
+```bash
+function usage {
+    echo "Usage: $0 [OPTIONS]"
+    echo ""
+    echo "Options are:"
+    echo "  -d : Run with JDPA debugging enabled."
+    echo "  -r : Just restart the existing running Tomcat. "
+    echo "  -f : Run in foreground."
+    echo "  -h : Print usage information."
+}
+
+DEBUG=0
+FOREGROUND=0
+RESTART=0
+while getopts "dfhr" opt ; do
+    case $opt in
+        d) DEBUG=1 ;;
+        f) FOREGROUND=1 ;;
+        r) RESTART=1 ;;
+        h) usage ; exit 0 ;;
+        ?) usage ; exit 1 ;;
+    esac
+done
+```
+
 ## mtr command
 combing tracerout and ping command. 
 Simple Usage: `mtr -r [destination host]`, but sometimes the `???` of the result doesn't always mean bad router, please refer:     
