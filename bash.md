@@ -33,6 +33,23 @@ https://linode.com/docs/networking/diagnostics/diagnosing-network-issues-with-mt
 ```bash
 tune2fs -m 5 /dev/sda 
 ```
+
+## trap signal to do cleaning tasks before script exit
+```bash
+#!/bin/bash
+# trap1
+trap 'echo you hit Ctrl-C/Ctrl-\, now exiting..; exit' SIGINT SIGQUIT SIGTERM
+count=0
+ 
+while :
+ do
+   sleep 1
+   count=$(expr $count + 1)
+   echo $count
+ done
+
+```
+
 ## json string extraction inside the bash
 Python 2: 
 ```bash
