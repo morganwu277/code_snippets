@@ -47,8 +47,8 @@ while :
    count=$(expr $count + 1)
    echo $count
  done
-
 ```
+https://www.ibm.com/developerworks/aix/library/au-usingtraps/ 
 
 ## json string extraction inside the bash
 Python 2: 
