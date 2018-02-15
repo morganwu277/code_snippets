@@ -551,6 +551,16 @@ screen -S lc -X screen tail -f /var/log/nginx/access.log
 ## Disk RAID Setup in Linux
 https://www.tecmint.com/understanding-raid-setup-in-linux/ 
 
+## shell sed remove newlines
+use `-e ':a' -e 'N' -e '$!ba' ` before `sed -e xxxx`
+```bash
+[03:04 AM morganwu@morgan-yinnut setup]$ cat abc.txt 
+['1',
+'2',
+'3']
+[03:04 AM morganwu@morgan-yinnut setup]$ cat abc.txt |sed -e ':a' -e 'N' -e '$!ba' -e 's/,\n/,/g' 
+['1','2','3']
+```
 ## shell and sed traps
 ```bash
 There are two levels of interpretation here: the shell, and sed.
