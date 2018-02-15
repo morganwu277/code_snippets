@@ -2,9 +2,8 @@
 
 ## additional increment id for result view
 ```sql
-SELECT @s:=@s+1 _id, A.uid,A.username,A.groupid 
-FROM discuz.pre_common_member AS A,
-(SELECT @s:= 0) AS s 
+SET @s=0;
+SELECT @s:=@s+1 _id, A.uid,A.username,A.groupid FROM discuz.pre_common_member AS A
 WHERE A.groupid=8
 ORDER BY A.uid;
 ```
