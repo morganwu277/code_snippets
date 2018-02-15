@@ -56,3 +56,20 @@ Delete a user all permission:
 ```sql
 DROP USER ‘demo’@‘localhost’;
 ```
+
+## additional increment id for result view
+```sql
+SELECT @s:=@s+1 _id, A.uid,A.username,A.groupid 
+FROM discuz.pre_common_member AS A,
+(SELECT @s:= 0) AS s 
+WHERE A.groupid=8
+ORDER BY A.uid;
+```
+the result is
+```
+'1','30','morganwu277','8'
+'2','33','renkang','8'
+'3','34','ihuguowei','8'
+'4','36','sperictao','8'
+.....
+```
