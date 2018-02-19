@@ -130,6 +130,7 @@ affinity:
 ```
 
 ## Pods Amount goes up to 2500, need increase ARP cache
+https://mp.weixin.qq.com/s/37v5TqYIRNg9pje725kewg 
 increase ARP cache in `/etc/sysctl.conf`, or ARP cache will be used up and slow down the ARP requests.
 ```
 net.ipv4.neigh.default.gc_thresh1 = 80000
