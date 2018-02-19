@@ -128,3 +128,11 @@ affinity:
          - kube-dns
      topologyKey: kubernetes.io/hostname
 ```
+
+## Pods Amount goes up to 2500
+increase ARP cache in `/etc/sysctl.conf`, or ARP cache will be used up and slow down the ARP requests.
+```
+net.ipv4.neigh.default.gc_thresh1 = 80000
+net.ipv4.neigh.default.gc_thresh2 = 90000
+net.ipv4.neigh.default.gc_thresh3 = 100000
+```
