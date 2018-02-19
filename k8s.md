@@ -26,19 +26,19 @@ add `--policy-config-file=/etc/kubernetes/policy-config.json  --use-legacy-polic
 If you want some nodes to be more aggressive on the Pod distrubution, which means, put more Pods as much as it can on one Node. You can use next policy:
 ```json
 {
-"kind" : "Policy",
-"apiVersion" : "v1",
-"predicates" : [
-  {"name" : "GeneralPredicates"},
-  {"name" : "MatchInterPodAffinity"},
-  {"name" : "NoDiskConflict"},
-  {"name" : "NoVolumeZoneConflict"},
-  {"name" : "PodToleratesNodeTaints"}
-  ],
-"priorities" : [
-  {"name" : "MostRequestedPriority", "weight" : 1},
-  {"name" : "InterPodAffinityPriority", "weight" : 2}
-  ]
+    "kind" : "Policy",
+    "apiVersion" : "v1",
+    "predicates" : [
+      {"name" : "GeneralPredicates"},
+      {"name" : "MatchInterPodAffinity"},
+      {"name" : "NoDiskConflict"},
+      {"name" : "NoVolumeZoneConflict"},
+      {"name" : "PodToleratesNodeTaints"}
+    ],
+    "priorities" : [
+      {"name" : "MostRequestedPriority", "weight" : 1},
+      {"name" : "InterPodAffinityPriority", "weight" : 2}
+    ]
 }
 ```
 
