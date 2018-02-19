@@ -23,6 +23,25 @@ add `--policy-config-file=/etc/kubernetes/policy-config.json  --use-legacy-polic
 }
 ```
 
+If you want some nodes to be more aggressive on the Pod distrubution, which means, put more Pods as much as it can on one Node. You can use next policy:
+```json
+{
+"kind" : "Policy",
+"apiVersion" : "v1",
+"predicates" : [
+  {"name" : "GeneralPredicates"},
+  {"name" : "MatchInterPodAffinity"},
+  {"name" : "NoDiskConflict"},
+  {"name" : "NoVolumeZoneConflict"},
+  {"name" : "PodToleratesNodeTaints"}
+  ],
+"priorities" : [
+  {"name" : "MostRequestedPriority", "weight" : 1},
+  {"name" : "InterPodAffinityPriority", "weight" : 2}
+  ]
+}
+```
+
 
 ## Let `kubectl` command on node to access cluster resources
 ```bash
@@ -92,4 +111,20 @@ clove@kubernetes-master /etc/logrotate.d $ cat *
     daily
     create 0644 root root
 }
+```
+
+## Pod Anti Affinity
+Put those kube-dns on different Nodes
+```yml
+affinity:
+ podAntiAffinity:
+   requiredDuringSchedulingIgnoredDuringExecution:
+   - weight: 100
+     labelSelector:
+       matchExpressions:
+       - key: k8s-app
+         operator: In
+         values:
+         - kube-dns
+     topologyKey: kubernetes.io/hostname
 ```
