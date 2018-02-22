@@ -339,6 +339,13 @@ gpgcheck=1
 gpgkey=https://yum.dockerproject.org/gpg
 EOF
 ```
+```bash
+cat <<'EOF' |  sed 's/a/b/' | sudo tee /etc/config_file.conf
+foo
+bar
+baz
+EOF
+```
 
 ## CPU benchmark
 ```bash
