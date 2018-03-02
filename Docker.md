@@ -1,3 +1,16 @@
+## use golang docker image as build engine of go
+use `golang:1.9` to build go program 
+https://github.com/docker-library/docs/tree/master/golang#compile-your-app-inside-the-docker-container 
+```bash
+APPNAME=passport
+BUILD_PATH=/usr/src/${APPNAME}
+GOLANG_IMG="golang:1.9"
+
+docker run --rm -v "$PWD":"${BUILD_PATH}" -w ${BUILD_PATH} -e GOPATH="${BUILD_PATH}" -e GOBIN="${BUILD_PATH}/bin" -e CGO_ENABLED=0 -e GOOS=linux -e GOARCH=amd64 golang:1.9 go get -v && go build -a -installsuffix cgo \
+	-ldflags "-s -w" \
+	-o "${BUILD_PATH}/${APPNAME}" .
+```
+
 ## use alpine as minimal image, alpine best practices
 * use `http://nl.alpinelinux.org/alpine/v3.2/main` as mirror repository /etc/apk/respositories
 * `RUN apk -U add bind-tools` to make sure dns works correctly under k8s cluster.
