@@ -417,6 +417,7 @@ tcpdump -i eth0 -s 0 -w SuccessC2Server.pcap host 153.71.28.115
 ## firewall-cmd/ufw uses
 ```bash
 firewall-cmd --zone=public --add-port=5060-5061/udp --permanent
+firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.10" port port=22 protocol=tcp accept'
 ```
 add `5060-5061/udp` to white list of `public` zone and make `--permanent`, you need restart firewalld service. 
 
