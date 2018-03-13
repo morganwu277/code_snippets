@@ -51,3 +51,8 @@ defaults write com.google.Chrome AppleLanguages '(zh-CN)'
 ```bash
 $ netstat -r
 ```
+## Save Notes data to html
+```bash
+echo "select * from ZNOTEBODY;" | \ 
+     sqlite3  ~/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV6.storedata > notes.html
+```
