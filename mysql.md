@@ -58,7 +58,7 @@ CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
 
 2. grant permission
 ```sql
-GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
 FLUSH PRIVILEGES;
 ```
 More abount grant:
