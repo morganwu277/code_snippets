@@ -297,8 +297,9 @@ This will forward local 9000 port to remote machine 159.203.238.66's 20001 port 
 
 ## ssh by using local port as SOCKS5 proxy
 ```bash
-$ ssh -D 0.0.0.0:9999 -C user@host
+$ ssh -NT -D 0.0.0.0:9999 -C user@host
 ```
+-NT: keep alive
 -D: Dynamic forwarding 
 -C: Compress communication
 http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/ 
