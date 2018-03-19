@@ -299,10 +299,10 @@ This will forward local 9000 port to remote machine 159.203.238.66's 20001 port 
 ```bash
 $ ssh -NT -D 0.0.0.0:9999 -C user@host
 ```
--NT: keep alive
--D: Dynamic forwarding 
--C: Compress communication
-http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/ 
+-NT: keep alive    
+-D: Dynamic forwarding    
+-C: Compress communication    
+http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/     
 
 ## ssh generate pub key from existing private key
 ```bash
