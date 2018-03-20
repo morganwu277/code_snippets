@@ -1,11 +1,11 @@
 # send email using mutt
 1. install mutt
 ```bash
-apt-get install mutt
+apt-get install mutt sasl2-bin 
 ```
 or 
 ```bash
-yum install mutt
+yum install mutt cyrus-sasl-plain
 ```
 or 
 ```bash
