@@ -19,6 +19,8 @@ set realname = "Dan Nanni"
 set smtp_url = "smtp://<gmail-id>@smtp.gmail.com:587/"
 set smtp_pass = "<gmail-password>"
 ```
+you may need Gmail App password https://support.google.com/accounts/answer/185833?hl=en 
+
 if you do have Exchange server, next is another example:
 ```bash
 set from = "xxx@company.com"
