@@ -91,6 +91,10 @@ __Stubs + native__: This figure is for JNI calls. This will likely to use the "n
 __Thread-local ticks__: This is listed as "miscellaneous" other entries and was written somewhere that "should not raise concerns from performance optimization perspective". I am not sure how much we want to trust that, but XProf is really not a documented tool just as you stated above.    
 
 
+### jcmd usage
+https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/run.htm#JFRUH177
+After getting the jfr file, load it into `jmc` (open this command from terminal) 
+
 ### Java exception, bad performance
 Two causes:    
 1. the method `public synchronized native Throwable fillInStackTrace()` which is from Throwable.java, the base class of all Exceptions.   
