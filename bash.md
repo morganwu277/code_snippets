@@ -187,12 +187,23 @@ Host *
 * `netstat -nalp` 
 * `lsof -P -i:22`
 
-## GMT+0 standard time
+## date command
+GMT+0 format
 ```bash 
 [01:58 PM morganwu@morgan-yinnut local]$ date
 Sat Dec  5 13:58:52 CST 2015
 [01:58 PM morganwu@morgan-yinnut local]$ date -u +%FT%H:%M:%SZ 
 2015-12-05T05:58:53Z
+```
+
+delta date, days ago, week ago: 
+```bash
+[01:58 PM morganwu@morgan-yinnut ~]$ date +%Y-%m-%d
+2018-03-26
+[01:58 PM morganwu@morgan-yinnut ~]$ date -d "1 day ago" +%Y-%m-%d
+2018-03-25
+[01:58 PM morganwu@morgan-yinnut ~]$ date -d "1 week ago" +%Y-%m-%d
+2018-03-19
 ```
 
 ## zip && unzip
