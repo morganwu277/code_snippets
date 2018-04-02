@@ -614,3 +614,18 @@ Use double quotes for interpolation: `sed -e "s/$BRE/$REPL/"`
 ```
 From https://unix.stackexchange.com/questions/32907/what-characters-do-i-need-to-escape-when-using-sed-in-a-sh-script 
 
+
+## scan port
+```bash
+#!/bin/bash
+HOST=www.google.com
+MIN=80
+MAX=6000
+
+echo "Scanning port from $MIN to $MAX on target host $HOST"
+for i in $(seq $MIN 1 $MAX); do
+  if nc -v $HOST $i -w 1 > /dev/null 2>&1 ; then
+    echo "SUCCESS! PORT: $i. "
+  fi
+done
+```
