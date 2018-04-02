@@ -133,17 +133,17 @@ curl -sSL https://raw.githubusercontent.com/docker/docker/master/contrib/check-c
 
 ## Clean Dangling Docker Volumes, since sometimes `docker rm -v` doesn't work
 ```bash
-#!/bin/bash
+DOCKER="/usr/bin/docker"
 
 LIST=""
 count=0
 batch_count=20
-for i in `docker volume ls -qf dangling=true`; 
+for i in `$DOCKER volume ls -qf dangling=true`;
 do
   LIST="$LIST $i"
   count=$((count+1))
   if [[ "$count" == "$batch_count" ]]; then
-    docker volume rm $LIST
+    $DOCKER volume rm $LIST
     sleep 0.01
     LIST=""
     count=0
