@@ -1,3 +1,31 @@
+
+### Basic Auth
+1. generate password
+```bash
+echo -n 'user1:' >> /etc/nginx/.htpasswd
+openssl passwd -apr1 >> /etc/nginx/.htpasswd # type password1 here
+chmod 600 /etc/nginx/.htpasswd 
+```
+
+2. setup authenticate area
+```bash
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /usr/share/nginx/html;
+    index index.html index.htm;
+
+    server_name localhost;
+
+    location / {
+        try_files $uri $uri/ =404;
+        auth_basic "Restricted Content";
+        auth_basic_user_file /etc/nginx/.htpasswd;
+    }
+}
+```
+
 ### Stats about top 20 requsts IP Address
 ```bash
 root@xxxx:/var/log/nginx# cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c |sort -k1n | tail -20
