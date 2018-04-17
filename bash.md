@@ -1,3 +1,17 @@
+## ntp/ntpdate
+
+sync time: `ntpdate -u <server_name>`
+for internet connected servers, just execute such command into crontab.
+setting up non-internet connected `LAN` area ntp server:
+1. install ntp daemon on one node and start the service there, say
+2. adding next conf to `/etc/ntp.conf` into server section , of course, you also need to add `LAN restriction` section
+   ```bash
+   server 127.127.1.0
+   fudge 127.127.1.0 stratum 8
+   ```
+3. start and enable `ntp` server on boot
+4. execute `ntpdate -u <LAN_NTP_SERVER_NAME>` into crontab for other servers
+
 ## add options into script
 ```bash
 function usage {
