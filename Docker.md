@@ -11,6 +11,21 @@ docker run --rm -v "$PWD":"${BUILD_PATH}" -w ${BUILD_PATH} -e GOPATH="${BUILD_PA
 	-o "${BUILD_PATH}/${APPNAME}" .
 ```
 
+## docker selinux security
+So `capital Z` is more strict than `lowercase z`, and `capital Z` data can't be shared between containers. 
+
+```
+# will execute `chcon -Rt svirt_sandbox_file_t /var/db` automatically
+$ docker run -v /var/db:/var/db:z rhel7 /bin/sh
+# will execute `chcon -Rt svirt_sandbox_file_t -l s0:c1,c2 /var/db` automatically
+$ docker run -v /var/db:/var/db:z rhel7 /bin/sh
+```
+https://www.projectatomic.io/blog/2015/06/using-volumes-with-docker-can-cause-problems-with-selinux/ 
+
+## docker apparmor 
+https://cloud.google.com/container-optimized-os/docs/how-to/secure-apparmor
+
+
 ## use alpine as minimal image, alpine best practices
 * use `http://nl.alpinelinux.org/alpine/v3.2/main` as mirror repository /etc/apk/respositories
 * `RUN apk -U add bind-tools` to make sure dns works correctly under k8s cluster.
