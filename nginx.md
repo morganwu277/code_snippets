@@ -26,6 +26,55 @@ server {
 }
 ```
 
+### Basic at the proxy server side
+NOTE for base64
+Also, for Nginx, base64 is a little different, e.g,
+```bash
+09:12 PM root@localhost:~# echo 'king:isnaked' |base64 
+a2luZzppc25ha2VkCg==
+```
+`However`, in Nginx, we have to use `a2luZzppc25ha2Vk` instead of `a2luZzppc25ha2VkCg==`. 
+Actually, I can change the last `g` to any chars, next can all be decoded to `king:isnaked`
+```bash
+09:14 PM root@localhost:~# for i in {a..z}; do echo "a2luZzppc25ha2VkC$i==" | base64 -d;done
+king:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+king:isnaked
+            king:isnaked
+                        king:isnaked
+                                    king:isnaked
+                                                09:14 PM root@localhost:~# 
+09:14 PM root@db-master:~# for i in {A..Z}; do echo "a2luZzppc25ha2VkC$i==" | base64 -d;done
+king:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnakeking:isnaked	king:isnakeking:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked	king:isnaked	09:15 PM root@db-master:~# 
+```
+Full config: 
+```bash
+ location / {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_pass http://6.6.6.6:80;
+    proxy_set_header Authorization "Basic a2luZzppc25ha2Vk";
+ }
+```
+`proxy_set_header Authorization "Basic a2luZzppc25ha2Vk";` is very important!!!
+`a2luZzppc25ha2Vk` is the base64 encoding for `king:isnaked`
+
+
 ### Stats about top 20 requsts IP Address
 ```bash
 root@xxxx:/var/log/nginx# cat /var/log/nginx/access.log | awk '{print $1}' | sort | uniq -c |sort -k1n | tail -20
