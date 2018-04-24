@@ -1,4 +1,41 @@
+### Nginx CORS 
+Allow `http(s)://47.92.6.114:8000` or `http(s)://www.my-cn.com` or `http(s)://my-cn.com` to access this domain.
 
+```
+location /api/submissions/ {
+    set $cors '';
+    if ($http_origin ~* 'https?:\/\/(47.92.6.114:8000|www\.my\-cn\.com|my\-cn\.com)') {
+        set $cors 'true';
+    }
+
+    if ($request_method = 'OPTIONS') {
+        set $cors "${cors}options";
+    }
+    if ($request_method = 'GET') {
+        set $cors "${cors}get";
+    }
+
+    if ($cors = "true") {
+        # Catch all incase there's a request method we're not dealing with properly
+        add_header 'Access-Control-Allow-Origin' "$http_origin";
+    }
+
+    if ($cors ~* "trueoptions") { # this line can't be merged with next section
+        add_header 'Access-Control-Allow-Origin' "$http_origin";
+        add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        return 204;
+    }
+    if ($cors = "trueget") { # this line can't be merged with the above section 
+        add_header 'Access-Control-Allow-Origin' "$http_origin";
+        add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    }
+    # more config come here.....
+}
+```
 ### Basic Auth
 1. generate password
 ```bash
