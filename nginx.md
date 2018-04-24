@@ -37,6 +37,10 @@ location /api/submissions/ {
     # more config come here.....
 }
 ```
+More about Nginx Regex and if matching: 
+- https://www.regextester.com/94055
+- http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if 
+
 ### Basic Auth
 1. generate password
 ```bash
