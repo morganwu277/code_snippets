@@ -4,7 +4,7 @@ Allow `http(s)://47.92.6.114:8000` or `http(s)://www.my-cn.com` or `http(s)://my
 ```bash
 location /api/submissions/ {
     set $cors '';  # variable
-    if ($http_origin ~* 'https?:\/\/(47.92.6.114:8000|www\.my\-cn\.com|my\-cn\.com)') {
+    if ($http_origin ~* 'https?:\/\/(47\.92\.6\.114:8000|www\.my\-cn\.com|my\-cn\.com)') {
         set $cors 'true';
     }
 
