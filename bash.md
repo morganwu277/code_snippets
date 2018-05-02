@@ -148,6 +148,9 @@ set alias sudo='sudo ' to use alias in your sudo command
 alias sudo='sudo ' 
 ```
 
+## sudoers file good explanation 
+https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file-on-ubuntu-and-centos
+
 ## use alias for ssh session command
 let alias to be expanded
 ```
