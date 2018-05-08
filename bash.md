@@ -422,6 +422,23 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 ```
 
+## add swap space to Linux (VM) 
+```bash
+fallocate -l 512M /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+swapon --show
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+/swapfile none swap sw 0 0
+sysctl vm.swappiness=10
+sysctl vm.vfs_cache_pressure=50
+vi /etc/sysctl.conf 
+ vm.vfs_cache_pressure = 50
+ vm.swappiness = 10
+```
+Ref: https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-16-04 
+
 ## Crontab check a process and retart if dead
 ```bash
 ps -ef | grep jenkins | grep -v grep | grep -v 'su jenkins' || /usr/sbin/service jenkins restart >/tmp/startjenkins.log 2>&1
