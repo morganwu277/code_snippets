@@ -347,7 +347,8 @@ Host srv1
     StrictHostKeyChecking no
 
 ```
-## write file by using heredoc 
+##  heredoc 
+- Write to file
 ```bash
 sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
@@ -374,6 +375,14 @@ foo
 bar
 baz
 EOF
+```
+- Write to variable
+```bash
+read -r -d '' VAR <<-'EOF'
+    abc'asdf"
+    $(dont-execute-this)
+    foo"bar"''
+    EOF
 ```
 
 ## CPU benchmark
