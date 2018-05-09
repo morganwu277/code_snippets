@@ -66,7 +66,7 @@ https://www.ibm.com/developerworks/aix/library/au-usingtraps/
 
 
 ## Python with Bash Mutual Operations
-The core iea here is we `pass parameters via os.environ`. 
+- Call Python in Bash, the core iea here is we `pass parameters via os.environ`. 
 ```bash
 read -r -d '' PERSONS_JSON <<-EOF
 {
@@ -90,6 +90,19 @@ j=json.loads(os.environ['PERSONS_JSON'])
 print(','.join(j.keys()))
 EOF
 }
+```
+- Call Bash in Python, the core idea is to use `subprocess.Popen([CMD_STR],stdout=subprocess.PIPE, shell=True)`
+```python
+sp = subprocess.Popen([executable, arg1, arg2], stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+out, err = sp.communicate()
+if out:
+    print "standard output of subprocess:"
+    print out
+if err:
+    print "standard error of subprocess:"
+    print err
+print "returncode of subprocess:"
+print sp.returncode
 ```
 1. json string extraction inside the bash
 Python 2: 
@@ -132,6 +145,22 @@ function delete_master_election_nodes() {
     echo "[DEBUG]: complete deployment, delete the master election nodes $ETCD_URL_PREFIX/$APPLICATION_deploy"
     curl "$ETCD_URL_PREFIX/$APPLICATION_deploy?recursive=true" -XDELETE
 }
+```
+4. Cat files in python script
+```python
+    import subprocess
+    subprocess.Popen(
+        "cd %s; file=%s.yml;  "
+        "echo "" > $file; "
+        "for i in `ls completion-mt*`; "
+        "  do cat $i >> $file;"
+        "  echo '---'>> $file;"
+        "done" % (
+            DST_DIR,
+            os.environ['COMPLETION_MULTITENANT_APP_NAME']
+        ),
+        stdout=subprocess.PIPE, shell=True)
+
 ```
 
 ## capture the time output
@@ -377,6 +406,7 @@ Host srv1
 ##  heredoc 
 - Write to file
 ```bash
+# can't use variable here
 sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
 name=Docker Repository
@@ -387,6 +417,7 @@ gpgkey=https://yum.dockerproject.org/gpg
 EOF
 ```
 ```bash
+# we can use variable here
 cat << EOF > /etc/yum.repos.d/docker.repo
 [dockerrepo]
 name=Docker Repository
@@ -397,6 +428,7 @@ gpgkey=https://yum.dockerproject.org/gpg
 EOF
 ```
 ```bash
+# using sed before writting to file
 cat <<'EOF' |  sed 's/a/b/' | sudo tee /etc/config_file.conf
 foo
 bar
