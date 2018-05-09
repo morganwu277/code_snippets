@@ -64,7 +64,34 @@ while :
 ```
 https://www.ibm.com/developerworks/aix/library/au-usingtraps/ 
 
-## json string extraction inside the bash
+
+## Python with Bash Mutual Operations
+The core iea here is we `pass parameters via os.environ`. 
+```bash
+read -r -d '' PERSONS_JSON <<-EOF
+{
+    "morgan": {
+        "name": "morganwu",
+        "firstname": "Morgan",
+        "lastname": "Wu"
+    },
+    "jack": {
+        "name": "jackjiang",
+        "firstname": "Jack",
+        "lastname": "Jiang"
+    },
+}
+EOF
+export PERSONS_JSON
+function extract_keys {
+  python - <<"EOF"
+import os,json
+j=json.loads(os.environ['PERSONS_JSON'])
+print(','.join(j.keys()))
+EOF
+}
+```
+1. json string extraction inside the bash
 Python 2: 
 ```bash
 export PYTHONIOENCODING=utf8
@@ -77,7 +104,13 @@ curl -s 'https://api.github.com/users/lambda' | \
     python3 -c "import sys, json; print(json.load(sys.stdin)['name'])"
 ```
 
-## master election inside the BASH
+2. operate json from CLI in an easy way
+```bash
+[09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
+https://avatars.githubusercontent.com/u/3008959?v=3
+```
+
+3.  master election inside the BASH
 ```bash
 ETCD_SERVER=$ETCD_SERVER
 ETCD_URL_PREFIX="http://$ETCD_SERVER:2379/v2/keys"
@@ -242,12 +275,6 @@ list installed/uninstalled rpm content( or to know what will be influenced after
 ```bash
 [07:34 PM morganwu@morgan-yinnut start-point]$ curl ifconfig.me
 45.62.218.226
-```
-
-## operate json from CLI in an easy way
-```bash
-[09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
-https://avatars.githubusercontent.com/u/3008959?v=3
 ```
 
 ## curl via socks5 proxy 
