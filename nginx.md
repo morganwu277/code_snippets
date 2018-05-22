@@ -141,6 +141,31 @@ root@xxxx:/var/log/nginx# cat /var/log/nginx/access.log | awk '{print $1}' | sor
   28311 5.255.250.134
   31182 88.198.158.233
 ```
+With Address Location
+```bash
+root@xxxxx:~# FILE=chrome.log; IFS=$'\n' ;echo -e "ReqCount \t IP \t\t Org"; for i in `cat $FILE | awk '{print $1}' | sort | uniq -c |sort -k1n | tail -20`; do IP=`echo $i|awk '{print $2}'`; echo -n -e `echo $i|awk '{print $1, "\t"}'`; echo -n -e "$IP \t\t"; curl -s ipinfo.io/$IP|jq '.org'; done
+ReqCount 	 IP 		 Org
+1838 	218.199.26.80 		"AS4538 China Education and Research Network Center"
+2044 	2601:547:980:2e31:c07d:649e:5d03:12f6 		"AS7922 Comcast Cable Communications, LLC"
+2047 	116.66.184.189 		"AS131444 HUAWEI INTERNATIONAL PTE. LTD."
+2057 	2601:140:8780:a12:346c:4825:f74c:ed45 		"AS7922 Comcast Cable Communications, LLC"
+2161 	72.79.47.248 		"AS701 MCI Communications Services, Inc. d/b/a Verizon Business"
+2311 	2601:646:c004:9df0:f992:f9f0:358:cf97 		"AS7922 Comcast Cable Communications, LLC"
+2349 	108.5.255.156 		"AS701 MCI Communications Services, Inc. d/b/a Verizon Business"
+2387 	54.240.198.33 		"AS16509 Amazon.com, Inc."
+2474 	2.152.14.227 		"AS12357 VODAFONE ESPANA S.A.U."
+2665 	2606:a000:4e07:a400:7c3f:2801:faa5:f63d 		"AS11426 Time Warner Cable Internet LLC"
+2861 	173.239.228.55 		"AS20473 Choopa, LLC"
+3068 	204.4.182.16 		"AS33598 The Goldman Sachs Group, Inc."
+3311 	108.21.236.44 		"AS701 MCI Communications Services, Inc. d/b/a Verizon Business"
+3409 	206.47.221.212 		"AS577 Bell Canada"
+3623 	128.8.120.3 		"AS27 University of Maryland"
+3827 	96.224.219.154 		"AS701 MCI Communications Services, Inc. d/b/a Verizon Business"
+3862 	73.231.17.62 		"AS7922 Comcast Cable Communications, LLC"
+4144 	2601:647:4b00:f070:b4a6:ad61:6a26:57f 		"AS7922 Comcast Cable Communications, LLC"
+4394 	2601:600:9780:1580:a5d8:493f:5827:69de 		"AS7922 Comcast Cable Communications, LLC"
+4396 	2601:646:c101:b81e:e480:5c8b:caff:7f01 		"AS7922 Comcast Cable Communications, LLC"
+```
 
 ### Create SSL certificates 
 Here is the Makefile to generate SSL Certificate: 
