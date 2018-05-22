@@ -122,8 +122,15 @@ curl -s 'https://api.github.com/users/lambda' | \
 [09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
 https://avatars.githubusercontent.com/u/3008959?v=3
 ```
+3. Read file into lines and doing string operations
+```bash
+export FILE="time.207.237.67.29.log"
+python -c "import os; [print(x.rstrip('\n')[:-7]) for x in open(os.environ['FILE'])]"
+# OR using `print(*list,sep='\n')` to print
+python3 -c "import os; print(*[x.rstrip('\n')[:-7] for x in open(os.environ['FILE'])],sep='\n')"
+```
 
-3.  master election inside the BASH
+4.  master election inside the BASH
 ```bash
 ETCD_SERVER=$ETCD_SERVER
 ETCD_URL_PREFIX="http://$ETCD_SERVER:2379/v2/keys"
