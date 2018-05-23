@@ -1,4 +1,38 @@
 
+## create user and grant permission
+TL;DR
+```bash
+MYSQL_USER="user"
+MYSQL_PASS="pass"
+SOURCE_IP="xxx.xxx.xxx.xxx"
+ROOT_PASS="MySQL_Root_Password" 
+DB_NAME="MySQL_TARGET_DB_NAME"
+mysql -uroot -p$ROOT_PASS -e "CREATE USER '"$MYSQL_USER"'@'"$SOURCE_IP"' IDENTIFIED BY '"$MYSQL_PASS"'; "
+mysql -uroot -p$ROOT_PASS -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '"$MYSQL_USER"'@'"$SOURCE_IP"'; "
+mysql -uroot -p$ROOT_PASS -e "FLUSH PRIVILEGES;"
+```
+1. create user
+```sql
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+```
+
+2. grant permission
+```sql
+GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
+FLUSH PRIVILEGES;
+```
+More abount grant:
+```sql
+GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@'localhost’;
+```
+Revoke user permission: 
+```sql
+REVOKE [type of permission] ON [database name].[table name] FROM ‘[username]’@‘localhost’;
+```
+Delete a user all permission: 
+```sql
+DROP USER ‘demo’@‘localhost’;
+```
 
 ## additional increment id for result view
 ```sql
@@ -45,42 +79,10 @@ And when you’re done, don’t forget to turn it back on with:
   SET SESSION tx_isolation='READ-REPEATABLE';
 ```
 
+
 ## All kinds of join.
    Problems like how to calculate SetA-SetB question.    
    Here is all kinds of join in sql. 
    ![sql_join](sql_join.jpg)
 
-## create user and grant permission
-TL;DR
-```bash
-MYSQL_USER="user"
-MYSQL_PASS="pass"
-SOURCE_IP="xxx.xxx.xxx.xxx"
-ROOT_PASS="MySQL_Root_Password" 
-DB_NAME="MySQL_TARGET_DB_NAME"
-mysql -uroot -p$ROOT_PASS -e "CREATE USER '"$MYSQL_USER"'@'"$SOURCE_IP"' IDENTIFIED BY '"$MYSQL_PASS"'; "
-mysql -uroot -p$ROOT_PASS -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '"$MYSQL_USER"'@'"$SOURCE_IP"'; "
-mysql -uroot -p$ROOT_PASS -e "FLUSH PRIVILEGES;"
-```
-1. create user
-```sql
-CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
-```
 
-2. grant permission
-```sql
-GRANT ALL PRIVILEGES ON *.* TO 'newuser'@'localhost';
-FLUSH PRIVILEGES;
-```
-More abount grant:
-```sql
-GRANT [type of permission] ON [database name].[table name] TO ‘[username]’@'localhost’;
-```
-Revoke user permission: 
-```sql
-REVOKE [type of permission] ON [database name].[table name] FROM ‘[username]’@‘localhost’;
-```
-Delete a user all permission: 
-```sql
-DROP USER ‘demo’@‘localhost’;
-```
