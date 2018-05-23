@@ -51,6 +51,17 @@ And when you’re done, don’t forget to turn it back on with:
    ![sql_join](sql_join.jpg)
 
 ## create user and grant permission
+TL;DR
+```bash
+MYSQL_USER="user"
+MYSQL_PASS="pass"
+SOURCE_IP="xxx.xxx.xxx.xxx"
+ROOT_PASS="MySQL_Root_Password" 
+DB_NAME="MySQL_TARGET_DB_NAME"
+mysql -uroot -p$ROOT_PASS -e "CREATE USER '"$MYSQL_USER"'@'"$SOURCE_IP"' IDENTIFIED BY '"$MYSQL_PASS"'; "
+mysql -uroot -p$ROOT_PASS -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '"$MYSQL_USER"'@'"$SOURCE_IP"'; "
+mysql -uroot -p$ROOT_PASS -e "FLUSH PRIVILEGES;"
+```
 1. create user
 ```sql
 CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
