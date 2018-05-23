@@ -313,10 +313,18 @@ list installed/uninstalled rpm content( or to know what will be influenced after
 45.62.218.226
 ```
 
-## curl via socks5 proxy 
+## socks5 proxy 
+curl: 
 ```bash
 $ curl --socks5 127.0.0.1:9050
 ```
+
+git: 
+```bash
+$ git config --global https.proxy 'socks5://127.0.0.1:1080'
+$ git config --global http.proxy 'socks5://127.0.0.1:1080'
+```
+
 ## rsync files, include, exclude, hidden files
 ```bash
 rsync --progress -avz --delete --recursive --exclude-from=".exclude" . -e 'ssh -p REMOTE_PORT' root@xxx.xxx.xxx.xxx:~
