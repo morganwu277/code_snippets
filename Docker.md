@@ -1,3 +1,11 @@
+## shrink docker VM of Mac OSX
+
+1. Connect to the VM with `screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty` and then login as root by type `su && id`
+2. execute `fstrim /var` and then reboot the docker VM. 
+
+https://github.com/docker/for-mac/issues/371#issuecomment-242047368
+
+
 ## use golang docker image as build engine of go
 use `golang:1.9` to build go program 
 https://github.com/docker-library/docs/tree/master/golang#compile-your-app-inside-the-docker-container 
@@ -112,11 +120,6 @@ Start the container with `/usr/sbin/init` command.
 ```bash
 vagrant@vagrant-ubuntu-trusty-64:~$ docker run -d --privileged centos:7 /usr/sbin/init   
 ```
-## shrink docker VM of Mac OSX
-
-1. Connect to the VM with screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty and then login as root by type `su && id`
-2. execute `fstrim /var` and then reboot the docker VM. 
-
 ## source the script inside a Dockerfile
 please use `/bin/bash -c`, or you will get error `sh: 1: source: not found`. 
 ```
