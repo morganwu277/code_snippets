@@ -1,3 +1,37 @@
+## Tips after reading <Pro Git> 
+```bash
+$ git diff 						# diff in non-staged/non-cached area
+$ git diff --staged/--cached	# diff in staged/cached are
+$ git commit -a -m 'message' 	# just commit withouth adding files, if they are already being tracked
+
+$ git rm -f <file> 				# delete file from OS and git repo
+$ git rm --cached <file> 		# delete file from git but keep in OS 
+
+$ git log -p -2					# show recent 2 commits diff, with pagenation style
+$ git log --pretty=format:"%h - %an, %ad : %s" --graph # git log, oneline
+$ git log --since=2.weeks		# show log with time trace
+$ git log -Sfunction_name		# show log that the changes contains function_name string
+
+$ git commit --amend			# use a new commit to override the last commit
+								#### if there are no files changes, then just update commit msg
+								#### if there are files changes, then update both commit msg and files
+								#### but the result is the same: ONLY 1 COMMIT. 
+$ git reset HEAD <file> 		# reset HEAD and index of a file, keep files changes in local
+$ git reset HEAD --hard <file> 	# reset HEAD, index and working tree
+
+$ git remote add upstream GIT_URL	# add a new remote 
+$ git fetch --all 				# fetch all remote changes 
+$ git remote show origin 		# show remote repo, eg. git remote show origin
+$ git remote rename pb paul		# rename remote repo
+$ git remote rm pb				# remove remote repo 
+$ git tag -a v1.4 -m 'my version 1.4'	# create annotated(with GPG) tag 
+$ git show v1.4					# show tag 
+$ git tag -a v1.2 9fceb02		# tag using against a commit
+$ git push origin v1.5			# push tags to origin repo
+$ git push origin --tags		# push all tags to origin repo
+$ git checkout -b v2_fix v2.0.0	# checkout branch of v2_fix from v2.0.0 tag
+
+```
 ## ensure a linear history by preventing unnecessary merge commits when doing `git pull`
 actually, with a --rebase option we can achieve this. 
 ```bash
