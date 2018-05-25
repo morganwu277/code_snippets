@@ -1,3 +1,10 @@
+## nc command to exeucte HTTP request to 
+```bash
+printf 'GET /images/json HTTP/1.0\r\n\r\n' | nc -U /var/run/docker.sock 
+# or use echo, since echo already have a \r\n 
+echo -e "GET /images/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock
+```
+
 ## ntp/ntpdate
 
 sync time: `ntpdate -u <server_name>`
