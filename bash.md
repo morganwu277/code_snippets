@@ -4,6 +4,20 @@ printf 'GET /images/json HTTP/1.0\r\n\r\n' | nc -U /var/run/docker.sock
 # or use echo, since echo already have a \r\n 
 echo -e "GET /images/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock
 ```
+## Coredump Debug Python
+
+1. `ulimit -c unlimited` to show coredump
+
+2. Install Gdb and support by using `Install by using 
+   ```bash
+   $ yum install gdb && yum install python-debug && debuginfo-install python-debug-2.7.5-68.el7.x86_64
+   ```
+3. When excuting using `python-debug`, it will have `Segmentation fault (core dumped) `
+
+4. Then debug using `gdb python-debug ./core.32275`, then type `where` or `bt` or other `gdb` command
+
+5. Or attach into process using `gdb -p <pid>` 
+
 
 ## ntp/ntpdate
 
@@ -691,6 +705,51 @@ screen -S lc -X screen tail -f /var/log/nginx/access.log
 - use `screen -r id` to attach
 - use `Ctrl+ad` to detach
 
+## Tmux Screen Management
+My `~/.tmux.conf` content:
+```bash
+set -g mouse on
+set-window-option -g mode-keys vi
+set-window-option -g utf8 on
+```
+
+Short key prefix: `⌃b` (on Mac, `^` is Control)
+##### pane management 
+ - `%`: split pane, left-right
+ - `"`: split pane, up-down
+ - `x`: close current pane
+ - `z`: maximize current pane, `z` again, to revert back
+
+##### session management
+ - `tmux list-keys`: list all short cut keys, including the `^b` as a prefix
+ - `tmux list-commands`: list all commands
+ - `tmux ls`: list all sessions
+ - `tmux a -t foo`: attach to session named as `foo`
+ - `tmux kill-session -t foo`: kill the session named as `foo`
+ - `tmux kill-server`: kill all sessions
+
+##### helper commands
+ - `:set synchronizepane on`: `sync typed commands` on all pane, useful when need to execute comands to all pane 
+
+##### copy mode
+  - `^b[`: enter copy mode(actually I already use vi mode `set-window-option -g mode-keys vi`)
+  - copy mode in vi format:
+    - `/<text>`: search next
+    - `?<text>`: search above
+    - `^b`: jump back, must in the copy mode
+    - `^f`: jump forward, must in the copy mode
+    - `:<line>`: go to line number
+    - `$`: end of current line
+    - `0`: start of current line
+  - `[[:space_key:]]`: start to copy to buffer
+  - `up/left/down/right`: select words on screen
+  - `[[:enter_key:]]`: end to copy to buffer
+  - `q`: quit copy mode
+  - `^b]`: paste all buffer from copy mode
+
+  Ref: 
+    - http://man.openbsd.org/OpenBSD-current/man1/tmux.1
+    - https://blog.csdn.net/yangzhongxuan/article/details/6890232
 
 ## Disk RAID Setup in Linux
 https://www.tecmint.com/understanding-raid-setup-in-linux/ 
