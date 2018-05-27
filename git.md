@@ -31,7 +31,11 @@ $ git push origin v1.5			# push tags to origin repo
 $ git push origin --tags		# push all tags to origin repo
 $ git checkout -b v2_fix v2.0.0	# checkout branch of v2_fix from v2.0.0 tag
 
+# format of git ref is `<src>:<dst>`, leave <src> as empty, means 
+# `use empty to replace remote <dst>, which means delete <dst>`
+$ git push origin :topic # delete remote topic ref(eg., branch/tag)
 ```
+
 ## ensure a linear history by preventing unnecessary merge commits when doing `git pull`
 actually, with a --rebase option we can achieve this. 
 ```bash
