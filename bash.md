@@ -9,9 +9,32 @@ echo -e "GET /images/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock
 1. `ulimit -c unlimited` to show coredump
 
 2. Install Gdb and support by using `Install by using 
+ - python 2
    ```bash
    $ yum install gdb && yum install python-debug && debuginfo-install python-debug-2.7.5-68.el7.x86_64
    ```
+ - python 3.6
+   Write files `/etc/yum.repos.d/epel.repo` and  `/etc/yum.repos.d/epel-debug.repo`: 
+    ```bash
+    [base-epel]
+    name=EPEL
+    baseurl=https://dl.fedoraproject.org/pub/epel/7Server/x86_64
+    gpgcheck=0
+    enabled=1
+    ```
+   and 
+
+    ```bash
+    [base-debuginfo-epel]
+    name=EPEL-DebugInfo
+    baseurl=https://dl.fedoraproject.org/pub/epel/7Server/x86_64/debug/
+    gpgcheck=0
+    enabled=1
+    ```
+    Then run next bash command: 
+    ```bash
+    $ yum install gdb && yum install python36-debug && debuginfo-install python36-debug-3.6.3-7.el7.x86_64
+    ```
 3. When excuting using `python-debug`, it will have `Segmentation fault (core dumped) `
 
 4. Then debug using `gdb python-debug ./core.32275`, then type `where` or `bt` or other `gdb` command
