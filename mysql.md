@@ -85,4 +85,16 @@ And when you’re done, don’t forget to turn it back on with:
    Here is all kinds of join in sql. 
    ![sql_join](sql_join.jpg)
 
-
+## table storage size calculation
+```sql
+SELECT
+  TABLE_NAME AS `Table`,
+  ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024) AS `Size (MB)`
+FROM
+  information_schema.TABLES
+WHERE
+  TABLE_SCHEMA = "bookstore" # here you have your own database name
+ORDER BY
+  (DATA_LENGTH + INDEX_LENGTH)
+DESC;
+```
