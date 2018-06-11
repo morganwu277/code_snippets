@@ -153,6 +153,8 @@ curl -sSL https://raw.githubusercontent.com/docker/docker/master/contrib/check-c
 
 ## Clean Dangling Docker Volumes, since sometimes `docker rm -v` doesn't work
 ```bash
+#!/bin/bash
+
 DOCKER="/usr/bin/docker"
 
 LIST=""
