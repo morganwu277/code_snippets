@@ -1,8 +1,8 @@
 ### Nginx CORS 
-Allow `http(s)://47.92.6.114:8000` or `http(s)://www.my-cn.com` or `http(s)://my-cn.com` to access this domain.
+Allow `http(s)://47.92.6.114:8000` or `http(s)://www.my-cn.com` or `http(s)://my-cn.com` to access this domain using `GET`/`POST`/`OPTIONS` methods.
 
+1. write next stuff into `/etc/nginx/cros-my-cn.com`
 ```bash
-location /api/submissions/ {
     set $cors '';  # variable
     if ($http_origin ~* 'https?:\/\/(47\.92\.6\.114:8000|www\.my\-cn\.com|my\-cn\.com)') {
         set $cors 'true';
@@ -14,6 +14,9 @@ location /api/submissions/ {
     if ($request_method = 'GET') {
         set $cors "${cors}get";
     }
+    if ($request_method = 'POST') {
+        set $cors "${cors}post";
+    }
 
     if ($cors = "true") { # exact matching
         # Catch all incase there's a request method we're not dealing with properly
@@ -22,6 +25,7 @@ location /api/submissions/ {
     # this section can't be merged with next section
     if ($cors ~* "trueoptions") {  # case-insensitive regex matching
         add_header 'Access-Control-Allow-Origin' "$http_origin";
+        # you may need other headers that allowed
         add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With';
         add_header 'Access-Control-Allow-Credentials' 'true';
         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
@@ -34,9 +38,82 @@ location /api/submissions/ {
         add_header 'Access-Control-Allow-Credentials' 'true';
         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
     }
-    # more config come here.....
+    if ($cors = "truepost") { 
+        add_header 'Access-Control-Allow-Origin' "$http_origin";
+        add_header 'Access-Control-Allow-Headers' 'Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With';
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+    }
+```
+2. include that file into anywhere you want. 
+```bash
+location /api/submissions/ {
+    include /etc/nginx/cros-my-cn.com;
 }
 ```
+3. test cross-domain using telent for http site.
+```bash
+$ ✗ telnet my.com 80
+Trying 104.27.160.90...
+Connected to my.com.
+Escape character is '^]'.
+GET / HTTP/1.1
+Host: my.com
+Origin: https://my-cn.com
+
+HTTP/1.1 301 Moved Permanently
+Date: Wed, 13 Jun 2018 02:13:25 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: keep-alive
+Set-Cookie: __cfduid=d01fd125e961f6f6a85437e2a6eac7f901528856005; expires=Thu, 13-Jun-19 02:13:25 GMT; path=/; domain=.my.com; HttpOnly
+Location: https://my.com/
+X-Content-Type-Options: nosniff
+Server: cloudflare
+CF-RAY: 42a109a8c6c09ec9-ORD
+```
+4. test cross-domain using openssl for https site.  `openssl s_client -quiet -connect my.com:443 `
+```bash
+$ openssl s_client -quiet -connect my.com:443 
+depth=2 C = US, O = GeoTrust Inc., CN = GeoTrust Global CA
+verify return:1
+depth=1 C = US, O = GeoTrust Inc., CN = RapidSSL SHA256 CA
+verify return:1
+depth=0 CN = www.my.com
+verify error:num=10:certificate has expired
+notAfter=Jun  7 23:59:59 2018 GMT
+verify return:1
+depth=0 CN = www.my.com
+notAfter=Jun  7 23:59:59 2018 GMT
+verify return:1 
+# request start from here
+GET / HTTP/1.1
+Host: my.com
+Origin: https://my-cn.com
+
+HTTP/1.1 200 OK
+Server: nginx
+Date: Wed, 13 Jun 2018 02:15:01 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 28095
+Connection: keep-alive
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+Vary: Cookie
+Set-Cookie: csrftoken=98a9ZOlwms3AQ2MKeKy9gX7VFMnAfUcf8UkR6BQWkbesTHFAg2C276xAq50ZzEbF; expires=Wed, 12-Jun-2019 02:15:01 GMT; Max-Age=31449600; Path=/; Secure
+Access-Control-Allow-Origin: https://my-cn.com
+Access-Control-Allow-Headers: Accept,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With,X-CSRFToken
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Methods: GET,POST,OPTIONS
+
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+......
+```
+
 More about Nginx Regex and if matching: 
 - https://www.regextester.com/94055
 - http://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if 
