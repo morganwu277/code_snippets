@@ -186,16 +186,18 @@ function master_election() {
     # write the key
     this_host=`hostname`
     echo "[DEBUG]: write current hostname $this_host to $ETCD_URL_PREFIX/$APPLICATION_deploy ..."
-    curl "$ETCD_URL_PREFIX/$APPLICATION_deploy" -XPOST -d value=$this_host
+    curl "$ETCD_URL_PREFIX/$APPLICATION_deploy" -XPOST -d "value=$this_host&ttl=600"
     first_host=$(curl -s "$ETCD_URL_PREFIX/$APPLICATION_deploy?recursive=true&sorted=true" | python -c "import sys, json; print json.load(sys.stdin)['node']['nodes'][0]['value']" )
     echo "[DEBUG]: got the first_host is $first_host under $ETCD_URL_PREFIX/$APPLICATION_deploy ..."
     [[ "$first_host" == "$this_host" ]] && MASTER_NODE=true
 }
 
-function delete_master_election_nodes() {
-    echo "[DEBUG]: complete deployment, delete the master election nodes $ETCD_URL_PREFIX/$APPLICATION_deploy"
-    curl "$ETCD_URL_PREFIX/$APPLICATION_deploy?recursive=true" -XDELETE
-}
+master_election
+
+if [[ "$MASTER_NODE" == "true" ]]; then
+    // do master stuff 
+fi 
+
 ```
 4. Cat files in python script
 ```python
