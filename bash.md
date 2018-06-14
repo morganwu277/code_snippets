@@ -710,7 +710,9 @@ My `~/.tmux.conf` content:
 ```bash
 set -g mouse on
 set-window-option -g mode-keys vi
-set-window-option -g utf8 on
+setw -g mode-keys vi
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "copied to system clipboard"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "copied to system clipboard"
 ```
 
 Short key prefix: `⌃b` (on Mac, `^` is Control)
