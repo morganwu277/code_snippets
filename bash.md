@@ -174,31 +174,6 @@ python -c "import os; [print(x.rstrip('\n')[:-7]) for x in open(os.environ['FILE
 python3 -c "import os; print(*[x.rstrip('\n')[:-7] for x in open(os.environ['FILE'])],sep='\n')"
 ```
 
-4.  master election inside the BASH
-```bash
-ETCD_SERVER=$ETCD_SERVER
-ETCD_URL_PREFIX="http://$ETCD_SERVER:2379/v2/keys"
-APPLICATION="noj"
-MASTER_NODE=false
-
-function master_election() {
-    [[ $ETCD_SERVER == "" ]] && echo "[ERROR]: can not find etcd server, master election failed. " && exit 1
-    # write the key
-    this_host=`hostname`
-    echo "[DEBUG]: write current hostname $this_host to $ETCD_URL_PREFIX/$APPLICATION_deploy ..."
-    curl "$ETCD_URL_PREFIX/$APPLICATION_deploy" -XPOST -d "value=$this_host&ttl=600"
-    first_host=$(curl -s "$ETCD_URL_PREFIX/$APPLICATION_deploy?recursive=true&sorted=true" | python -c "import sys, json; print json.load(sys.stdin)['node']['nodes'][0]['value']" )
-    echo "[DEBUG]: got the first_host is $first_host under $ETCD_URL_PREFIX/$APPLICATION_deploy ..."
-    [[ "$first_host" == "$this_host" ]] && MASTER_NODE=true
-}
-
-master_election
-
-if [[ "$MASTER_NODE" == "true" ]]; then
-    // do master stuff 
-fi 
-
-```
 4. Cat files in python script
 ```python
     import subprocess
