@@ -719,6 +719,7 @@ Short key prefix: `⌃b` (on Mac, `^` is Control)
 ##### pane management 
  - `%`: split pane, left-right
  - `"`: split pane, up-down
+ - `0`: select pane
  - `x`: close current pane
  - `z`: maximize current pane, `z` again, to revert back
 
