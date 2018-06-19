@@ -8,9 +8,9 @@ jar cvf saml.war . # create the war file again
 mv saml.war ../    # keep the war file
 rm -rf tmp         # delete this tmp folder
 ```
-2. Update a jar/war file
-  Must keep the relative path using `WEB-INF/classes/applicationContext.xml`      
-  Can't go into `WEB-INF/classes/` and `jar uvf` from there
+2. Update a jar/war file     
+   Must keep the relative path using `WEB-INF/classes/applicationContext.xml`      
+   Can't go into `WEB-INF/classes/` and `jar uvf` from there
 ```bash
 jar uvf saml.war ./WEB-INF/classes/applicationContext.xml
 ```
