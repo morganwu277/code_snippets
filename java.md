@@ -1,6 +1,6 @@
 ### Jar Operations
 1. Create a jar/war file
-    ```bash
+```bash
 cd tmp
 jar xvf saml.war   # extrat the war file
 # vi xxx, doing some changes
@@ -11,7 +11,7 @@ rm -rf tmp         # delete this tmp folder
 2. Update a jar/war file
   Must keep the relative path using `WEB-INF/classes/applicationContext.xml`      
   Can't go into `WEB-INF/classes/` and `jar uvf` from there
-   ```bash
+```bash
 jar uvf saml.war ./WEB-INF/classes/applicationContext.xml
 ```
 
