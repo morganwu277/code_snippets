@@ -490,6 +490,12 @@ time echo "scale=5000; 4*a(1)" | bc -l -q
 fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75
 ```
 
+## Vimrc configuration
+https://github.com/amix/vimrc
+
+## zsh configuration
+https://ohmyz.sh/ 
+
 ## cygwin basic packages
 `curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
 
