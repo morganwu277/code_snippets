@@ -821,3 +821,30 @@ for i in $(seq $MIN 1 $MAX); do
   fi
 done
 ```
+
+## Expect ssh-add 
+`ssh-add.exp` file, please note how to write the argument here 
+```bash
+#!/usr/bin/expect
+
+# with an argument
+set key [lindex $argv 0]
+# set value [lindex $argv 1], if you have more params
+
+spawn ssh-add $key
+expect "Enter passphrase for *:"
+send "codingisfun\n"
+expect "dentity added: *"
+interact
+```
+and in the caller, please note we are using expect to execute this `.exp` script with a parameter
+
+```bash
+# start a ssh-agent
+ret=`ps -ef|grep ssh-agent |grep -v grep`
+[[ "$ret" == "0" ]] || eval `ssh-agent` 
+expect ssh-add.exp "$DIR/xxx-deploy/playbooks/files/xxx_user/id_rsa" > /dev/null
+# kill the ssh-agent
+ssh-agent -k > /dev/null 2>&1
+```
+
