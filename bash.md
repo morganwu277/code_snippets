@@ -703,9 +703,12 @@ https://wiki.apache.org/httpd/PasswordBasicAuth
 
 ## Screen Management
 ```bash
-screen -S lc -dm bash
+# open a lc named screen and start with bash terminal
+screen -dmS lc bash
+# sleep 1 second 
 sleep 1
-screen -S lc -X screen tail -f /var/log/nginx/access.log
+# in the lc, make the screen filled with tail command output
+screen -XS lc screen tail -f /var/log/nginx/access.log
 ```
 - use `screen -ls` to review 
 - use `screen -r id` to attach
