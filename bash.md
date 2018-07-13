@@ -854,5 +854,10 @@ ssh-agent -k > /dev/null 2>&1
 ## remount /run directory using tmpfs filesystem
 You can execute `mount |grep run` to get the options first and then only increase the size. 
 ```bash
-mount -o remount,rw,nosuid,noexec,relatime,size=300m,mode=755 /run
+mount -o remount,rw,nosuid,noexec,relatime,size=300M,mode=755 /run
 ```
+Or you can add the line into `/etc/fstab`
+```bash
+tmpfs   /run    tmpfs  rw,nosuid,noexec,relatime,size=300M,mode=755 0 0
+```
+Ref: https://wiki.archlinux.org/index.php/tmpfs
