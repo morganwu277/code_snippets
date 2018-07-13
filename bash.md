@@ -851,3 +851,8 @@ expect ssh-add.exp "$DIR/xxx-deploy/playbooks/files/xxx_user/id_rsa" > /dev/null
 ssh-agent -k > /dev/null 2>&1
 ```
 
+## remount /run directory using tmpfs filesystem
+You can execute `mount |grep run` to get the options first and then only increase the size. 
+```bash
+mount -o remount,rw,nosuid,noexec,relatime,size=300m,mode=755 /run
+```
