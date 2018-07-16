@@ -776,7 +776,20 @@ use `-e ':a' -e 'N' -e '$!ba' ` before `sed -e xxxx`
 [03:04 AM morganwu@morgan-yinnut setup]$ cat abc.txt |sed -e ':a' -e 'N' -e '$!ba' -e 's/,\n/,/g' 
 ['1','2','3']
 ```
-## shell and sed traps
+## Shell and awk 
+Next command is to filter the jbd2/sdb-8, if $13 equals `[jbd2/sdb-8]` and $11 is greater than 40.0, then print all lines.
+```bash
+iotop -p 1004 -t -q | awk '{ if($13=="[jbd2/sdb-8]" && $11+0>40.0 ) print $0}'
+```
+Another way is to use `regex` filter and if to print the line: 
+```bash
+iotop -p 1004 -t -q | awk '/jbd2/ { if($11+0>0.0 ) print $0}'
+
+# use `stdbuf -o0` to disabling buffering to output to log when io% >50%
+iotop -p 1004 -t -q | stdbuf -o0 awk '/jbd2/ { if($11+0>50.0 ) print $0}'  > jbd2.txt
+```
+
+## Shell and sed traps
 ```bash
 There are two levels of interpretation here: the shell, and sed.
 
