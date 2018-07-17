@@ -863,6 +863,11 @@ expect ssh-add.exp "$DIR/xxx-deploy/playbooks/files/xxx_user/id_rsa" > /dev/null
 # kill the ssh-agent
 ssh-agent -k > /dev/null 2>&1
 ```
+Of course, you can also use `expect` to achieve ssh login with a password input, however you still can do it using `sshpass`
+```bash
+echo "[`date`] Detect Python2 Env..."
+sshpass -p $SSH_PASS ssh -p $SSH_PORT $SSH_USER@$PUBLIC_IP 'test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)'
+```
 
 ## remount /run directory using tmpfs filesystem
 You can execute `mount |grep run` to get the options first and then only increase the size. 
