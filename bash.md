@@ -879,3 +879,11 @@ Or you can add the line into `/etc/fstab`
 tmpfs   /run    tmpfs  rw,nosuid,noexec,relatime,size=300M,mode=755 0 0
 ```
 Ref: https://wiki.archlinux.org/index.php/tmpfs
+
+## Crontab 
+```bash
+SHELL=/bin/bash
+HOME=/home/morganwu277
+PATH=/home/morganwu277/py3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+10 0 * * *  . ~/.bashrc && xxxx/xxx/xxx/command.sh >> /tmp/command.log 2>&1 
+```
