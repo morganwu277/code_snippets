@@ -839,6 +839,13 @@ done
 ```
 
 ## Expect ssh-add 
+Install first...
+```bash
+apt-get install expect -y 
+# or 
+yum install expect -y 
+```
+Then follow up next instructions...
 `ssh-add.exp` file, please note how to write the argument here 
 ```bash
 #!/usr/bin/expect
