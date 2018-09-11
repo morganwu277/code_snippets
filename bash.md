@@ -496,6 +496,8 @@ https://github.com/amix/vimrc
 ## zsh configuration
 https://ohmyz.sh/ 
 
+disable git info from the prompt `git config --add oh-my-zsh.hide-status 1` if you have a large repo, or it will be very slow...
+
 ## cygwin basic packages
 `curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
 
