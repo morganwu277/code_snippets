@@ -448,10 +448,11 @@ Host srv1
 ## SSH FORWARD X11 
 Normally we would like to open X11 Applications from MacOSX. It needs these steps:
 1. install XQuartZ from https://www.xquartz.org/ needs restart macOS to enalbe 
-2. in Linux, make sure `X11Forwarding yes` is enabled in `/etc/ssh/sshd_config`
+2. in Linux, make sure `X11Forwarding yes` and `X11UseLocalhost no` are enabled in `/etc/ssh/sshd_config`
 3. also needs to setup XWindow in Linux, here is an example in CentOS/Linux https://codingbee.net/tutorials/vagrant/vagrant-enabling-a-centos-vms-gui-mode 
 ```bash
-yum groupinstall -y 'gnome desktop'
+yum groupinstall -y 'gnome desktop' # CentOS
+yum groupinstall "Server with GUI" # RHEL Server
 yum install -y 'xorg*'
 yum remove -y initial-setup initial-setup-gui # remove EULA agreements, we don't want user interaction which will prevent automated startups via vagrant
 systemctl isolate graphical.target && systemctl set-default graphical.target # make gui target as default target
