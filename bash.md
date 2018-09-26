@@ -910,10 +910,25 @@ tmpfs   /run    tmpfs  rw,nosuid,noexec,relatime,size=300M,mode=755 0 0
 ```
 Ref: https://wiki.archlinux.org/index.php/tmpfs
 
-## Crontab 
+## Crontab with Shell and PATH
 ```bash
 SHELL=/bin/bash
 HOME=/home/morganwu277
 PATH=/home/morganwu277/py3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
 10 0 * * *  . ~/.bashrc && xxxx/xxx/xxx/command.sh >> /tmp/command.log 2>&1 
+```
+
+## install nfs server
+in CentOS
+```bash
+yum install nfs-utils -y
+cat /etc/exports
+# /home/morganwu/htap-ng *(rw,sync,all_squash,anonuid=11111,anongid=10)
+# /home/morganwu/dockerhome *(rw,sync,all_squash,anonuid=11111,anongid=10)
+#### *: to all users
+#### rw: read/write permission
+#### sync: write data in both memory and disk
+#### all_squash: all users will be marked as anonymous user
+#### anonuid: anonymous user will be treated as 11111 user
+#### anongid: anonymous user will be treated as 10 group
 ```
