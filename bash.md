@@ -919,7 +919,7 @@ PATH=/home/morganwu277/py3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 ```
 
 ## install nfs server
-http://cn.linux.vbird.org/linux_server/0330nfs/0330nfs-centos4.php
+http://cn.linux.vbird.org/linux_server/0330nfs/0330nfs-centos4.php     
 in CentOS
 ```bash
 yum install nfs-utils -y
