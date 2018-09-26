@@ -404,6 +404,11 @@ Delete all files whose name include `bluestack` but path name exclude `Desktop` 
 ```bash
 $ sudo find . -iname "*bluestack*" ! -path "*Desktop*" -exec rm -rf {} \;
 ```
+## find the files changed 30 dasy ago
+```bash
+find . -type f -mtime +30 -exec ls -hl {} \;
+```
+
 ## forward local port 3307 to remote 3306
 ```bash
 $ ssh -p 16688 -L 3307:me-db-1:3306 root@159.203.44.228
