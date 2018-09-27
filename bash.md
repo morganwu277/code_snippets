@@ -933,3 +933,36 @@ cat /etc/exports
 #### anonuid: anonymous user will be treated as 11111 user
 #### anongid: anonymous user will be treated as 10 group
 ```
+## VNC-Server
+In CentOS, install `vnc-server`
+```bash
+yum install -y tigervnc-server.x86_64
+```
+and then make a copy of systemd conf and change the user
+```bash
+cp /lib/systemd/system/vncserver@.service  /etc/systemd/system/vncserver@:1.service
+vi /etc/systemd/system/vncserver@:1.service
+```
+and its content is like below, change the `my_user` part
+```bash
+[Unit]
+Description=Remote desktop service (VNC)
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStartPre=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+ExecStart=/sbin/runuser -l my_user -c "/usr/bin/vncserver %i -geometry 1280x1024"
+PIDFile=/home/my_user/.vnc/%H%i.pid
+ExecStop=/bin/sh -c '/usr/bin/vncserver -kill %i > /dev/null 2>&1 || :'
+
+[Install]
+WantedBy=multi-user.target
+```
+and then restart the service
+```bash
+systemctl daemon-reload
+systemctl enable vncserver@:1
+systemctl start vncserver@:1
+systemctl status vncserver@:1
+```
