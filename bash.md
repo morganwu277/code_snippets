@@ -934,9 +934,15 @@ cat /etc/exports
 #### anongid: anonymous user will be treated as 10 group
 ```
 ## VNC-Server
-In CentOS, install `vnc-server`
+In CentOS, install `vnc-server` and then config the password for a specific user
 ```bash
 yum install -y tigervnc-server.x86_64
+[morganwu@agony1 ~]$ vncpasswd
+Password:
+Verify:
+Would you like to enter a view-only password (y/n)? n
+A view-only password is not used
+
 ```
 and then make a copy of systemd conf and change the user
 ```bash
