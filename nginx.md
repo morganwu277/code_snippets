@@ -1,3 +1,14 @@
+### Nginx subdirectory Easy Setup
+```bash
+        location /buildlog {
+            alias /home/morganwu/xxx/src_root/buildlog; # need a+rx permission for every ancestor directory 
+            autoindex on; # list the directories
+        }
+```
+This is an easy example for how do we expose `/buildlog` to external, using `http://{IP}/buildlog` to access this directory. 
+
+However, we need `a+rx` permission on every parent directory of buildlog, until above the `/` directory if nginx process user is different from the owner of served file directory. 
+
 ### Nginx CORS 
 Allow `http(s)://47.92.6.114:8000` or `http(s)://www.my-cn.com` or `http(s)://my-cn.com` to access this domain using `GET`/`POST`/`OPTIONS` methods.
 
