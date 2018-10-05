@@ -738,7 +738,7 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 - use `Ctrl+ad` to detach
 
 ## Tmux Screen Management
-My `~/.tmux.conf` content:
+##### My `~/.tmux.conf` content
 ```bash
 set -g mouse on
 set-window-option -g mode-keys vi
@@ -746,6 +746,10 @@ setw -g mode-keys vi
 bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "copied to system clipboard"
 bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy" \; display-message "copied to system clipboard"
 ```
+##### Attach/Detach tmux
+ - enter `tmux`: inside interactive tmux session now
+ - enter `tmux detach`: exit to bash session 
+ - enter `tmux attach`: enter to tmux session again
 
 Short key prefix: `⌃b` (on Mac, `^` is Control)
 ##### pane management 
