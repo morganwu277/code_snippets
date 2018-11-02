@@ -93,19 +93,30 @@ tune2fs -m 5 /dev/sda
 ```
 
 ## trap signal to do cleaning tasks before script exit
+better to use child process handling... this also works in Jenkins shell...
 ```bash
 #!/bin/bash
-# trap1
-trap 'echo you hit Ctrl-C/Ctrl-\, now exiting..; exit' SIGINT SIGQUIT SIGTERM
-count=0
- 
-while :
- do
-   sleep 1
-   count=$(expr $count + 1)
-   echo $count
- done
+
+_term() { 
+  echo "Caught SIGTERM signal!" 
+  kill -TERM "$child" 2>/dev/null
+}
+
+trap _term SIGTERM
+
+echo "Doing some initial work...";
+
+(
+while true; do 
+  echo "doing some work..."
+  sleep 1
+done
+)&
+
+child=$! 
+wait "$child"
 ```
+https://unix.stackexchange.com/questions/146756/forward-sigterm-to-child-in-bash
 https://www.ibm.com/developerworks/aix/library/au-usingtraps/ 
 
 
