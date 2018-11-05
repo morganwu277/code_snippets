@@ -2,6 +2,7 @@
 ```bash
 $ git diff 						# diff in non-staged/non-cached area
 $ git diff --staged/--cached	# diff in staged/cached are
+$ git format-patch HEAD^^^ # with three ^ tag, will create 3 patches...
 $ git commit -a -m 'message' 	# just commit withouth adding files, if they are already being tracked
 
 $ git rm -f <file> 				# delete file from OS and git repo
