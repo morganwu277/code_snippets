@@ -3,6 +3,13 @@
         location /buildlog {
             alias /home/morganwu/xxx/src_root/buildlog; # need a+rx permission for every ancestor directory 
             autoindex on; # list the directories
+            autoindex_exact_size off; # using the human size
+            autoindex_format html; 
+            autoindex_localtime on; # don't use UTC, but local time
+            disable_symlinks off; # enable symbol link
+            location ~ /buildlog/bld.* {
+               add_header Content-Type text/plain; # assume them all as text/plain files
+            }
         }
 ```
 This is an easy example for how do we expose `/buildlog` to external, using `http://{IP}/buildlog` to access this directory. 
