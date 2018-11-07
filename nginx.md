@@ -12,6 +12,7 @@
             }
         }
 ```
+Ref: https://www.keycdn.com/support/nginx-directory-index 
 This is an easy example for how do we expose `/buildlog` to external, using `http://{IP}/buildlog` to access this directory. 
 
 However, we need `a+rx` permission on every parent directory of buildlog, until above the `/` directory if nginx process user is different from the owner of served file directory. 
