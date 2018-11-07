@@ -1,7 +1,7 @@
 ## Tips after reading <Pro Git> 
 ```bash
-$ git diff 						# diff in non-staged/non-cached area
-$ git diff --staged/--cached	# diff in staged/cached are
+$ git diff 			# diff between working copy and cached area
+$ git diff --staged/--cached	# diff in between cached area and HEAD
 $ git format-patch HEAD^^^ # with three ^ tag, will create 3 patches...
 $ git commit -a -m 'message' 	# just commit withouth adding files, if they are already being tracked
 
