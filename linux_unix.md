@@ -7,7 +7,7 @@ Here is pipe diagram:
 [About Pipes in Linux](http://tldp.org/LDP/lpg/node10.html#SECTION00721000000000000000)    
 
 *Example below, diagram!*    
-![Pipe](http://tldp.org/LDP/lpg/img6.gif "Read Data from Child Process") 
+![Pipe](http://tldp.org/LDP/lpg/img6.gif "Read Data from Child Process")     
 **Please remember: data flows from pipe[1] to pipe[0] and will flow through the kernel, so we need to do some close actions.**    
 Example code (read output from child process) :     
 ```c
