@@ -10,7 +10,7 @@ Here is pipe diagram:
 ![Pipe](http://tldp.org/LDP/lpg/img6.gif "Read Data from Child Process")     
 **Please remember: data flows from pipe[1] to pipe[0] and will flow through the kernel, so we need to do some close actions.**    
 Example code (read output from child process) :     
-```c
+```cpp
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
         write(fds[1], MSG, strlen(MSG)); // output to pipe, i.e. to parent process's pipe
         _exit(0);
     } else {
-        close(fds[1]); // close output side of pipe, not really required, but better to close.
+        close(fds[1]); // close output side of pipe
         wait(NULL);
 
         char MSG[4096];
@@ -42,3 +42,4 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
+Here is a better and more detailed example: http://www.cs.loyola.edu/~jglenn/702/S2005/Examples/dup2.html 
