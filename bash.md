@@ -199,7 +199,22 @@ python3 -c "import os; print(*[x.rstrip('\n')[:-7] for x in open(os.environ['FIL
             os.environ['COMPLETION_MULTITENANT_APP_NAME']
         ),
         stdout=subprocess.PIPE, shell=True)
-
+```
+5. resolve json data and do complex operation in heredoc python scripts
+```bash
+function check_docker_is_up {
+  export NODES_TXT="./nodes.txt"
+  python - <<EOF
+import json,os
+print(os.environ['NODES_TXT'])
+with open(os.environ['NODES_TXT']) as json_data:
+  n = json.load(json_data) # NOTE: for string load, using json.loads(), not json.load()
+  if n['nodes'][0].docker_status == "UP" and n['nodes'][0].status == "CONNECTED":
+    print("true")
+  else:
+    print("false")
+EOF
+}
 ```
 
 ## capture the time output
