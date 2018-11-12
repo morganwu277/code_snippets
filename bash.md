@@ -205,6 +205,8 @@ python3 -c "import os; print(*[x.rstrip('\n')[:-7] for x in open(os.environ['FIL
 function check_docker_is_up {
   export NODES_TXT="./nodes.txt"
   python - <<EOF
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import json,os
 print(os.environ['NODES_TXT'])
 with open(os.environ['NODES_TXT']) as json_data:
