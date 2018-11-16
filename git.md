@@ -31,6 +31,7 @@ $ git tag -a v1.2 9fceb02		# tag using against a commit
 $ git push origin v1.5			# push tags to origin repo
 $ git push origin --tags		# push all tags to origin repo
 $ git checkout -b v2_fix v2.0.0	# checkout branch of v2_fix from v2.0.0 tag
+$ git filter-branch --tree-filter 'rm -f nodes/os/mac/jdk-8u191-macosx-x64.dmg' HEAD # remove a large object file 
 $ git gc --prune=now --aggressive # clean large file object that committed but not able to be pushed to remote git server
 ```bash
 (py_3.7) ➜  mac git:(master) ✗ git gc --prune=now --aggressive
