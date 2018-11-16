@@ -31,6 +31,15 @@ $ git tag -a v1.2 9fceb02		# tag using against a commit
 $ git push origin v1.5			# push tags to origin repo
 $ git push origin --tags		# push all tags to origin repo
 $ git checkout -b v2_fix v2.0.0	# checkout branch of v2_fix from v2.0.0 tag
+$ git gc --prune=now --aggressive # clean large file object that committed but not able to be pushed to remote git server
+```bash
+(py_3.7) ➜  mac git:(master) ✗ git gc --prune=now --aggressive
+Counting objects: 393, done.
+Delta compression using up to 8 threads.
+Compressing objects: 100% (324/324), done.
+Writing objects: 100% (393/393), done.
+Total 393 (delta 173), reused 0 (delta 0)
+```
 
 # format of git ref is `<src>:<dst>`, leave <src> as empty, means 
 # `use empty to replace remote <dst>, which means delete <dst>`
