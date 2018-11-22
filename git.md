@@ -20,6 +20,7 @@ $ git commit --amend			# use a new commit to override the last commit
 $ git reset HEAD <file> 		# reset HEAD and index of a file, keep files changes in local
 $ git reset HEAD --hard <file> 	# reset HEAD, index and working tree
 $ git reset --hard HEAD~2       # remove last 2 local commits	
+$ git reset --hard <SOME-COMMIT> # 1. Make your current branch (typically master) back to point at <SOME-COMMIT>. 2. Then make the files in your working tree and the index ("staging area") the same as the versions committed in <SOME-COMMIT>.
 
 $ git remote add upstream GIT_URL	# add a new remote 
 $ git fetch --all 				# fetch all remote changes 
