@@ -19,6 +19,7 @@ $ git commit --amend			# use a new commit to override the last commit
 								#### but the result is the same: ONLY 1 COMMIT. 
 $ git reset HEAD <file> 		# reset HEAD and index of a file, keep files changes in local
 $ git reset HEAD --hard <file> 	# reset HEAD, index and working tree
+$ git reset --hard HEAD~2       # remove last 2 local commits	
 
 $ git remote add upstream GIT_URL	# add a new remote 
 $ git fetch --all 				# fetch all remote changes 
