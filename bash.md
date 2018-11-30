@@ -81,6 +81,7 @@ while getopts "dfhr" opt ; do
     esac
 done
 ```
+Use non-getopts to write optional args parsing, https://stackoverflow.com/a/14203146 
 
 ## mtr command
 combing tracerout and ping command. 
