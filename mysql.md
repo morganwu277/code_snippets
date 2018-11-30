@@ -79,6 +79,24 @@ And when you’re done, don’t forget to turn it back on with:
   SET SESSION tx_isolation='READ-REPEATABLE';
 ```
 
+## Stat on the table size of a DB
+```sql
+SELECT 
+    table_name AS `Table`, 
+    round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+FROM information_schema.TABLES 
+WHERE table_schema = "$DB_NAME"
+    AND table_name = "$TABLE_NAME";
+or this query to list the size of every table in every database, largest first:
+
+SELECT 
+     table_schema as `Database`, 
+     table_name AS `Table`, 
+     round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` 
+FROM information_schema.TABLES 
+ORDER BY (data_length + index_length) DESC;
+```
+
 
 ## All kinds of join.
    Problems like how to calculate SetA-SetB question.    
