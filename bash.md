@@ -888,7 +888,7 @@ MAX=6000
 
 echo "Scanning port from $MIN to $MAX on target host $HOST"
 for i in $(seq $MIN 1 $MAX); do
-  if nc -v $HOST $i -w 1 > /dev/null 2>&1 ; then
+  if printf "" | nc -v $HOST $i > /dev/null 2>&1 ; then
     echo "SUCCESS! PORT: $i. "
   fi
 done
