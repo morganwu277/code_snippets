@@ -844,7 +844,15 @@ iotop -p 1004 -t -q | awk '/jbd2/ { if($11+0>0.0 ) print $0}'
 # use `stdbuf -o0` to disabling buffering to output to log when io% >50%
 iotop -p 1004 -t -q | stdbuf -o0 awk '/jbd2/ { if($11+0>50.0 ) print $0}'  > jbd2.txt
 ```
-
+### awk to get mean and std-var
+```bash
+# calculate mean std-var
+# data.txt should be one entry per line
+awk '{for(i=1;i<=NF;i++) {sum[i] += $i; sumsq[i] += ($i)^2}}
+     END {for (i=1;i<=NF;i++) {
+     print "mean stdevp \n", sum[i]/NR, sqrt((sumsq[i]-sum[i]^2/NR)/NR)}
+     }' data.txt
+```
 ## Shell and sed traps
 ```bash
 There are two levels of interpretation here: the shell, and sed.
