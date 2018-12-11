@@ -70,7 +70,7 @@ if (pid_a == 0) {
                          // a.pipe_fd2[0] -> a.stdin
 
   execvp(a);
-
+}
 while ((pid_b = fork()) < 0);
 
 if (pid_b == 0) { 
@@ -84,4 +84,5 @@ if (pid_b == 0) {
                          //          -> a.pipe_fd2[0] -> a.stdin
 
   execvp(b); 
+}
 ```
