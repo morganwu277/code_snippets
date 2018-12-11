@@ -43,3 +43,45 @@ int main(int argc, char *argv[]) {
 }
 ```
 Here is a better and more detailed example: http://www.cs.loyola.edu/~jglenn/702/S2005/Examples/dup2.html 
+
+### Pipe, a more interesting example
+```bash
+/*
+* 
+* Another requirement:
+* // a.stdout -> b.stdin
+* // b.stdout -> a.stdin
+*/
+int pipe_fd1[2]; 
+int pipe_fd2[2]; 
+pipe(pipe_fd1);
+pipe(pipe_fd2);
+
+while ((pid_a = fork()) < 0);
+
+if (pid_a == 0) { 
+  close(pipe_fd1[0]);
+  dup2(pipe_fd1[1], 1);  // replace stdout with pipe_fd1
+                         // a.stdout -> a.pipe_fd2[1] 
+                         //          -> b.pipe_fd2[0] -> b.stdin
+
+  close(pipe_fd2[1]);
+  dup2(pipe_fd2[0], 0);  // replace stdin with pipe_fd2
+                         // a.pipe_fd2[0] -> a.stdin
+
+  execvp(a);
+
+while ((pid_b = fork()) < 0);
+
+if (pid_b == 0) { 
+  close(pipe_fd1[1]);
+  dup2(pipe_fd1[0], 0);  // replace stdin with pipe_fd1
+                         // b.pipe_fd1[0] -> b.stdin 
+
+  close(pipe_fd2[0]);
+  dup2(pipe_fd2[1], 1);  // replace stdout with pipe_fd2
+                         // b.stdout -> b.pipe_fd2[1] 
+                         //          -> a.pipe_fd2[0] -> a.stdin
+
+  execvp(b); 
+```
