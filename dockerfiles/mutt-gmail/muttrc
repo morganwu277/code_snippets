@@ -1,0 +1,6 @@
+set from = "$GMAIL_USER@gmail.com"
+set realname = "$GMAIL_FULLNAME"
+set smtp_url = "smtp://$GMAIL_USER@smtp.gmail.com:587/"
+set smtp_pass = "$GMAIL_PASS"
+set send_charset="utf-8"
+set content_type="text/html"
