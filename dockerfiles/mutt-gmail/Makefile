@@ -6,13 +6,15 @@ run:
 	docker run --name morgan_mail -d morgan:mail sleep 1000000
 test_send:
 	echo "test<br/> content<hr/>From Morgan" > content.html
-	read -p "Enter email user: " EMAIL_USER ; \
-	read -p "Enter email pass: " EMAIL_PASS ; \
-	docker run --rm --name morgan_mutt \
+	[[ -z $$EMAIL_USER ]] && read -p "Enter email user: " EMAIL_USER ; \
+[[ -z $$EMAIL_PASS ]] && read -p "Enter email pass: " EMAIL_PASS ; \
+[[ -z $$EMAIL_SUBJ ]] && EMAIL_SUBJ="Test Sub" ; \
+[[ -z $$EMAIL_TO_LIST ]] && EMAIL_TO_LIST="xue777hua@gmail.com" ; \
+docker run --rm --name morgan_mutt \
 		-e GMAIL_USER="$$EMAIL_USER" \
 		-e GMAIL_PASS="$$EMAIL_PASS" \
-		-e EMAIL_SUBJ="Test Sub" \
-		-e EMAIL_TO_LIST="xue777hua@gmail.com" \
+		-e EMAIL_SUBJ="$$EMAIL_SUBJ" \
+		-e EMAIL_TO_LIST="$$EMAIL_TO_LIST" \
 		-v $(CWD):/data \
 		morgan:mail 
 exec:
