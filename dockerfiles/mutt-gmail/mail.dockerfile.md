@@ -30,10 +30,4 @@ ADD muttrc /root/.muttrc
 ENTRYPOINT ["bash", "-c"]
 CMD ["mutt -s \"${EMAIL_SUBJ}\" -c \"${EMAIL_CC_LIST}\" \"${EMAIL_TO_LIST}\" < /data/${EMIAL_FILE_CONTENT}"]
 
-# mutt -s 'sub' xue777hua@gmail.com -c amymeng5277@gmail.com,xue777hua@gmail.com < content
-
-# send the email
-# cat server_status.txt | mutt -s "VM is down, please help to boot up" user1@company.com,user2@company.com -c myself@company.com -c myManager@company.com
-
-
 
