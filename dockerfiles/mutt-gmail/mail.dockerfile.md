@@ -29,5 +29,3 @@ ADD muttrc /root/.muttrc
 
 ENTRYPOINT ["bash", "-c"]
 CMD ["mutt -s \"${EMAIL_SUBJ}\" -c \"${EMAIL_CC_LIST}\" \"${EMAIL_TO_LIST}\" < /data/${EMIAL_FILE_CONTENT}"]
-
-
