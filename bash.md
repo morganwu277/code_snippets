@@ -767,6 +767,21 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 - use `Ctrl+ad` to detach
 
 ## Tmux Screen Management
+**BY DEFAULT**, no other tmux conf, tmux commands:
+### session management
+`tmux ls`: list sessoins
+`tmux a -t <session_id>`: attach into session
+`ctrl+b+d`: detach from session
+### cut screen, pane management
+`ctrl+b+"`: vertical cut
+`ctrl+b+%`: horizontal cut
+`ctrl+b+x`: kill current pane
+### copy mode
+`ctrl+b+[ / q`: enter / exit copy mode
+`ctrl+S`: search inside the copy mode
+
+
+
 ##### My `~/.tmux.conf` content
 ```bash
 set -g mouse on
