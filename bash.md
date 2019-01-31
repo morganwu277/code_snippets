@@ -1028,3 +1028,11 @@ systemctl enable vncserver@:1
 systemctl start vncserver@:1
 systemctl status vncserver@:1
 ```
+
+## CertBot
+1. needs to add DNS resolution from your DNS provider
+2. gen certs using certbot
+```bash
+domain="xxx.cn"
+certbot certonly --nginx --email xue777hua@gmail.com -d www.$domain -d $domain
+```
