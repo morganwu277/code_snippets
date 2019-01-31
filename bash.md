@@ -1030,6 +1030,8 @@ systemctl status vncserver@:1
 ```
 
 ## CertBot
+0. install certbot
+https://certbot.eff.org/docs/install.html#operating-system-packages
 1. needs to add DNS resolution from your DNS provider
 2. gen certs using certbot
 ```bash
