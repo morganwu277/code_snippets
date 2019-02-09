@@ -784,6 +784,7 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 
 ##### My `~/.tmux.conf` content
 ```bash
+set -g history-limit 50000
 set -g mouse on
 set-window-option -g mode-keys vi
 setw -g mode-keys vi
