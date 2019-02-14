@@ -780,6 +780,7 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
  - `ctrl+b+[ / q`: enter / exit copy mode
  - `ctrl+S`: search inside the copy mode
 
+for more: https://gist.github.com/morganwu277/3d101d2a9e0b4799b9cb6c68cc2fdd19
 
 
 ##### My `~/.tmux.conf` content
