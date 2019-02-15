@@ -779,7 +779,10 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 ### copy mode
  - `ctrl+b+[ / q`: enter / exit copy mode
  - `ctrl+S`: search inside the copy mode
-
+### set the title of pane
+```bash
+printf '\033]2;%s\033\\' '<this_is_my_title>'
+```
 for more: https://gist.github.com/morganwu277/3d101d2a9e0b4799b9cb6c68cc2fdd19
 
 
