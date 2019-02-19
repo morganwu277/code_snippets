@@ -94,6 +94,7 @@ tune2fs -m 5 /dev/sda
 ```
 
 ## use dumpe2fs to check ext4 Journal size
+http://blog.dailystuff.nl/2012/07/getting-ext34-journal-size/
 ```bash
 LANG=C dumpe2fs /dev/vda1  |grep ^Journal
 ```
