@@ -93,6 +93,11 @@ https://linode.com/docs/networking/diagnostics/diagnosing-network-issues-with-mt
 tune2fs -m 5 /dev/sda 
 ```
 
+## use dumpe2fs to check ext4 Journal size
+```bash
+LANG=C dumpe2fs /dev/vda1  |grep ^Journal
+```
+
 ## trap signal to do cleaning tasks before script exit
 better to use child process handling... this also works in Jenkins shell...
 ```bash
