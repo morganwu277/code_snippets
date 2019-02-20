@@ -592,13 +592,13 @@ cd $DIR
 
 ## add swap space to Linux (VM) 
 ```bash
-fallocate -l 512M /swapfile
+dd if=/dev/zero of=/swapfile count=1024 bs=1MiB
 chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 swapon --show
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-/swapfile none swap sw 0 0
+echo '/swapfile swap swap sw 0 0' | sudo tee -a /etc/fstab
+/swapfile swap swap sw 0 0
 sysctl vm.swappiness=10
 sysctl vm.vfs_cache_pressure=50
 vi /etc/sysctl.conf 
