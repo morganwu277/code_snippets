@@ -1055,3 +1055,7 @@ certbot --version
 domain="xxx.cn"
 certbot certonly --nginx --email xue777hua@gmail.com -d www.$domain -d $domain
 ```
+
+## sysbench and other tools for load testing
+ - sysbench: CPU performance and MySQL  https://www.centoshowtos.org/commands/sysbench/
+ - httperf: web server load testing  https://www.centoshowtos.org/commands/httperf/ 
