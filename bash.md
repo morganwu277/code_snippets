@@ -1059,6 +1059,14 @@ certbot --version
 domain="xxx.cn"
 certbot certonly --nginx --email xue777hua@gmail.com -d www.$domain -d $domain
 ```
+3. show generated certs
+```bash
+certbot certificates
+```
+4. renew certs
+```bash
+certbot renew --cert-name <should be the name comes from above certbot certificates command>
+```
 
 ## sysbench and other tools for load testing
  - sysbench: CPU performance and MySQL  https://www.centoshowtos.org/commands/sysbench/
