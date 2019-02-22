@@ -546,6 +546,10 @@ time echo "scale=5000; 4*a(1)" | bc -l -q
 fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=test --filename=test --bs=4k --iodepth=64 --size=4G --readwrite=randrw --rwmixread=75
 ```
 
+## vim batch insert `space` / `#` / `//` 
+1. must use vim, not vi
+2. key sequences: 1) ctrl + v 2) select all lines 3) shift + insert 4) type what you want 5) Esc
+
 ## Vimrc configuration
 https://github.com/amix/vimrc
 
