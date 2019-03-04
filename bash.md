@@ -1071,3 +1071,4 @@ certbot renew --cert-name <should be the name comes from above certbot certifica
 ## sysbench and other tools for load testing
  - sysbench: CPU performance and MySQL  https://www.centoshowtos.org/commands/sysbench/
  - httperf: web server load testing  https://www.centoshowtos.org/commands/httperf/ 
+In Ubuntu: https://www.howtoforge.com/how-to-benchmark-your-system-cpu-file-io-mysql-with-sysbench 
