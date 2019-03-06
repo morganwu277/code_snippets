@@ -1077,3 +1077,12 @@ command for CPU benchmark
 apt/yum install sysbench
 sysbench --test=cpu --cpu-max-prime=20000 run
 ```
+
+## Sublime tricks
+1. get file name path, open console and type:
+```bash
+# get file name
+view.file_name()
+# copy file name into clipboard
+sublime.set_clipboard(view.file_name())
+```
