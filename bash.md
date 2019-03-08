@@ -1086,3 +1086,32 @@ view.file_name()
 # copy file name into clipboard
 sublime.set_clipboard(view.file_name())
 ```
+
+## bash split by IFS, array manipulation 
+```bash
+  # here is var ignore_tables, split by using comma , symbol 
+  ignore_tables=${2:-"submission_submission,authentication_usersessionsubmission"} # split by using comma
+  if [[ "$ignore_tables" != "" ]]; then
+    IFS=',' read -r -a tables <<< "$ignore_tables" # read into the var using IFS to split
+    for t in "${tables[@]}" # iterate the array
+    do
+        ignore_tables_opt="$ignore_tables_opt --ignore-table=$dbname.$t"
+    done
+  fi
+```
+or, print a sinle element
+```bash
+echo "${array[0]}"
+```
+or, get the number of elements
+```bash
+echo "${#array[@]}"
+```
+or, manipulate array using index:
+```bash
+for index in "${!array[@]}"
+do
+    echo "$index ${array[index]}"
+done
+```
+
