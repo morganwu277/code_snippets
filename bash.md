@@ -618,7 +618,9 @@ ps -ef | grep jenkins | grep -v grep | grep -v 'su jenkins' || /usr/sbin/service
 ## tcpdump commands
 monitor the network flow of 30006 port. 
 ```bash
-[root@node-3-slave-codential wktang]# tcpdump -i eth0 tcp port 30006
+[root@node-3-slave-codential wktang]# tcpdump -n -i eth0 tcp port 30006 
+# -n: don't convert IP address, i.e, show ip addr instead of hostname
+# -i: filter the interface
 tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
 listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes 
 ```
