@@ -1,4 +1,5 @@
 ## log with color
+Ref: http://jafrog.com/2013/11/23/colors-in-terminal.html
 ```bash
 function log()   { echo -e "$1"; }
 #green
