@@ -1,3 +1,12 @@
+## log with color
+```bash
+# 
+function info()  { log "\e[34m$1\e[39m"; }
+# 
+function warn()  { log "\e[33m$1\e[39m"; }
+# 
+function error() { log "\e[31m$1\e[39m"; }
+```
 ## nc command to exeucte HTTP request to 
 ```bash
 printf 'GET /images/json HTTP/1.0\r\n\r\n' | nc -U /var/run/docker.sock 
