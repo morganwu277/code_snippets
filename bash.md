@@ -1,5 +1,6 @@
 ## log with color
 ```bash
+function log()   { echo -e "$1"; }
 # 
 function info()  { log "\e[34m$1\e[39m"; }
 # 
