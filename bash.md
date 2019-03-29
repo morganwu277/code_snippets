@@ -1,3 +1,38 @@
+## wait until event happen
+```bash
+# wait until event happen 
+# args: 
+#         1. timeout seconds
+#         2. commands to verify condition meet, needs to quoted with "${COMMAND}"
+# return: 0, normal, 
+#         1, timeout
+function wait_loop_until_event {
+  cv="false"
+  timeout="${1-10}"
+  commands="${2-echo COMMAND}"
+  elapsed=0
+  ret=0
+  while true; do
+    if [[ $elapsed -gt $timeout ]]; then
+      ret=1
+    fi
+    eval "${commands}"
+    if [[ "$?" == "0" ]]; then
+      break
+    else
+      sleep 1
+      elapsed=$((elapsed+1))
+    fi
+  done
+  return ${ret}
+}
+```
+Example to use: 
+```bash
+# in window 1
+wait_loop_until_event 10 "ps -ef|grep WebLogic | grep -v grep"
+# in window 2 ... start WebLogic server
+```
 ## log with color
 Ref: http://jafrog.com/2013/11/23/colors-in-terminal.html
 ```bash
