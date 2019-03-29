@@ -1,12 +1,13 @@
 ## log with color
 ```bash
 function log()   { echo -e "$1"; }
-# 
-function info()  { log "\e[34m$1\e[39m"; }
-# 
-function warn()  { log "\e[33m$1\e[39m"; }
-# 
-function error() { log "\e[31m$1\e[39m"; }
+#green
+function info()  { log "\e[32;3m$1\e[0m"; }
+#yellow
+function warn()  { log "\e[33;3m$1\e[0m"; }
+#red
+function error() { log "\e[31;3m$1\e[0m"; }
+
 ```
 ## nc command to exeucte HTTP request to 
 ```bash
