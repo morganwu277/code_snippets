@@ -511,6 +511,21 @@ $ ssh -NT -D 0.0.0.0:9999 -C user@host
 -C: Compress communication    
 http://www.howtogeek.com/114812/5-cool-things-you-can-do-with-an-ssh-server/     
 
+
+## github ssh protocol, using SOCKS5 proxy
+1. create ssh tunnel 
+`ssh -f -N -D 1080 user@host`
+2. in `~/.ssh/config` file add next section
+```bash
+Host github.com # here you may want to use your own git repo host
+    User                    git
+    ProxyCommand            nc -x localhost:1080 %h %p
+```
+    1. if we want to connet via http protocol
+```bash
+git config http.proxy socks5://localhost:1080
+```
+
 ## ssh generate pub key from existing private key
 ```bash
 $ ssh-keygen -f private_key -y
