@@ -726,6 +726,11 @@ for more, please review [tcpdump](https://tldr.ostera.io/tcpdump) and [tcpdump c
 tcpdump -i eth0 -s 0 -w SuccessC2Server.pcap host 153.71.28.115
 ```
 
+### tcpdump for ASCII or text format
+```bash
+tcpdump -A -s 10240 'udp port 9125' # monitoring all 9125 port traffic in text format
+```
+
 ## firewall-cmd/ufw uses
 ```bash
 firewall-cmd --zone=public --add-port=5060-5061/udp --permanent
