@@ -632,6 +632,10 @@ EOF
 ```bash
 time echo "scale=5000; 4*a(1)" | bc -l -q
 ```
+### using this will keep creating yes until stopped
+```bash
+yes > /dev/null
+```
 
 ## disk io benchmark
 ```bash
