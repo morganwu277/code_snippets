@@ -28,6 +28,12 @@ exec 3<&-
 exec 3>&-
 ```
 
+## Terminal weird characters? 
+```bash
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+# and then hit a top command here and then Ctrl+C
+```
 ## wait until event happen
 ```bash
 # wait until event happen 
