@@ -1,3 +1,7 @@
+## throttle a process cpu usage
+http://www.willnolan.com/cputhrottle/cputhrottle.html
+`sudo ./cputhrottle 328 25`: throttle pid=328 not to exceed 25% cpu usage.
+
 ## use `ps` to see the threads inside some process
 
 - -M: show thread
