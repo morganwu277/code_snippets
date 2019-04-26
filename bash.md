@@ -578,7 +578,9 @@ Host srv1
 
 ```
 
-## SSH FORWARD X11 
+## SSH FORWARD X11 in MacOS
+For X11 forward in Win: http://www.pandan.xyz/2017/02/18/%E4%BD%BF%E7%94%A8SSH%E7%9A%84X11%20Forwarding%E8%BF%9C%E7%A8%8B%E6%89%A7%E8%A1%8CGUI%E7%A8%8B%E5%BA%8F/ 
+
 Normally we would like to open X11 Applications from MacOSX. It needs these steps:
 1. install XQuartZ from https://www.xquartz.org/ needs restart macOS to enalbe 
 2. in Linux, make sure `X11Forwarding yes` and `X11UseLocalhost no` are enabled in `/etc/ssh/sshd_config`
