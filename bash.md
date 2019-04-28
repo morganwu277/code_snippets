@@ -1226,3 +1226,30 @@ do
 done
 ```
 
+
+## pstree
+show pstree with `-al -p`: 
+- `-al`: args and don't truncate if too long...
+- `-p`: parent and child process info
+```bash
+$ pstree -al -p 20667
+perl,20667 -S bld -j20 -debug_build
+  └─sh,20712 /xxxsrc/bin/bldRunMkCmdLog /xxxsrc PREBLD /xxxsrc PREBLD /xxxsrc/xxxroot/buildlog/.LOG_2019-04-28-01.35.49.3866 /xxxsrc compiledb make -f xxxroot/GNUmakefile ALL_COMPONENT_MAKEFILES_NEEDED=false -j8 prebld
+      └─perl,20715 -S /xxxsrc/bin/bldRunMkCmdLog /xxxsrc PREBLD /xxxsrc PREBLD /xxxsrc/xxxroot/buildlog/.LOG_2019-04-28-01.35.49.3866 /xxxsrc compiledb make -f xxxroot/GNUmakefile ALL_COMPONENT_MAKEFILES_NEEDED=false -j8 prebld
+          └─compiledb,20716 /usr/bin/compiledb make -f xxxroot/GNUmakefile ALL_COMPONENT_MAKEFILES_NEEDED=false -j8 prebld
+              └─make,20717 -f xxxroot/GNUmakefile ALL_COMPONENT_MAKEFILES_NEEDED=false -j8 prebld
+                  └─make,29186 -C /xxxsrc/bld -f prebld.make
+                      └─sh,29219 -c /xxxsrc/bin/bldRunMkCmdLog engn/headers comp_prebld /xxxsrc "/xxxsrc/engn/headers" /xxxsrc/xxxroot/buildlog/.LOG_2019-04-28-01.35.49.3866 /xxxsrc \\\012make -rk -C /xxxsrc/engn/headers -f /xxxsrc/xxxroot/GNUmakefile  comp_prebld
+                          └─perl,29232 -S /xxxsrc/bin/bldRunMkCmdLog engn/headers comp_prebld /xxxsrc /xxxsrc/engn/headers /xxxsrc/xxxroot/buildlog/.LOG_2019-04-28-01.35.49.3866 /xxxsrc make -rk -C /xxxsrc/engn/headers -f /xxxsrc/xxxroot/GNUmakefile comp_prebld
+                              └─make,29264 -rk -C /xxxsrc/engn/headers -f /xxxsrc/xxxroot/GNUmakefile comp_prebld
+                                  └─sh,8005 -c cd /xxxsrc/engn/cde/eventstore/engine ; bld style
+                                      └─sh,8006 -c cd /xxxsrc/engn/cde/eventstore/engine ; bld style
+                                          └─perl,8009 -S /xxxsrc/bin/bld style
+                                              ├─compiledb,8030 /usr/bin/compiledb make -rk -f /xxxsrc/bld/GNUmakefile style
+                                              │   └─make,9153 -Bnkw -rk -f /xxxsrc/bld/GNUmakefile style
+                                              │       └─sh,9684 -c perl  > /xxxsrc/bld/Linux_AMD64/test_byte_rev_dll_linkdep.make
+                                              │           └─perl,9686
+                                              └─sh,8031 -c bldfilter | tee -ai 
+                                                  ├─perl,8032 -S /xxxsrc/bin/bldfilter
+                                                  └─tee,8033 -ai
+```
