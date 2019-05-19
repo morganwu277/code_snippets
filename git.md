@@ -1,3 +1,23 @@
+## use your own ssh keys for git
+1. using ssh-git.sh
+```
+#!/bin/sh
+if [ -z "$PKEY" ]; then
+# if PKEY is not specified, run ssh using default keyfile
+ssh "$@"
+else
+ssh -i "$PKEY" "$@"
+fi
+```
+2. generate a ssh key and add that to your repo
+
+3. using alias or just use this command 
+
+`export GIT_SSH=~/ssh-git.sh && PKEY=~/this_is_my_ssh_key git pull/push/xxx/etc`
+
+
+
+
 ## Tips after reading <Pro Git> 
 ```bash
 $ git diff 			# diff between working copy and cached area
