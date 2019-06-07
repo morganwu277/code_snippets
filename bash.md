@@ -1253,3 +1253,8 @@ perl,20667 -S bld -j20 -debug_build
                                                   ├─perl,8032 -S /xxxsrc/bin/bldfilter
                                                   └─tee,8033 -ai
 ```
+
+## get a process current environmet value
+```bash
+cat /proc/29734/environ | xargs -n 1 -0 | grep xxx
+```
