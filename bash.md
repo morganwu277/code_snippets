@@ -3,8 +3,9 @@
 nc -v -lk -p 8001 -c "nc 127.0.0.1 8000"
 ```
 and then use publicIP:8001 to accees `127.0.0.1 8000`
+https://unix.stackexchange.com/questions/10428/simple-way-to-create-a-tunnel-from-one-local-port-to-another
 
-Another way is to use socks proxy in SSHD
+Another way is to use socks proxy in SSHD to forward all traffic
 
 ## convert a socket to local file and communicate with it
 comes from: 
