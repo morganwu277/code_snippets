@@ -1,3 +1,11 @@
+## nc command to forward traffic
+```bash
+nc -v -lk -p 8001 -c "nc 127.0.0.1 8000"
+```
+and then use publicIP:8001 to accees `127.0.0.1 8000`
+
+Another way is to use socks proxy in SSHD
+
 ## convert a socket to local file and communicate with it
 comes from: 
 ```bash
