@@ -139,6 +139,7 @@ net.ipv4.neigh.default.gc_thresh3 = 100000
 ```
 
 ## nginx ingress template
+Another reference that we can use to proxy traffic to external server: https://www.elvinefendi.com/2018/08/08/ingress-nginx-proxypass-to-external-upstream.html 
 ```
 {% if INGRESS_SSL == 'none' %}
 apiVersion: extensions/v1beta1
