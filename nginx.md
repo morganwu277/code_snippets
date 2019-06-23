@@ -1,11 +1,11 @@
 ### Location Match Order
 From high to low, 
-- (location = `exact match, stop`) > 
-- (location <full path> `stop`) > 
-- (location ^~ <path> `longest prefix match, stop`) > 
-- (location ~ / ~* `1st regex match, stop`) > 
-- (location <path> `longest prefix path match`) > 
-- (location /)
+- (location = `<path>` `exact match, stop`) > 
+- (location `<full path>` `stop`) > 
+- (location ^~ `<path>` `longest prefix match, stop`) > 
+- (location ~ / ~* `<path>` `1st regex match, stop`) > 
+- (location `<path>` `longest prefix path match`) > 
+- (location `/`)
 
 ### Nginx subdirectory Easy Setup
 ```bash
