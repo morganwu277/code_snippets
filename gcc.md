@@ -1,3 +1,13 @@
+## compile from source, -static linking, and more
+```bash
+# 1. compile libevent
+./configure —prefix=$HOME/local
+# 2. compile tmux
+CFLAGS+="-I$HOME/local/include"
+LDFLAGS+="-static -L$HOME/local/lib"
+./configure --prefix=$HOME/local
+```
+
 ## Makefile Sample
 
 ```bash
