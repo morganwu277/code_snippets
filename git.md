@@ -135,3 +135,6 @@ git config user.name user1
 git config user.email email1@xxx.com 
 ```
 
+## oh-my-zsh slow on large git repo
+https://gist.github.com/msabramo/2355834#gistcomment-2820263 
+`git config --global --add oh-my-zsh.hide-dirty 1`
