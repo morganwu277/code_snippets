@@ -1,5 +1,5 @@
 ## init containers with mountpath
-Two notes:
+Three notes:
 1. initContainer section
 2. mount path
 3. command, how to write script content 
