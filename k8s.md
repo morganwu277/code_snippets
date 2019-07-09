@@ -1,3 +1,48 @@
+## init containers with mountpath
+```
+controller:
+  stats: # so that we open port 18080
+    enabled: true
+  kind: "DaemonSet"
+  service:
+    type: NodePort
+    nodePorts:
+      http: 80
+      https: 443
+  extraInitContainers:
+  - name: init-nginx
+    image: busybox
+    # use a complex path, so this won't be hacked by simple guess
+    command:
+    - /bin/bash
+    - -c
+    - >
+      set -e;
+      set -x;
+      cd /etc/nginx/noj
+      wget -c https://s3-us-west-1.amazonaws.com/xxx_bucket_xxx/nginx/mappings-9af6c3ea-372a-4480-92bc-fdc5584a58c2.tar.gz
+      rm -f mappings-*.tar.gz
+      tar xvf mappings-*.tar.gz
+      echo "working directory: `pwd`"
+    volumeMounts:
+    - mountPath: /etc/nginx/noj
+      name: nginx-data
+  extraVolumes:
+  - name: nginx-data
+    emptyDir: {}
+  extraVolumeMounts:
+    - mountPath: /etc/nginx/noj
+      name: nginx-data
+  # configMap, by default the configmap already include a data section, we just need to specify the key-value pair...
+  # https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap
+  config:
+    http-snippet: |
+      map $request_uri $new_uri {
+          include /etc/nginx/xxx/mappings/nginx_mapping.map;
+          include /etc/nginx/xxx/mappings/nginx_mapping_in.map;
+      }
+
+```
 ## add scheduler policy 
 Ref: https://github.com/kubernetes/kubernetes/blob/release-1.5/docs/devel/scheduler.md 
 Use the `LeastRequestedPriority` .
