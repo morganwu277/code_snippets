@@ -1267,3 +1267,19 @@ perl,20667 -S bld -j20 -debug_build
 ```bash
 cat /proc/29734/environ | xargs -n 1 -0 | grep xxx
 ```
+
+
+
+## mount s3 as local dir
+https://github.com/s3fs-fuse/s3fs-fuse#examples 
+```
+function mount_s3fs() {
+  s3_dir=$1
+  local_dir=$2
+  s3fs ${AWS_S3_BUCKET_NAME}:${s3_dir} ${local_dir} -o passwd_file=${HOME}/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-${AWS_S3_REGION_NAME}.amazonaws.com
+}
+
+# example
+s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_file=/root/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-us-west-1.amazonaws.com
+# for passwd-s3fs, https://github.com/s3fs-fuse/s3fs-fuse#examples 
+```
