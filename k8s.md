@@ -1,4 +1,8 @@
 ## init containers with mountpath
+Two notes:
+1. initContainer section
+2. mount path
+3. command, how to write script content 
 ```
 controller:
   stats: # so that we open port 18080
