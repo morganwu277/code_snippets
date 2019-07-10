@@ -1280,6 +1280,6 @@ function mount_s3fs() {
 }
 
 # example
-s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_file=/root/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-us-west-1.amazonaws.com
+s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_file=/root/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-us-west-1.amazonaws.com -o use_cache=${cache_dir}
 # for passwd-s3fs, https://github.com/s3fs-fuse/s3fs-fuse#examples 
 ```
