@@ -16,18 +16,18 @@ controller:
   extraInitContainers:
   - name: init-nginx
     image: busybox
-    # use a complex path, so this won't be hacked by simple guess
+    # we have to use ; for each statement since all these will be sent to /bin/sh as concatenation
     command:
-    - /bin/bash
+    - /bin/sh
     - -c
     - >
       set -e;
       set -x;
-      cd /etc/nginx/noj
-      wget -c https://s3-us-west-1.amazonaws.com/xxx_bucket_xxx/nginx/mappings-9af6c3ea-372a-4480-92bc-fdc5584a58c2.tar.gz
-      rm -f mappings-*.tar.gz
-      tar xvf mappings-*.tar.gz
-      echo "working directory: `pwd`"
+      cd /etc/nginx/noj;
+      wget -c https://s3-us-west-1.amazonaws.com/xxx_bucket_xxx/nginx/mappings-9af6c3ea-372a-4480-92bc-fdc5584a58c2.tar.gz;
+      rm -f mappings-*.tar.gz;
+      tar xvf mappings-*.tar.gz;
+      echo "working directory: `pwd`";
     volumeMounts:
     - mountPath: /etc/nginx/noj
       name: nginx-data
