@@ -672,6 +672,11 @@ https://ohmyz.sh/
 disable git info from the prompt `git config --add oh-my-zsh.hide-status 1` if you have a large repo, or it will be very slow...
 
 ## cygwin basic packages
+```
+setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages autoconf,autogen,automake,cygwin-devel,git,gcc-core,gcc-g++,libncurses-devel,libprotobuf-devel,make,openssh,openssl-devel,perl,perl_pods,pkg-config,tmux,zlib-devel
+cygcheck -dc cygwin
+```
+From : https://github.com/mobile-shell/mosh/blob/master/appveyor.yml#L33 
 1. app `curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
 2. build 
     1. General build environment tools
