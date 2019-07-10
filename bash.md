@@ -672,7 +672,32 @@ https://ohmyz.sh/
 disable git info from the prompt `git config --add oh-my-zsh.hide-status 1` if you have a large repo, or it will be very slow...
 
 ## cygwin basic packages
-`curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
+1. app `curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
+2. build 
+    1. General build environment tools
+    autoconf
+    autoconf2.5
+    autogen
+    automake
+    automake1.15
+    libtool
+    make
+    2. Compilers
+    gcc-g++
+    mingw64-x86_64-gcc-core
+    mingw64-x86_64-gcc-g++
+    3. Python
+    python37
+    python37-devel
+    python3-configobj
+    4. OpenMPI
+    libopenmpi-devel
+    openmpi
+    5. Miscellaneous
+    vim (or any other editor in order to be able to edit files)
+    rsh
+    wget (to be able to download from the command line)
+    zlib-devel
 
 ### cygwin terminal color
 ``` bash 
