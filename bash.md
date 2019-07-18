@@ -1,3 +1,12 @@
+## nc command to forward traffic
+```bash
+nc -v -lk -p 8001 -c "nc 127.0.0.1 8000"
+```
+and then use publicIP:8001 to accees `127.0.0.1 8000`
+https://unix.stackexchange.com/questions/10428/simple-way-to-create-a-tunnel-from-one-local-port-to-another
+
+Another way is to use socks proxy in SSHD to forward all traffic
+
 ## convert a socket to local file and communicate with it
 comes from: 
 ```bash
@@ -664,7 +673,37 @@ https://ohmyz.sh/
 disable git info from the prompt `git config --add oh-my-zsh.hide-status 1` if you have a large repo, or it will be very slow...
 
 ## cygwin basic packages
-`curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
+```
+setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages autoconf,autogen,automake,cygwin-devel,git,gcc-core,gcc-g++,libncurses-devel,libprotobuf-devel,make,openssh,openssl-devel,perl,perl_pods,pkg-config,tmux,zlib-devel
+cygcheck -dc cygwin
+```
+From : https://github.com/mobile-shell/mosh/blob/master/appveyor.yml#L33 
+1. app `curl` `wget` `ssh` `tree` `rsync` `nc`(a simple but powerful tool) `zip` `unzip`(Info-Zip Compression Utilities)
+2. build 
+    1. General build environment tools
+    - autoconf
+    - autoconf2.5
+    - autogen
+    - automake
+    - automake1.15
+    - libtool
+    - make
+    2. Compilers
+    - gcc-g++
+    - mingw64-x86_64-gcc-core
+    - mingw64-x86_64-gcc-g++
+    3. Python
+    - python37
+    - python37-devel
+    - python3-configobj
+    4. OpenMPI
+    - libopenmpi-devel
+    - openmpi
+    5. Miscellaneous
+    - vim (or any other editor in order to be able to edit files)
+    - rsh
+    - wget (to be able to download from the command line)
+    - zlib-devel
 
 ### cygwin terminal color
 ``` bash 
@@ -1253,4 +1292,25 @@ perl,20667 -S bld -j20 -debug_build
                                               └─sh,8031 -c bldfilter | tee -ai 
                                                   ├─perl,8032 -S /xxxsrc/bin/bldfilter
                                                   └─tee,8033 -ai
+```
+
+## get a process current environmet value
+```bash
+cat /proc/29734/environ | xargs -n 1 -0 | grep xxx
+```
+
+
+
+## mount s3 as local dir
+https://github.com/s3fs-fuse/s3fs-fuse#examples 
+```
+function mount_s3fs() {
+  s3_dir=$1
+  local_dir=$2
+  s3fs ${AWS_S3_BUCKET_NAME}:${s3_dir} ${local_dir} -o passwd_file=${HOME}/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-${AWS_S3_REGION_NAME}.amazonaws.com
+}
+
+# example
+s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_file=/root/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-us-west-1.amazonaws.com -o use_cache=${cache_dir}
+# for passwd-s3fs, https://github.com/s3fs-fuse/s3fs-fuse#examples 
 ```
