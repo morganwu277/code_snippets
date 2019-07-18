@@ -408,9 +408,10 @@ Host *
 ```
 
 ## network debug
-* `ss -a `
-* `netstat -nalp` 
+* `ss -a`
+* `netstat -nalp`
 * `lsof -P -i:22`
+* `nmap -sV xxx.xxx.xxx.xxx -p3333-3333`: connect to `xxx.xxx.xxx.xxx` on port of `3333`
 
 ## date command
 GMT+0 format
