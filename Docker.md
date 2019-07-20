@@ -1,7 +1,8 @@
 ## shrink docker VM of Mac OSX
 
 1. Connect to the VM with `screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty` and then login as root by type `su && id`
-2. execute `fstrim /var` and then reboot the docker VM. 
+2. execute `fstrim /var` and then exit by using `ctrl + a + d` ( since we are using `screen` )
+3. reboot the docker VM. 
 
 https://github.com/docker/for-mac/issues/371#issuecomment-242047368
 
