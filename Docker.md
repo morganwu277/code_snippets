@@ -5,6 +5,7 @@
 3. reboot the docker VM. 
 
 https://gist.github.com/BretFisher/5e1a0c7bcca4c735e716abf62afad389
+
 https://github.com/docker/for-mac/issues/371#issuecomment-242047368
 
 
