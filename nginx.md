@@ -1,3 +1,14 @@
+### nginx real ip header
+```
+set_real_ip_from  192.168.1.0/24;
+set_real_ip_from  192.168.2.1;
+set_real_ip_from  2001:0db8::/32;
+real_ip_header    X-Forwarded-For;
+real_ip_recursive on;
+```
+Use 1st IPAddress of `X-Forwarded-For` header.
+
+
 ### Location Match Order
 From high to low, 
 - (location = `<path>` `exact match, stop`) > 
