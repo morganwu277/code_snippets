@@ -1,3 +1,8 @@
+## Ubuntu apparmor change when changing MySQL data/log directory 
+
+when change the data/log directory
+https://www.digitalocean.com/community/tutorials/how-to-move-a-mysql-data-directory-to-a-new-location-on-ubuntu-16-04 
+
 
 ## create user and grant permission
 TL;DR
