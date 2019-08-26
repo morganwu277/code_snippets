@@ -1,3 +1,27 @@
+## netstat without netstat
+```
+awk 'function hextodec(str,ret,n,i,k,c){
+    ret = 0
+    n = length(str)
+    for (i = 1; i <= n; i++) {
+        c = tolower(substr(str, i, 1))
+        k = index("123456789abcdef", c)
+        ret = ret * 16 + k
+    }
+    return ret
+}
+function getIP(str,ret){
+    ret=hextodec(substr(str,index(str,":")-2,2)); 
+    for (i=5; i>0; i-=2) {
+        ret = ret"."hextodec(substr(str,i,2))
+    }
+    ret = ret":"hextodec(substr(str,index(str,":")+1,4))
+    return ret
+} 
+NR > 1 {{if(NR==2)print "Local - Remote";local=getIP($2);remote=getIP($3)}{print local" - "remote}}' /proc/net/tcp 
+```
+From https://staaldraad.github.io/2017/12/20/netstat-without-netstat/ 
+
 ## nc command to forward traffic
 ```bash
 nc -v -lk -p 8001 -c "nc 127.0.0.1 8000"
@@ -43,6 +67,17 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 # and then hit a top command here and then Ctrl+C
 ```
+
+## wait until event happen
+This is an easy version
+
+```
+until ls -al|grep -m 1 "microservice" ; do sleep 1; done
+```
+
+Will wait until `microservice` occured.
+
+
 ## wait until event happen
 ```bash
 # wait until event happen 
