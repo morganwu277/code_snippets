@@ -508,6 +508,11 @@ git:
 $ git config --global https.proxy 'socks5://127.0.0.1:1080'
 $ git config --global http.proxy 'socks5://127.0.0.1:1080'
 ```
+## parallel + rsync
+```
+ls -1 /var/log/mysql | parallel rsync -avz {} /mnt/volume_sfo2_mysql_log/mysql_log
+```
+or we can use `parallel -j30` to overrite the parallism which by default is cpu cores.
 
 ## rsync files, include, exclude, hidden files
 ```bash
