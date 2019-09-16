@@ -970,6 +970,7 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 ## Tmux Screen Management
 **BY DEFAULT**, no other tmux conf, tmux commands:
 ### session management
+ - `tmux new -s <session_name>`: create a new session
  - `tmux ls`: list sessoins
  - `tmux a -t <session_id>`: attach into session
  - `ctrl+b+d`: detach from session
