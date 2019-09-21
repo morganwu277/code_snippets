@@ -510,7 +510,7 @@ $ git config --global http.proxy 'socks5://127.0.0.1:1080'
 ```
 ## parallel + rsync
 ```
-ls -1 /var/log/mysql | parallel rsync -avz {} /mnt/volume_sfo2_mysql_log/mysql_log
+ls -1 /var/log/mysql | parallel rsync -avz /var/log/mysql/{} /mnt/volume_sfo2_mysql_log/mysql_log
 ```
 or we can use `parallel -j30` to overrite the parallism which by default is cpu cores.
 
@@ -1181,11 +1181,12 @@ tmpfs on /mnt/ramdisk type tmpfs (rw,relatime,size=29360128k)
 echo "tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=28g   0 0" >> /etc/fstab
 
 # 3. create crontab job to sync data from ramdisk to real disk
-#    1. first one is to rsync every min
+#    1. first one is to rsync every min, only when `/mnt/ramdisk/ccache/0` exist, ie. mounted, and not cleared
 #    2. second one is to copy data from backup to ramdisk
 $ crontab -l
-* * * * * rsync -avz /mnt/ramdisk /var/lib/backup
-@reboot rsync -avz /var/lib/backup/ramdisk/ /mnt/ramdisk/
+* * * * * ( ! ls /mnt/ramdisk/ccache/0 >/dev/null 2>&1 ) || rsync --delete -avz /mnt/ramdisk /var/lib/backup
+@reboot ls -1 /var/lib/backup/ramdisk/ccache/ | parallel rsync -avz /var/lib/backup/ramdisk/ccache/{} /mnt/ramdisk/ccache/ ; chown -R nfsnobody.nfsnobody /mnt/ramdisk/* ; chmod -R 755 /mnt/ramdisk/*
+
 
 # 4. if we need to export it as NFS folder as global file cache?
 #    1. use async for performance
