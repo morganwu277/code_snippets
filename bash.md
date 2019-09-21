@@ -1074,6 +1074,11 @@ awk '{for(i=1;i<=NF;i++) {sum[i] += $i; sumsq[i] += ($i)^2}}
      print "mean stdevp \n", sum[i]/NR, sqrt((sumsq[i]-sum[i]^2/NR)/NR)}
      }' data.txt
 ```
+### awk to get words frequencies
+```
+cat words.txt | awk '{for(i=1;i<=NF;i++)print $i}' | sort | uniq -c | sort -r | awk '{print $2, $1}'
+```
+
 ## Shell and sed traps
 ```bash
 There are two levels of interpretation here: the shell, and sed.
@@ -1160,6 +1165,31 @@ Of course, you can also use `expect` to achieve ssh login with a password input,
 echo "[`date`] Detect Python2 Env..."
 sshpass -p $SSH_PASS ssh -oStrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$PUBLIC_IP 'test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)'
 ```
+
+### create a ram disk
+
+```bash
+# 1. mount a ram disk, 28GB
+mount -t tmpfs -o size=28g tmpfs /mnt/ramdisk
+# 2. append to /etc/fstab
+echo "tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=28g   0 0" >> /etc/fstab
+
+# 3. create crontab job to sync data from ramdisk to real disk
+#    1. first one is to rsync every min
+#    2. second one is to copy data from backup to ramdisk
+$ crontab -l
+* * * * * rsync -avz /mnt/ramdisk /var/lib/backup
+@reboot rsync -avz /var/lib/backup/ramdisk/ /mnt/ramdisk/
+
+# 4. if we need to export it as NFS folder as global file cache?
+#    1. use async for performance
+#    2. use fsid=1 since this is tmpfs, required for tmpfs
+#    3. use all_squash, so that files are squashed to nobody:nobody permissions
+$ cat /etc/exports
+/mnt/ramdisk/ccache *(rw,async,fsid=1,all_squash)
+
+```
+
 
 ## remount /run directory using tmpfs filesystem
 You can execute `mount |grep run` to get the options first and then only increase the size. 
