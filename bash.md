@@ -509,6 +509,7 @@ $ git config --global https.proxy 'socks5://127.0.0.1:1080'
 $ git config --global http.proxy 'socks5://127.0.0.1:1080'
 ```
 ## parallel + rsync
+Next command will open `cpucores` parallel processes to do rsync job
 ```
 ls -1 /var/log/mysql | parallel rsync -avz /var/log/mysql/{} /mnt/volume_sfo2_mysql_log/mysql_log
 ```
