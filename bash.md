@@ -970,6 +970,7 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 ## Tmux Screen Management
 **BY DEFAULT**, no other tmux conf, tmux commands:
 ### session management
+ - `tmux new -s <session_name>`: create a new session
  - `tmux ls`: list sessoins
  - `tmux a -t <session_id>`: attach into session
  - `ctrl+b+d`: detach from session
@@ -1214,16 +1215,26 @@ PATH=/home/morganwu277/py3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 http://cn.linux.vbird.org/linux_server/0330nfs/0330nfs-centos4.php     
 in CentOS
 ```bash
+### Server side
 yum install nfs-utils -y
 cat /etc/exports
 # /home/morganwu/htap-ng *(rw,sync,all_squash,anonuid=11111,anongid=10)
 # /home/morganwu/dockerhome *(rw,sync,all_squash,anonuid=11111,anongid=10)
+# /mnt/ramdisk/ccache *(rw,async,fsid=1)
 #### *: to all users
 #### rw: read/write permission
-#### sync: write data in both memory and disk
-#### all_squash: all users will be marked as anonymous user
-#### anonuid: anonymous user will be treated as 11111 user
-#### anongid: anonymous user will be treated as 10 group
+#### sync: write data in both memory and disk. could be sync/async
+#### all_squash: all users will be marked as anonymous user, i.e, nfsnobody
+#### [optional] anonuid: anonymous user will be treated as 11111 user
+#### [optional] anongid: anonymous user will be treated as 10 group
+#### [optional] fsid=1: fsid, filesystem id, REQUIRED for tmpfs, ie. ramdisk
+systemctl enable nfs-server ; systemctl start nfs-server
+
+
+### Client side
+yum install nfs-utils -y
+sudo mount -t nfs -o async 9.30.249.209:/mnt/ramdisk/ccache /home/m36wu/dockerhome/.ccache
+
 ```
 ## VNC-Server
 In CentOS, install `vnc-server` and then config the password for a specific user
