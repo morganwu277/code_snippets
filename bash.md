@@ -1172,6 +1172,11 @@ sshpass -p $SSH_PASS ssh -oStrictHostKeyChecking=no -p $SSH_PORT $SSH_USER@$PUBL
 ```bash
 # 1. mount a ram disk, 28GB
 mount -t tmpfs -o size=28g tmpfs /mnt/ramdisk
+# check ramdisk mount
+[root@morganwu-yt0oj-x86 ~]# mount|grep ramdisk
+tmpfs on /mnt/ramdisk type tmpfs (rw,relatime,size=29360128k)
+tmpfs on /mnt/ramdisk type tmpfs (rw,relatime,size=29360128k)
+
 # 2. append to /etc/fstab
 echo "tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=28g   0 0" >> /etc/fstab
 
