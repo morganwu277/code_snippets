@@ -1185,7 +1185,8 @@ echo "tmpfs       /mnt/ramdisk tmpfs   nodev,nosuid,noexec,nodiratime,size=28g  
 #    1. first one is to rsync every min, only when `/mnt/ramdisk/ccache/0` exist, ie. mounted, and not cleared
 #    2. second one is to copy data from backup to ramdisk
 $ crontab -l
-* * * * * ( ! ls /mnt/ramdisk/ccache/0 >/dev/null 2>&1 ) || rsync --delete -avz /mnt/ramdisk /var/lib/backup
+# only copy files after uptime > 20 min AND ccache greater equal 17 items, OR files will be vanished
+* * * * * [ `ls /mnt/ramdisk/ccache | wc -l` -lt 17 -o `uptime | awk '{print $3}'` -lt 20 ] || rsync --delete -avz /mnt/ramdisk /var/lib/backup
 @reboot ls -1 /var/lib/backup/ramdisk/ccache/ | parallel rsync -avz /var/lib/backup/ramdisk/ccache/{} /mnt/ramdisk/ccache/ ; chown -R nfsnobody.nfsnobody /mnt/ramdisk/* ; chmod -R 755 /mnt/ramdisk/*
 
 
