@@ -46,6 +46,23 @@ Test backdoor:
 echo "ls -al " | nc -v xxx.xxx.xx.xxx 6996 
 ```
 
+## assert var not empty
+```bash
+# if var empty, then exit
+assert_var_not_empty() {
+  var=$1
+  [ ! -z ${!var} ] || ( >&2 echo "$i var is empty!"; exit 1 )
+}
+
+clean_db() {
+  host=$1
+  port=$2
+  assert_var_not_empty "host"
+  assert_var_not_empty "port"
+  # ... continue with more code
+}
+```
+
 ## convert a socket to local file and communicate with it
 comes from: 
 ```bash
