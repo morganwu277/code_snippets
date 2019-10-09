@@ -1435,3 +1435,8 @@ function mount_s3fs() {
 s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_file=/root/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-us-west-1.amazonaws.com -o use_cache=${cache_dir}
 # for passwd-s3fs, https://github.com/s3fs-fuse/s3fs-fuse#examples 
 ```
+
+## one line for ss-server
+```
+docker run --name ss-server -e ARGS=-v -e PASSWORD=123456 --restart=always -p8388:8388 -p8388:8388/udp -d shadowsocks/shadowsocks-libev
+```
