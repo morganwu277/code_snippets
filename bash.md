@@ -558,6 +558,9 @@ We sync all files from current directory to remote machine directory by using ss
 - .git/
 - target/
 - input/
+- input/in1
+- input/in2
+- input/in2/in3
 - logs/
 ```
 
