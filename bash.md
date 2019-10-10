@@ -549,7 +549,7 @@ or we can use `parallel -j30` to overrite the parallism which by default is cpu 
 
 ## rsync files, include, exclude, hidden files
 ```bash
-rsync --progress -avz --delete --recursive --exclude-from=".exclude" . -e 'ssh -p REMOTE_PORT' root@xxx.xxx.xxx.xxx:~
+rsync --progress -avz --delete --recursive --exclude-from=.exclude . -e 'ssh -p REMOTE_PORT' root@xxx.xxx.xxx.xxx:~
 ```
 We sync all files from current directory to remote machine directory by using ssh protocol with a `REMOTE_PORT` specific port, `.exclude` content is listed as below:  leading + means include, leading - means exclude 
 ```txt
