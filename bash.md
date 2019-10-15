@@ -378,6 +378,13 @@ user	0m0.001s
 sys	0m0.002s
 
 ```
+
+## use `ps` to sort by mem
+sort by `MEM` from largest to small, and print only 1st 10 items.
+```
+ps aux --sort=-%mem | awk 'NR<=10{print $0}'
+```
+
 ## use `ps` to see the threads inside some process
 
 `-L: show thread`
