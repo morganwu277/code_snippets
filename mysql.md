@@ -65,6 +65,10 @@ the result is
    /mnt/volume-sgp1-01/mysql/ r,
    /mnt/volume-sgp1-01/mysql/** rwk,
    ```
+3. reload apparmor rules
+```
+sudo service apparmor reload
+```
 
 ## accelerate mysql load speed 
 1. You can tell MySQL to not enforce foreign key and uniqueness constraints:

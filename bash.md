@@ -46,6 +46,23 @@ Test backdoor:
 echo "ls -al " | nc -v xxx.xxx.xx.xxx 6996 
 ```
 
+## assert var not empty
+```bash
+# if var empty, then exit
+assert_var_not_empty() {
+  var=$1
+  [ ! -z ${!var} ] || ( >&2 echo "$i var is empty!"; exit 1 )
+}
+
+clean_db() {
+  host=$1
+  port=$2
+  assert_var_not_empty "host"
+  assert_var_not_empty "port"
+  # ... continue with more code
+}
+```
+
 ## convert a socket to local file and communicate with it
 comes from: 
 ```bash
@@ -539,7 +556,7 @@ or we can use `parallel -j30` to overrite the parallism which by default is cpu 
 
 ## rsync files, include, exclude, hidden files
 ```bash
-rsync --progress -avz --delete --recursive --exclude-from=".exclude" . -e 'ssh -p REMOTE_PORT' root@xxx.xxx.xxx.xxx:~
+rsync --progress -avz --delete --recursive --exclude-from=.exclude . -e 'ssh -p REMOTE_PORT' root@xxx.xxx.xxx.xxx:~
 ```
 We sync all files from current directory to remote machine directory by using ssh protocol with a `REMOTE_PORT` specific port, `.exclude` content is listed as below:  leading + means include, leading - means exclude 
 ```txt
@@ -548,6 +565,9 @@ We sync all files from current directory to remote machine directory by using ss
 - .git/
 - target/
 - input/
+- input/in1
+- input/in2
+- input/in2/in3
 - logs/
 ```
 
@@ -1424,4 +1444,9 @@ function mount_s3fs() {
 # example
 s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_file=/root/.passwd-s3fs -o dbglevel=info -o curldbg -o use_path_request_style -o url=https://s3-us-west-1.amazonaws.com -o use_cache=${cache_dir}
 # for passwd-s3fs, https://github.com/s3fs-fuse/s3fs-fuse#examples 
+```
+
+## one line for ss-server
+```
+docker run --name ss-server -e ARGS=-v -e PASSWORD=123456 --restart=always -p8388:8388 -p8388:8388/udp -d shadowsocks/shadowsocks-libev
 ```
