@@ -64,8 +64,11 @@ Writing objects: 100% (393/393), done.
 Total 393 (delta 173), reused 0 (delta 0)
 ```
 
-# format of git ref is `<src>:<dst>`, leave <src> as empty, means 
-# `use empty to replace remote <dst>, which means delete <dst>`
+## delete remote branch
+
+Format of git ref is `<src>:<dst>`, leave <src> as empty, means `use empty to replace remote <dst>, which means delete <dst>`
+
+```
 $ git push origin :topic # delete remote topic ref(eg., branch/tag)
 ```
 
