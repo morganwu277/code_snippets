@@ -1450,3 +1450,11 @@ s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_fil
 ```
 docker run --name ss-server -e ARGS=-v -e PASSWORD=123456 --restart=always -p8388:8388 -p8388:8388/udp -d shadowsocks/shadowsocks-libev
 ```
+## random file generator
+
+```bash
+# generate random binary file, 1GB
+dd if=/dev/urandom of=sample.bin count=1024 bs=1MiB
+# generate ramdom text file, base64 hashed, original sz = 128MB, after base64 encoding, in total 174MB
+openssl rand -out sample.txt -base64 $(( 2**27 ))
+```
