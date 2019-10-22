@@ -1458,3 +1458,13 @@ dd if=/dev/urandom of=sample.bin count=1024 bs=1MiB
 # generate ramdom text file, base64 hashed, original sz = 128MB, after base64 encoding, in total 174MB
 openssl rand -out sample.txt -base64 $(( 2**27 ))
 ```
+
+## urlencode from bash
+py2:
+```
+encoded_value=$(python -c "import urllib; print urllib.quote('''$value''')")
+```
+py3:
+```
+encoded_value=$(python -c "import urllib.parse; print (urllib.parse.quote('''$value'''))")
+```
