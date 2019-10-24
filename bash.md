@@ -1465,3 +1465,28 @@ py3:
 ```
 encoded_value=$(python -c "import urllib.parse; print (urllib.parse.quote('''$value'''))")
 ```
+
+## iperf network speed test
+- TCP: 
+```bash
+# server
+iperf -s -i 1
+      # -s: server
+      # -i: interval, second
+# client
+iperf -c 52.80.112.94 -i 1 -t 10 -P 5
+      # -c: <server_ip>
+      # -i: interval, second
+      # -t: last for 10 sec
+      # -P: 5 threads in parallel
+```
+
+- UDP: 
+```bash
+# server
+iperf -s -i 1 -u
+    # -u: udp packet
+# client
+iperf -c 52.80.112.94 -i 1 -t 10 -P 5 -u -b 20m
+    # -b: 20m, buffer
+```
