@@ -1007,6 +1007,21 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 - use `screen -r id` to attach
 - use `Ctrl+ad` to detach
 
+## save tmux session
+use https://github.com/tmux-plugins/tmux-resurrect
+
+```bash
+git clone https://github.com/tmux-plugins/tmux-resurrect ~/.tmux-resurrect
+echo "run-shell ~/.tmux-resurrect/resurrect.tmux" >> ~/.tmux.conf
+tmux source-file ~/.tmux.conf
+
+# now you can save and restore session.
+
+## save: prefix + B + ctrl + s
+## restore: prefix + B + ctrl + r
+
+```
+
 ## Tmux Screen Management
 **BY DEFAULT**, no other tmux conf, tmux commands:
 ### session management
