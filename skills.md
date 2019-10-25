@@ -7,3 +7,11 @@ setInterval("(function(){jQuery('#myButton').click();})()",10*1000);
 然后回车。
 
 
+
+打开 `http://www.speedtest.com/`
+Console里面输入:   
+
+```
+setInterval("(function(){jQuery('a[role=button]').click();})()",10*1000);
+```
+然后回车。
