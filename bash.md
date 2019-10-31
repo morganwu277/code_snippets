@@ -1488,12 +1488,15 @@ encoded_value=$(python -c "import urllib.parse; print (urllib.parse.quote('''$va
 iperf -s -i 1
       # -s: server
       # -i: interval, second
-# client
+# client upload
 iperf -c 52.80.112.94 -i 1 -t 10 -P 5
       # -c: <server_ip>
       # -i: interval, second
       # -t: last for 10 sec
       # -P: 5 threads in parallel
+# client download
+iperf -c 52.80.112.94 -R -i 1 -t 10 -P 5
+      # -R: reverse, which means download, without this, by default, it's upload
 ```
 
 - UDP: 
