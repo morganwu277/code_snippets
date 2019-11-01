@@ -1508,3 +1508,18 @@ iperf -s -i 1 -u
 iperf -c 52.80.112.94 -i 1 -t 10 -P 5 -u -b 20m
     # -b: 20m, buffer
 ```
+
+## date string conversion
+From: https://stackoverflow.com/questions/11144408/convert-string-to-date-in-bash
+```sh
+date +'%s' # you have 1572644134
+date -d@1572644134 # you have `Fri Nov  1 17:35:34 EDT 2019`( only works in Linux)
+date -d '20121212 7 days'
+date -d '12-DEC-2012 7 days'
+date -d '2012-12-12 7 days'
+date -d '2012-12-12 4:10:10PM 7 days'
+date -d '2012-12-12 16:10:55 7 days'
+date -d '2019-11-02T06:08:34+08:00' # you get `Sat Nov  2 06:08:34 HKT 2019`
+date -d '2019-11-02T06:08:34+08:00' +'%s' # you get 1572646114
+
+```
