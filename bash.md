@@ -1023,6 +1023,7 @@ tmux source-file ~/.tmux.conf
 ```
 
 ## Tmux Screen Management
+**tmux support on zsh** https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/tmux#tmux
 **BY DEFAULT**, no other tmux conf, tmux commands:
 ### session management
  - `tmux new -s <session_name>`: create a new session
