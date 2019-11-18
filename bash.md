@@ -1029,13 +1029,18 @@ tmux source-file ~/.tmux.conf
  - `tmux ls`: list sessoins
  - `tmux a -t <session_id>`: attach into session
  - `ctrl+b+d`: detach from session
+
+**tmux support on zsh** https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/tmux#tmux
+
 ### cut screen, pane management
  - `ctrl+b+"`: vertical cut
  - `ctrl+b+%`: horizontal cut
  - `ctrl+b+x`: kill current pane
+
 ### copy mode
  - `ctrl+b+[ / q`: enter / exit copy mode
  - `ctrl+S`: search inside the copy mode
+
 ### set the title of pane
 ```bash
 printf '\033]2;%s\033\\' '<this_is_my_title>'
