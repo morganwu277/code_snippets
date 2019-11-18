@@ -162,6 +162,62 @@ clove@kubernetes-master /etc/logrotate.d $ cat *
 }
 ```
 
+## debug container
+1. review all files in a node, pls change  `nodeSelectorTerms` to use it
+```bash
+kubectl run -i --rm --tty ubuntu --overrides='
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "ubuntu"
+  },
+  "spec": {
+    "affinity": {
+      "nodeAffinity": {
+        "requiredDuringSchedulingIgnoredDuringExecution": {
+            "nodeSelectorTerms": [
+              {
+                "matchExpressions": [{
+                  "key": "kubernetes.io/hostname",
+                  "operator": "In",
+                  "values": ["your hostname"]
+                }]
+              }
+            ]
+        }
+      }
+    },
+    "containers": [
+          {
+            "name": "ubuntu",
+            "image": "ubuntu:18.04",
+            "args": [
+              "bash"
+            ],
+            "stdin": true,
+            "stdinOnce": true,
+            "tty": true,
+            "workingDir": "/lc",
+            "volumeMounts": [{
+              "mountPath": "/lc",
+              "name": "host-mount"
+            }]
+          }
+        ],
+    "volumes": [
+      {
+        "name": "host-mount",
+        "hostPath": {
+          "path": "/"
+        }
+      }
+    ]
+  }
+}
+' --image=ubuntu:18.04 --restart=Never -- bash
+```
+
 ## Pod Anti Affinity
 Put those kube-dns on different Nodes
 ```yml
