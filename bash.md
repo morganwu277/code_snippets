@@ -1210,6 +1210,7 @@ expect "Enter passphrase for *:"
 send "codingisfun\n"
 expect "dentity added: *"
 interact
+wait # required, or we will have zoombie processes for `ssh-add` process, for more info, please read `man expect`
 ```
 and in the caller, please note we are using expect to execute this `.exp` script with a parameter
 
