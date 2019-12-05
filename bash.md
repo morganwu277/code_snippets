@@ -755,6 +755,12 @@ https://ohmyz.sh/
 
 disable git info from the prompt `git config --add oh-my-zsh.hide-status 1` if you have a large repo, or it will be very slow...
 
+if above not work for you, try `hide-dirty`
+```
+git config --add oh-my-zsh.hide-dirty 1
+```
+https://stackoverflow.com/questions/12765344/oh-my-zsh-slow-but-only-for-certain-git-repo#comment69097681_25864063
+
 ## cygwin basic packages
 ```
 setup-x86_64.exe --quiet-mode --no-shortcuts --upgrade-also --packages autoconf,autogen,automake,cygwin-devel,git,gcc-core,gcc-g++,libncurses-devel,libprotobuf-devel,make,openssh,openssl-devel,perl,perl_pods,pkg-config,tmux,zlib-devel
