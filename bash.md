@@ -1472,7 +1472,7 @@ s3fs assets_bucket.xxxxx.com:/static_assets/media /xxx/local/media -o passwd_fil
 
 ## one line for ss-server
 ```
-docker run --name ss-server -e ARGS=-v -e PASSWORD=123456 --restart=always -p8388:8388 -p8388:8388/udp -d shadowsocks/shadowsocks-libev
+docker run --name ss-server -e ARGS=-v -e PASSWORD=123456 --restart=always -p443:8388 -p443:8388/udp -d shadowsocks/shadowsocks-libev
 ```
 ## random file generator
 
