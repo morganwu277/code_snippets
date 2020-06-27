@@ -877,6 +877,10 @@ tcpdump -A -s 10240 'udp port 9125' # monitoring all 9125 port traffic in text f
 ```bash
 firewall-cmd --zone=public --add-port=5060-5061/udp --permanent
 firewall-cmd --zone=public --add-rich-rule 'rule family="ipv4" source address="192.168.1.10" port port=22 protocol=tcp accept'
+firewall-cmd --zone=home --change-interface=eth0 # choose another zone
+firewall-cmd --permanent --new-zone=publicweb # create your own zone
+firewall-cmd --permanent --get-zones # get all zones
+firewall-cmd --reload # reload all config
 ```
 add `5060-5061/udp` to white list of `public` zone and make `--permanent`, you need restart firewalld service. 
 
