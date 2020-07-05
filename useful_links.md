@@ -10,3 +10,15 @@
 
 ## Nginx 
 * http://itlab.idcquan.com/Web/Special/Nginx/ 
+
+
+## record screen with sound using QuickTimePlayer in macOS
+
+basic idea:
+1. output audio into a device
+2. select that device into QuickTimePlayer's microphone
+
+install this software  https://github.com/mattingalls/Soundflower/releases/tag/2.0b2 remember to set the security settings 
+and then, for example, you need to record zoom, need to set zoom's output audio into `Soundflower(2ch)` device
+and then in QuickTimePlayer record settings, select above `Soundflower(2ch)` device as input microphone.
+
