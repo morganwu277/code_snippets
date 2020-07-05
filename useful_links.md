@@ -22,4 +22,3 @@ steps as example of recording Zoom
 1. install this software  https://github.com/mattingalls/Soundflower/releases/tag/2.0b2 remember to set the security settings 
 2. and then, for example, you need to record zoom, need to set zoom's output audio into `Soundflower(2ch)` device
 3. and then in QuickTimePlayer record settings, select above `Soundflower(2ch)` device as input microphone.
-
