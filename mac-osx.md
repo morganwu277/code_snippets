@@ -60,3 +60,14 @@ $ netstat -r
 echo "select * from ZNOTEBODY;" | \ 
      sqlite3  ~/Library/Containers/com.apple.Notes/Data/Library/Notes/NotesV6.storedata > notes.html
 ```
+
+## MacOS startup items
+Not only we can use `System Preferences` to control, but also in Launch daemons and agents:
+- `/Library/LaunchDaemons` and `/System/Library/LaunchDaemons` load when your Mac starts up, and run as the root user.
+- `/Library/LaunchAgents` and `/System/Library/LaunchAgents` load when any user logs in, and run as that user.
+- `~/Library/LaunchAgents` load only when that particular user logs in, and run as that user.
+
+the way to unload it is:
+```
+launchctl unload ~/Library/LaunchAgents/com.apple.FolderActions.enabled.plist
+```
