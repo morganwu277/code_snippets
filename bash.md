@@ -216,6 +216,46 @@ setting up non-internet connected `LAN` area ntp server:
 4. execute `ntpdate -u <LAN_NTP_SERVER_NAME>` into crontab for other servers
 
 ## add options into script
+About `getopts`, if `OPTSTRING`
+1. NOT started with : colon, will differentiate `miss option argument` and `invalid option`
+2. started with : colonm, will NOT differentiate `miss option argument` and `invalid option`, both such errors will be explained as `?` in the case statement
+3. DOES NOT have a colon after a character, means, `bool argument`
+4. DOES have a colon after a character, means, `string argument`, must follow a value after this option character
+5. when using -- double dashes for a command, means, all option arguments have been terminated. eg: `rm -f -- -f`, means, just delete the file named as `-f`
+```bash
+(py3) ➜  code_snippets git:(master) touch -- -f
+(py3) ➜  code_snippets git:(master) ls -- -f
+-f
+(py3) ➜  code_snippets git:(master) rm -f -- -f
+(py3) ➜  code_snippets git:(master) ls -- -f
+```
+
+Here is an example of `bool argument` and `string argument`
+```bash
+#!/bin/bash
+
+print_args() {
+    echo "a=$a"
+    echo "b=$b"
+    echo "c=$c"
+    echo "d=$d"
+}
+# abc are string arguments
+# def are bool arguments
+while getopts "a:b:c:def" opts; do
+    case $opts in
+        a) a=$OPTARG ;;
+        b) b=$OPTARG ;;
+        c) c=$OPTARG ;;
+        d|e|f) echo "bool opt arg" && d=$OPTARG ;;
+        ?) echo "error" && exit 1 ;;
+    esac
+done
+
+print_args
+```
+
+Here is another example:
 ```bash
 function usage {
     echo "Usage: $0 [OPTIONS]"
@@ -240,7 +280,6 @@ while getopts "dfhr" opt ; do
     esac
 done
 ```
-Use non-getopts to write optional args parsing, https://stackoverflow.com/a/14203146 
 
 ## mtr command
 combing tracerout and ping command. 
