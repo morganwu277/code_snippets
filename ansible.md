@@ -136,3 +136,6 @@ Access webservice and then manipulate json result and monitor result
       when: health_check_res.json.status == "DOWN"
       failed_when: health_check_res.json.status == "DOWN"
 ```
+
+# more ansible notes
+https://www.cnblogs.com/kevingrace/category/924510.html
