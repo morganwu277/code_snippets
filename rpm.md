@@ -85,29 +85,36 @@ cd grpc
 rm -rf cmake/build || :
 mkdir -p cmake/build
 cd cmake/build
-cmake3 -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -D gRPC_USE_PROTO_LITE=OFF ../..
+# you need to install protobuf, ssl, zlib first checkout https://github.com/morganwu277/code_snippets/blob/master/grpc-build.sh
+# see how to install them, but probably you already have ssl and zlib package, cause they are so widely being used.
+cmake3 -DCMAKE_BUILD_TYPE=Release \
+  -DgRPC_INSTALL=ON \
+  -DgRPC_BUILD_TESTS=OFF \
+  -DgRPC_CARES_PROVIDER=module \ # using module
+  -DgRPC_ABSL_PROVIDER=module \  # using module
+  -DgRPC_PROTOBUF_PROVIDER=package \ # using package, since needs to be independent
+  -DgRPC_SSL_PROVIDER=package \  # using package, since needs to be independent
+  -DgRPC_ZLIB_PROVIDER=package \  # using package, since needs to be independent
+  -DCMAKE_INSTALL_PREFIX=/usr \ # install under /usr
+  ../..
 make -j
 
 %install
 cd grpc/cmake/build
 rm -rf ${buildroot}
 make -j install DESTDIR=%{buildroot}
-# Remove third party zlib files
-rm -rf %{buildroot}/usr/local/include/{zconf.h,zlib.h}
-rm -rf %{buildroot}/usr/local/lib/libz*
-rm -rf %{buildroot}/usr/local/share/man/man3/zlib.3
-rm -rf %{buildroot}/usr/local/share/pkgconfig/zlib.pc
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
 %defattr(-, root, root, -)
-/usr/local/bin/
-/usr/local/include/
-/usr/local/lib/
-/usr/local/lib64/
-/usr/local/share/
+# better to add *, or will conflict with existing directory
+/usr/bin/*
+/usr/include/*
+/usr/lib/*
+/usr/lib64/*
+/usr/share/*
 
 %changelog
 * Tue Aug 18 2020 Morgan Wu <xue777hua@gmail.com> 1.31.0
@@ -126,3 +133,7 @@ cd to examples/helloworld
 make -j
 ```
 
+Since we install under `/usr` directory, and by default, they should be included into `$LD_LIBRARY_PATH`, but if `$LD_LIBRARY_PATH` is overwritten by some application, you need to include these two directory again by simple export.
+```bash
+export LD_LIBRARY_PATH=/usr/lib:/usr/lib64:$LD_LIBRARY_PATH
+```
