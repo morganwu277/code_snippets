@@ -30,6 +30,10 @@ cd -
 # Install protobuf
 mkdir -p "third_party/protobuf/cmake/build"
 cd "third_party/protobuf/cmake/build"
+# why we need CMAKE_POSITION_INDEPENDENT_CODE?
+# if don't, we could meet issue here https://tecnocode.co.uk/2014/10/01/dynamic-relocs-runtime-overflows-and-fpic/ 
+# the solution is to add `-fPIC` build option, in cmake it's `-DCMAKE_POSITION_INDEPENDENT_CODE=ON`
+# see comment here: https://github.com/protocolbuffers/protobuf/issues/1919#issuecomment-238940580
 cmake -Dprotobuf_BUILD_TESTS=OFF -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_POSITION_INDEPENDENT_CODE=ON ..
 make -j4 install
 cd -
