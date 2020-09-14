@@ -146,6 +146,7 @@ wait_loop_until_event 10 "ps -ef|grep WebLogic | grep -v grep"
 # in window 2 ... start WebLogic server
 ```
 ## log with color
+
 Ref: http://jafrog.com/2013/11/23/colors-in-terminal.html
 ```bash
 function log()   { echo -e "$1"; }
@@ -155,8 +156,45 @@ function info()  { log "\e[32;3m$1\e[0m"; }
 function warn()  { log "\e[33;3m$1\e[0m"; }
 #red
 function error() { log "\e[31;3m$1\e[0m"; }
-
 ```
+or there could be another way by using `tput`, for more info: http://linuxcommand.org/lc3_adv_tput.php
+```bash
+# Coloured display messages vars.
+export TERM=xterm
+bold=`tput bold`
+offbold=`tput sgr0`
+red=`tput setaf 1`
+blue=`tput setaf 4`
+default=`tput op`
+
+# ...
+
+while [ -n "$1" ]
+do
+   case $1 in
+      --name)
+        CONTAINER_NAME=$2
+        shift 2
+        ;;
+      --help|-h)
+    cat <<-EOF #| fmt
+
+        ${bold}${red}Usage${default}${offbold}: $0 [OPTIONS] [command [args..] ]
+
+    EOF
+        exit 1
+        ;;
+      --*)
+        echo "Unknown option: $1"
+        exit 1
+        ;;
+      *)
+        break;
+        ;;
+   esac
+done
+```
+
 ## nc command to exeucte HTTP request to 
 ```bash
 printf 'GET /images/json HTTP/1.0\r\n\r\n' | nc -U /var/run/docker.sock 
