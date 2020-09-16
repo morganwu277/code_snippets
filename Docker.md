@@ -1,3 +1,9 @@
+## switch to screen of docker VM on macOS
+TLDR; https://stackoverflow.com/questions/39739560/how-to-access-the-vm-created-by-dockers-hyperkit
+A better way to do is: docker run -it --privileged --pid=host justincormack/nsenter1
+new macOS: `screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty`
+old macOS: `screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty`
+
 ## shrink docker VM of Mac OSX
 
 1. Connect to the VM with `screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty` and then login as root by type `su && id`
