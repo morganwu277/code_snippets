@@ -1,3 +1,18 @@
+
+## python logging facilities
+More python attributes to be outputed:  https://docs.python.org/3/library/logging.html#logrecord-attributes
+
+```py
+LOG = logging.getLogger('sre')
+LOG.setLevel(logging.DEBUG)
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+ch.setFormatter(logging.Formatter('%(asctime)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s'))
+# add ch to logger
+LOG.addHandler(ch)
+```
+
 ## call CPP library from python
 Mock.cpp, you need to expose by using `extern "C"`
 ```cpp
