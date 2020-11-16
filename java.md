@@ -1,3 +1,9 @@
+### keytool import cert
+import `/var/jenkins_home/G2-AC.pem` as `G2-AC-alias`: 
+```bash
+keytool -import -noprompt -v -trustcacerts -alias G2-AC-alias -file /var/jenkins_home/G2-AC.pem -keystore /usr/local/openjdk-8/jre/lib/security/cacerts -keypass changeit -storepass changeit
+```
+
 ### jmx monitoring
 ```bash
 -Dcom.sun.management.jmxremote
