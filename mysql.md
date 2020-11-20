@@ -1,3 +1,9 @@
+## DB transaction isolation levels
+   Here is all kinds of transaction isolation levels 
+   ![sql_join](attachments/tx_ios.png)
+
+
+
 ## Ubuntu apparmor change when changing MySQL data/log directory 
 
 when change the data/log directory
@@ -105,11 +111,6 @@ SELECT
 FROM information_schema.TABLES 
 ORDER BY (data_length + index_length) DESC;
 ```
-
-## DB transaction isolation levels
-   Here is all kinds of transaction isolation levels 
-   ![sql_join](attachments/tx_ios.png)
-
 
 
 ## All kinds of join.
