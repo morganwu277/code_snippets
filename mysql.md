@@ -106,11 +106,16 @@ FROM information_schema.TABLES
 ORDER BY (data_length + index_length) DESC;
 ```
 
+## DB transaction isolation levels
+   Here is all kinds of transaction isolation levels 
+   ![sql_join](attachments/tx_ios.png)
+
+
 
 ## All kinds of join.
    Problems like how to calculate SetA-SetB question.    
    Here is all kinds of join in sql. 
-   ![sql_join](sql_join.jpg)
+   ![sql_join](attachments/sql_join.jpg)
 
 ## table storage size calculation
 ```sql
