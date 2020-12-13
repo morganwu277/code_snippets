@@ -1,3 +1,45 @@
+## maven useful commands
+###  1. maven plugin help for parameters
+```bash
+mvn groupId:artifactId:[version]:help -Dgoal=xxx -Ddetail
+# or
+mvn plugin-prefix:help -Dgoal=xxx -Ddetail
+```
+or 
+```bash
+mvn help:describe -Dplugin=groupId:artifactId:[version] -Dgoal=xxx -Ddetail
+# or
+mvn help:describe -Dplugin=plugin-prefix -Dgoal=xxx -Ddetail
+```
+
+eg. 
+```bash
+mvn docker:help -Dgoal=build -Ddetail
+# or
+mvn io.fabric8:docker-maven-plugin:help -Dgoal=build -Ddetail
+```
+or
+```
+mvn help:describe -Dplugin=docker -Dgoal=build -Ddetail
+```
+
+### 2. maven execute with execution ID specified
+if not specified execution in pom.xml for a plugin, it will use `default` by default.
+```bash
+mvn <plugin>:<goal>@<execution>
+# or
+mvn <plugin-group-id>:<plugin-artifact-id>[:<plugin-version>]:<goal>@<execution>
+```
+eg.
+```
+mvn docker:build@buildArtifactory -Pdocker-local
+```
+
+### 3. maven final effective pom.xml
+will combine with parent pom xml and generate a final pom.xml
+```
+mvn help:effective-pom > pom-final.xml
+```
 #### dependent java version
 ```xml
 <project>
