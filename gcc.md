@@ -6,7 +6,10 @@
 export CFLAGS+=" -I$HOME/local/include"
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$HOME/local/lib/pkgconfig"
 export LDFLAGS+=" -static -L$HOME/local/lib"
-./configure --prefix=$HOME/local
+./configure --prefix=$HOME/local 
+# 3. or compile tmux by using --enable-static
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$HOME/local/lib/pkgconfig"
+./configure --prefix=$HOME/local --enable-static
 ```
 
 ## Makefile Sample
