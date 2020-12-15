@@ -16,6 +16,13 @@ export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$HOME/local/lib/pkgconfig"
 ./configure --prefix=$HOME/local --enable-static
 ```
 
+如果是非静态compile 则
+```bash
+export PATH="$HOME/local/bin:$PATH"
+# 这个很重要，动态加载
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/local/lib"
+```
+
 ## Makefile Sample
 
 ```bash
