@@ -1,6 +1,8 @@
 ## compile from source, -static linking, and more
 ```bash
 # 1. compile libevent
+# you may need 2.1.12-stable for centos7, or other version, check with libevent
+# https://github.com/libevent/libevent/releases/tag/release-2.1.12-stable
 ./configure —prefix=$HOME/local
 # 2. compile tmux
 export CFLAGS+=" -I$HOME/local/include"
