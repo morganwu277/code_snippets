@@ -3,6 +3,7 @@
 # 1. compile libevent
 # you may need 2.1.12-stable for centos7, or other version, check with libevent
 # https://github.com/libevent/libevent/releases/tag/release-2.1.12-stable
+# 方法是 查询package 名对应的 el7 的包的版本号 然后去找对应的github的版本进行编译
 ./configure —prefix=$HOME/local
 # 2. compile tmux
 export CFLAGS+=" -I$HOME/local/include"
