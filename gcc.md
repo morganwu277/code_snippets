@@ -1,4 +1,5 @@
 ## compile from source, -static linking, and more
+We can use this script to have a static tmux build: https://gist.github.com/morganwu277/f6f4d07407fa9cb91f4093a610477e0f
 ```bash
 # 1. compile libevent
 # you may need 2.1.12-stable for centos7, or other version, check with libevent
