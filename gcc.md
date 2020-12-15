@@ -3,8 +3,9 @@
 # 1. compile libevent
 ./configure —prefix=$HOME/local
 # 2. compile tmux
-CFLAGS+="-I$HOME/local/include"
-LDFLAGS+="-static -L$HOME/local/lib"
+CFLAGS+=" -I$HOME/local/include"
+PKG_CONFIG_PATH+="$PKG_CONFIG_PATH:$HOME/local/lib"
+LDFLAGS+=" -static -L$HOME/local/lib"
 ./configure --prefix=$HOME/local
 ```
 
