@@ -4,7 +4,7 @@
 ./configure —prefix=$HOME/local
 # 2. compile tmux
 export CFLAGS+=" -I$HOME/local/include"
-export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$HOME/local/lib"
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:$HOME/local/lib/pkgconfig"
 export LDFLAGS+=" -static -L$HOME/local/lib"
 ./configure --prefix=$HOME/local
 ```
