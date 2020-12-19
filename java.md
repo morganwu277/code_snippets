@@ -1,3 +1,7 @@
+### print stack when debugging
+```java
+java.utils.Arrays.toString(Thread.currentThread().getStackTrace())
+```
 ### keytool import cert
 import `/var/jenkins_home/G2-AC.pem` as `G2-AC-alias`: 
 ```bash
