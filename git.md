@@ -1,3 +1,6 @@
+## git submodule update and delete
+https://zhuanlan.zhihu.com/p/87053283
+
 ## use your own ssh keys for git
 1. using ssh-git.sh
 ```
