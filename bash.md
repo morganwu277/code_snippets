@@ -1,3 +1,11 @@
+## debug bash script
+```sh
+set -o errexit
+set -o nounset
+set -o pipefail
+# set -o xtrace # Uncomment this line for debugging purpose
+```
+
 ## netstat without netstat
 ```
 awk 'function hextodec(str,ret,n,i,k,c){
