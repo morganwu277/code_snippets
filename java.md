@@ -198,6 +198,11 @@ Here is a simple combination : `java -Xmx400m -Xms400m -XX:+PrintGCDetails -XX:+
    ```
 
 ### jstat command result description 
+
+Usually we use `jstat -gcutil <pid> 20000` to check GC activity, flash every 2 seconds!
+
+Observe different memory areas changes!
+
 ```bash
 [03:32 PM morganwu@v1020-wn-202-109 ~]$ jstat -gc 9235
  S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT   
