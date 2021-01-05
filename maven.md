@@ -33,6 +33,8 @@ mvn <plugin-group-id>:<plugin-artifact-id>[:<plugin-version>]:<goal>@<execution>
 eg.
 ```
 mvn docker:build@buildArtifactory -Pdocker-local
+# or here we can see `docker:buildEcs` is the execution actually, but we have to write full format here, since `:` could have confusion, so we have to keep full format, so it can correctly extract specific fields and meanings 
+mvn io.fabric8:docker-maven-plugin:0.23.0:build@docker:buildEcs -Pdocker-ecs,VersionProvider
 ```
 
 ### 3. maven final effective pom.xml
