@@ -1,3 +1,6 @@
+### Exception 管理
+refer to: reactor `reactor.core.Exceptions#throwIfFatal`
+
 ### print stack when debugging
 ```java
 java.utils.Arrays.toString(Thread.currentThread().getStackTrace())
