@@ -907,10 +907,17 @@ FontHeight=9
 
 ## bash script current working directory
 change current working dir to script directory.
+- for bash
 ```bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $DIR
 ```
+- for posix sh
+  - from: https://stackoverflow.com/questions/29832037/how-to-get-script-directory-in-posix-sh
+```sh
+DIR=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
+```
+
 
 ## add swap space to Linux (VM) 
 ```bash
