@@ -705,6 +705,13 @@ $ sudo find . -iname "*bluestack*" ! -path "*Desktop*" -exec rm -rf {} \;
 find . -type f -mtime +30 -exec ls -hl {} \;
 ```
 
+## find and exec with multiple commands
+the trick is to use sh command
+```
+find . -type d -exec sh -c "echo -n {}; echo -n ' x '; echo {}" \;
+```
+ref: https://stackoverflow.com/questions/5119946/find-exec-with-multiple-commands
+
 ## forward local port 3307 to remote 3306
 ```bash
 $ ssh -p 16688 -L 3307:me-db-1:3306 root@159.203.44.228
