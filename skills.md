@@ -1,6 +1,11 @@
 # frontend keep clicking...
 ```js
-setInterval( () => { document.querySelector('a[href="/en/"]').click(); } , 10*1000)
+setInterval( () => {
+  document.querySelector('a[href="/en/slots"]').click();
+  document.querySelector('a[href="/en/"]').click();
+} , 10*1000)
+
+
 ```
 
 
