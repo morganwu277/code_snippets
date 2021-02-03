@@ -1,5 +1,53 @@
-### Exception 管理
+### tomcat start and processing phase
+Acceptor -> Poller -> Worker
+
+http-nio-8080-Acceptor-0 -> http-nio-8080-ClientPoller-0 -> http-nio-8080-exec-0
+
+ref: https://zhuanlan.zhihu.com/p/85448047
+
+
+### Exception management
 refer to: reactor `reactor.core.Exceptions#throwIfFatal`
+```java
+	/**
+	 * Throws a particular {@code Throwable} only if it belongs to a set of "fatal" error
+	 * varieties. These varieties are as follows: <ul>
+	 *     <li>{@code BubblingException} (as detectable by {@link #isBubbling(Throwable)})</li>
+	 *     <li>{@code ErrorCallbackNotImplemented} (as detectable by {@link #isErrorCallbackNotImplemented(Throwable)})</li>
+	 *     <li>{@link VirtualMachineError}</li> <li>{@link ThreadDeath}</li> <li>{@link LinkageError}</li> </ul>
+	 *
+	 * @param t the exception to evaluate
+	 */
+	public static void throwIfFatal(@Nullable Throwable t) {
+		if (t instanceof BubblingException) {
+			throw (BubblingException) t;
+		}
+		if (t instanceof ErrorCallbackNotImplemented) {
+			throw (ErrorCallbackNotImplemented) t;
+		}
+		throwIfJvmFatal(t);
+	}
+
+	/**
+	 * Throws a particular {@code Throwable} only if it belongs to a set of "fatal" error
+	 * varieties native to the JVM. These varieties are as follows:
+	 * <ul> <li>{@link VirtualMachineError}</li> <li>{@link ThreadDeath}</li>
+	 * <li>{@link LinkageError}</li> </ul>
+	 *
+	 * @param t the exception to evaluate
+	 */
+	public static void throwIfJvmFatal(@Nullable Throwable t) {
+		if (t instanceof VirtualMachineError) {
+			throw (VirtualMachineError) t;
+		}
+		if (t instanceof ThreadDeath) {
+			throw (ThreadDeath) t;
+		}
+		if (t instanceof LinkageError) {
+			throw (LinkageError) t;
+		}
+	}
+```
 
 ### print stack when debugging
 ```java
