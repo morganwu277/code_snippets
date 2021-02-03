@@ -1,3 +1,9 @@
+# frontend keep clicking...
+```js
+setInterval( () => { document.querySelector('a[href="/en/"]').click(); } , 10*1000)
+```
+
+
 # 不停测试网速
 打开 `http://www.speedtest.cn/`       
 Console里面输入:   
