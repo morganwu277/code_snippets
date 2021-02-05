@@ -1,6 +1,14 @@
 ## git submodule update and delete
 https://zhuanlan.zhihu.com/p/87053283
 
+```sh
+git submodule sync --recursive
+git submodule foreach "git fetch --prune || true"
+git submodule update --init --force --recursive
+git --work-tree=. clean -d --force
+```
+
+
 ## use your own ssh keys for git
 1. using ssh-git.sh
 ```
