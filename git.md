@@ -2,10 +2,13 @@
 https://zhuanlan.zhihu.com/p/87053283
 
 ```sh
+# sync url
 git submodule sync --recursive
 git submodule foreach "git fetch --prune || true"
 git submodule update --init --force --recursive
+# clean all non-git-managed files
 git --work-tree=. clean -d --force
+
 ```
 
 
