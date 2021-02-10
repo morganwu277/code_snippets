@@ -1,3 +1,91 @@
+## small python tricks
+1. `sys.argv[1]` means 1st parameter string format
+
+2. sort dict
+
+```py
+# sort by keys
+dict(sorted(svc_failed_records.items()))
+# sort by values
+dict(sorted(svc_failed_records.items(), key=lambda item: item[1]))
+```
+
+3. regex usage
+```py
+m = re.search(".+_(\d+)_days.+", retention_value_str)
+return m.group(1) if m != None else -1
+```
+
+4. lambda usage
+```py
+# filter out all items which template_json[x]['settings']['index']['lifecycle']['name'] contains 'days'
+retention_days_keys = list(
+    filter(lambda x: 'settings' in template_json[x] and
+                     'index' in template_json[x]['settings'] != None and
+                     'lifecycle' in template_json[x]['settings']['index'] != None and
+                     'name' in template_json[x]['settings']['index']['lifecycle'] != None and
+                     'days' in template_json[x]['settings']['index']['lifecycle']['name'],
+           template_json.keys())
+)
+# and then pickup the specific template_json[x]['settings']['index']['lifecycle']['name'] out as a new dict
+retention_days_items = dict((k, extract_days_from_retention_value_str(template_json[k]['settings']['index']['lifecycle']['name'])) for k in retention_days_keys)
+# or we can use next to construct new dict
+retention_days_items = dict(map(lambda k: (k, extract_days_from_retention_value_str(template_json[k]['settings']['index']['lifecycle']['name'])), retention_days_keys))
+```
+
+5. construct new data from existing, which is basically the same as
+```py
+# next two statements have same effect
+new_dict = dict((k,my_dict[k]) for k in my_key_list)
+new_dict = dict(map(lbmda k: (k,my_dict[k]), my_key_list))
+
+# construct from list
+new_list = [i**2 for i in range(1, 20)]
+```
+
+6. send html email
+```py
+def send_email(subject='test sub',
+               from_user='abc@def.com',
+               to_list='abc@def.com',
+               email_html_content='',
+               smtp='labmailer.your.company.com'):
+    import smtplib
+
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+
+    # me == my email address
+    # you == recipient's email address
+    me = from_user
+    you = to_list
+
+    # Create message container - the correct MIME type is multipart/alternative.
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = subject
+    msg['From'] = me
+    msg['To'] = you
+
+    # Create the body of the message (a plain-text and an HTML version).
+    text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttps://www.python.org"
+
+    # Record the MIME types of both parts - text/plain and text/html.
+    part1 = MIMEText(text, 'plain')
+    part2 = MIMEText(email_html_content, 'html')
+
+    # Attach parts into message container.
+    # According to RFC 2046, the last part of a multipart message, in this case
+    # the HTML message, is best and preferred.
+    msg.attach(part1)
+    msg.attach(part2)
+
+    # Send the message via local SMTP server.
+    s = smtplib.SMTP(smtp)
+    # sendmail function takes 3 arguments: sender's address, recipient's address
+    # and message to send - here it is sent as one string.
+    s.sendmail(me, you, msg.as_string())
+    s.quit()
+```
 
 ## python logging facilities
 More python attributes to be outputed:  https://docs.python.org/3/library/logging.html#logrecord-attributes
