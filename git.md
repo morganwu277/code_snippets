@@ -30,7 +30,15 @@ fi
 `export GIT_SSH=~/ssh-git.sh && PKEY=~/this_is_my_ssh_key git pull/push/xxx/etc`
 
 
-
+## HEAD,working tree, index, commit
+- working tree: current working directory on your local disk.
+- index: connecting working tree to commit, the cached/staged area.
+- commit: only after commit, code will be in git repo
+- HEAD: the most recent commit in current branch
+Diff: 
+- `git diff`: review diff between working tree and index
+- `git diff --cached`: review diff between index and commit
+- `git diff HEAD`: review diff between working tree and the most recent commit.
 
 ## Tips after reading <Pro Git> 
 ```bash
