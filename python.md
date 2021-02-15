@@ -87,6 +87,63 @@ def send_email(subject='test sub',
     s.quit()
 ```
 
+7. python decorators
+https://python3-cookbook.readthedocs.io/zh_CN/latest/c09/p02_preserve_function_metadata_when_write_decorators.html#id3
+
+    Using decorators we can achieve the same effect as Java Annotations. The secret is to use `@wraps` in `functools` library.
+```py
+from functools import wraps
+def timethis(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # xxxx your customized code
+        result = func(*args, **kwargs)
+        # yyyy your customized code
+        print(func.__name__) # here we print the func name
+        return result
+    return wrapper
+```
+```py
+
+# defines @timethis decorator
+import time
+from functools import wraps
+def timethis(func):
+    '''
+    Decorator that reports the execution time.
+    '''
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(func.__name__, end-start) # here we print the func name and execution time
+        return result
+    return wrapper
+
+
+# use @timethis decorator
+>>> @timethis
+... def countdown(n):
+...     '''
+...     Counts down
+...     '''
+...     while n > 0:
+...         n -= 1
+...
+>>> countdown(100000)
+countdown 0.008917808532714844
+>>> countdown.__name__
+'countdown'
+>>> countdown.__doc__
+'\n\tCounts down\n\t'
+>>> countdown.__annotations__
+{'n': <class 'int'>}
+>>>
+```
+
+
+
 ## python logging facilities
 More python attributes to be outputed:  https://docs.python.org/3/library/logging.html#logrecord-attributes
 
