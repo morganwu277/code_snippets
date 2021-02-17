@@ -288,4 +288,25 @@ mvn install:install-file -Dfile=./lib/GlobalPayWSClient.jar \
    -DlocalRepositoryPath="$HOME/.m2/repository/"
 ```
 
-
+### Lettuce Spring Redis Factory Bean
+```java
+    // 2 connections
+    // 2094.5514 RPS
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        ClientResources res = DefaultClientResources.builder()
+                .ioThreadPoolSize(64)
+                .computationThreadPoolSize(64)
+                .build();
+        LettuceClientConfiguration clientConfig = LettucePoolingClientConfiguration.builder()
+                .clientResources(res)
+                .build();
+        RedisClusterConfiguration clusterConfiguration = new RedisClusterConfiguration()
+                .clusterNode("redis-cluster-0.redis-cluster-headless", 6379);
+        clusterConfiguration.setPassword("redis2secure");
+        RedisStandaloneConfiguration standaloneConfiguration = new RedisStandaloneConfiguration();
+        standaloneConfiguration.setHostName("10.5.5.5");
+        standaloneConfiguration.setPort(32768);
+        return new LettuceConnectionFactory(standaloneConfiguration, clientConfig);
+    }
+```
