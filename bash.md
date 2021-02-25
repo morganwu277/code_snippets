@@ -164,6 +164,10 @@ function info()  { log "\e[32;3m$1\e[0m"; }
 function warn()  { log "\e[33;3m$1\e[0m"; }
 #red
 function error() { log "\e[31;3m$1\e[0m"; }
+# print with red bold, more color to see http://jafrog.com/2013/11/23/colors-in-terminal.html
+function print_bold_red() {
+  printf "\e[31;1;3m$1\e[0m\n"
+}
 ```
 or there could be another way by using `tput`, for more info: http://linuxcommand.org/lc3_adv_tput.php
 ```bash
