@@ -1,3 +1,29 @@
+### garbage collection log analysis
+using `-XX:+UseSerialGC` with params:
+```
+-XX:+PrintGCDetails
+-XX:+PrintGCDateStamps
+-XX:+PrintGCTimeStamps
+```
+log sample ( 1 time on Young Gen, 1 time on all heap ) 
+```
+2015-05-26T14:45:37.987-0200: 151.126: 
+  [GC (Allocation Failure) 151.126:
+    [DefNew: 629119K->69888K(629120K), 0.0584157 secs]
+    1619346K->1273247K(2027264K), 0.0585007 secs] 
+  [Times: user=0.06 sys=0.00, real=0.06 secs]
+
+2015-05-26T14:45:59.690-0200: 172.829: 
+  [GC (Allocation Failure) 172.829: 
+    [DefNew: 629120K->629120K(629120K), 0.0000372 secs]
+    172.829: [Tenured: 1203359K->755802K(1398144K), 0.1855567 secs]
+    1832479K->755802K(2027264K),
+    [Metaspace: 6741K->6741K(1056768K)], 0.1856954 secs]
+  [Times: user=0.18 sys=0.00, real=0.18 secs]
+```
+Ref:
+https://blog.csdn.net/renfufei/article/details/49230943
+
 ### tomcat start and processing phase
 Acceptor -> Poller -> Worker
 
