@@ -111,3 +111,4 @@ mvn help:effective-pom > pom-final.xml
   - normally used to unify package dependencies version/scope.
 - dependencies: introduce dependency, will try to find `version/scope` from `<dependencyManagement>` recursively if no `version/scope` specified.
   - normally be inherited by children maven project.
+Ref: https://www.jianshu.com/p/c8666474cf9a
