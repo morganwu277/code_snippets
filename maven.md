@@ -67,7 +67,7 @@ mvn help:effective-pom > pom-final.xml
 ```
 
 
-### copy jars to lib directory
+### 4. copy jars to lib directory
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -105,3 +105,9 @@ mvn help:effective-pom > pom-final.xml
     </build>
 </project>
 ```
+
+### 5. differences between `dependencyManagement` and `dependencies`
+- dependencyManagement: declare dependency with version/scope.
+  - normally used to unify package dependencies version/scope.
+- dependencies: introduce dependency, will try to find `version/scope` from `<dependencyManagement>` recursively if no `version/scope` specified.
+  - normally be inherited by children maven project.
