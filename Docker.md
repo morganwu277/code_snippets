@@ -1,3 +1,36 @@
+## docker run jenkins
+```
+#!/bin/bash
+
+docker rm -vf jenkins 2>/dev/null
+
+docker run -d -p 8080:8080 -p 50000:50000 \
+           -v `pwd`/jenkins_home:/var/jenkins_home \
+           --name jenkins \
+           jenkins/jenkins:lts
+
+         #  --env HTTP_PROXY="http://user:pass@oproxy.host.company.com:8080" \
+         #  --env HTTPS_PROXY="http://user:pass@oproxy.host.company.com:8080" \
+         #  --env NO_PROXY="127.0.0.*,10.*,172.*,192.168.*,*.*fg.rbc.com" \
+         #   --env GIT_SSL_NO_VERIFY="true" \
+         #   --env JAVA_OPTS="-Dorg.jenkinsci.plugins.getclient.GitClient.untrustedSSL=true" \
+         #   --env JENKINS_OPTS="-noCertificateCheck" \
+
+
+# keytool -import -noprompt -v -trustcacerts -alias server-alias -file /var/jenkins_home/G2-AC.pem -keystore /usr/local/openjdk-8/jre/lib/security/cacerts -keypass changeit -storepass changeit
+# keytool -import -noprompt -v -trustcacerts -alias server-alias -file /var/jenkins_home/G2-AC.pem -keystore /var/jenkins_home/cacerts -keypass changeit -storepass changeit
+JAVA_OPTS="-Djavax.net.ssl.trustStore=/var/jenkins_home/cacerts"
+
+# copy all plugins
+# if you can't download all plugins...
+for i in `ls *jpi`; do oc cp $i jenkins-lts-6-ctk84:/var/jenkins_home/plugins/$i;done
+
+## steps
+1. copy all plugins
+2. install oc client tool by demand, but does not work ...
+http://localhost:8080/configureTools/
+```
+
 ## switch to screen of docker VM on macOS
 TLDR; https://stackoverflow.com/questions/39739560/how-to-access-the-vm-created-by-dockers-hyperkit
 A better way to do is: docker run -it --privileged --pid=host justincormack/nsenter1
