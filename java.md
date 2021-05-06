@@ -1,3 +1,19 @@
+### TrustStore & KeyStore
+https://gist.github.com/eransharv/9de8e94faae5bde70dfcdfa7d8e6157b#gistcomment-2123071 
+
+Download the certificates through the UI. The zip contains 3 files:
+
+garantia_ca.pem
+garantia_user.crt
+garantia_user_private.key
+
+Create p12 file, using the crt file and the private key file:
+> `openssl pkcs12 -export -in garantia_user.crt -inkey garantia_user_private.key -out JedisSSL.p12`
+
+Create the jks file, using the pem file:
+> `keytool -import -alias bundle -trustcacerts -file garantia_ca.pem -keystore keystore.jks`
+
+
 ### garbage collection log analysis
 using `-XX:+UseSerialGC` with params:
 ```
