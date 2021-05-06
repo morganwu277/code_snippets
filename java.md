@@ -7,12 +7,28 @@ garantia_ca.pem
 garantia_user.crt
 garantia_user_private.key
 
-Create p12 file, using the crt file and the private key file:
+Create p12 file, using the crt file and the private key file ( can be used as keyStore):
 > `openssl pkcs12 -export -in garantia_user.crt -inkey garantia_user_private.key -out JedisSSL.p12`
 
-Create the jks file, using the pem file:
+Create the jks file, using the pem file ( can be used as trustStore ):
 > `keytool -import -alias bundle -trustcacerts -file garantia_ca.pem -keystore keystore.jks`
 
+eg. Here we have redisson client to be used:
+```java
+Config config = new Config(); 
+config.useSingleServer() 
+.setAddress("rediss://redis-10928.c10.us-east-1-3.ec2.cloud.redislabs.com:10928") 
+.setSslEnableEndpointIdentification(false);
+.setSslKeystore(URI.create("file:/C:/Devel/projects/redisson/JedisSSL.p12"))  // client crt/key
+.setSslKeystorePassword("test1234") 
+.setSslTruststore(URI.create("file:/C:/Devel/projects/redisson/keystore.jks")) // root CA
+.setSslTruststorePassword("test1234"); 
+
+RedissonClient redisson = Redisson.create(config); 
+RBucket<String> bucket = redisson.getBucket("foo"); 
+bucket.set("1"); 
+System.out.println("bucket " + bucket.get());
+```
 
 ### garbage collection log analysis
 using `-XX:+UseSerialGC` with params:
