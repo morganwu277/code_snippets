@@ -32,7 +32,9 @@ System.out.println("bucket " + bucket.get());
 ```
 
 2. extract key/crt/pem from keystore
+
 https://serverfault.com/a/715841
+
 - export the .crt
 ```
 keytool -export -alias mydomain -file mydomain.der -keystore mycert.jks
