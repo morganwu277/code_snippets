@@ -1,4 +1,5 @@
 ### TrustStore & KeyStore
+1. put key/crt/pem into keystore
 https://gist.github.com/eransharv/9de8e94faae5bde70dfcdfa7d8e6157b#gistcomment-2123071 
 
 Download the certificates through the UI. The zip contains 3 files:
@@ -28,6 +29,25 @@ RedissonClient redisson = Redisson.create(config);
 RBucket<String> bucket = redisson.getBucket("foo"); 
 bucket.set("1"); 
 System.out.println("bucket " + bucket.get());
+```
+
+2. extract key/crt/pem from keystore
+https://serverfault.com/a/715841
+- export the .crt
+```
+keytool -export -alias mydomain -file mydomain.der -keystore mycert.jks
+```
+- convert the cert to PEM
+```
+openssl x509 -inform der -in mydomain.der -out certificate.pem
+```
+- export the key
+```
+keytool -importkeystore -srckeystore mycert.jks -destkeystore keystore.p12 -deststoretype PKCS12
+```
+- concert PKCS12 key to unencrypted PEM
+```
+openssl pkcs12 -in keystore.p12  -nodes -nocerts -out mydomain.key
 ```
 
 ### garbage collection log analysis
