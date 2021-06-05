@@ -927,6 +927,12 @@ cd $DIR
   - from: https://stackoverflow.com/questions/29832037/how-to-get-script-directory-in-posix-sh
 ```sh
 DIR=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
+cd $DIR
+```
+or 
+```sh
+DIR=`dirname $0`
+cd $DIR
 ```
 
 
