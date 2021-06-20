@@ -66,6 +66,8 @@ $ git push --force				# after remove local commits, forcely push to remote ( so 
 $ git reset --hard <SOME-COMMIT> # 1. Make your current branch (typically master) back to point at <SOME-COMMIT>. 2. Then make the files in your working tree and the index ("staging area") the same as the versions committed in <SOME-COMMIT>.
 
 $ git remote add upstream GIT_URL	# add a new remote 
+$ git pull upstream master              # 1. `fetch` from upstream host 2. `merge` to local master branch
+$ git push -u origin my_branch          # 1. bind `my_branch` to remote `origin` host 2. push to remote host
 $ git fetch --all 				# fetch all remote changes 
 $ git remote show origin 		# show remote repo, eg. git remote show origin
 $ git remote rename pb paul		# rename remote repo
