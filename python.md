@@ -235,13 +235,30 @@ same as above, the only difference is that when building library, you need to us
     lib.hello('Amy')
     ```
 
+## multi thread
+```python
+import threading
+
+threads = []
+x = threading.Thread(target=insert_row, args=(conn, r)) # conn and r are params for insert_row function
+x.start()
+threads.append(x)
+
+# wait for finish
+for x in threads:
+  x.join()
+```
+
 ## thread pool executor
 ```python
 import concurrent.futures
+
+futures = []
 with concurrent.futures.ThreadPoolExecutor(max_workers=40) as executor:
   f = executor.submit(insert_row, conn, r) # conn and r are params for insert_row function
   futures.append(f)
 
+# wait for finish
 for x in futures:
   f.result()
 ```
