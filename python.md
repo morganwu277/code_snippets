@@ -260,5 +260,5 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=40) as executor:
 
 # wait for finish
 for x in futures:
-  f.result()
+  x.result()
 ```
