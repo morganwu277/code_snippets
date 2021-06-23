@@ -148,14 +148,19 @@ countdown 0.008917808532714844
 More python attributes to be outputed:  https://docs.python.org/3/library/logging.html#logrecord-attributes
 
 ```py
-LOG = logging.getLogger('sre')
+LOG = logging.getLogger('sae')
 LOG.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s')
+fh = logging.FileHandler("data-import.log", delay=True)
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
 # create console handler and set level to debug
 ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-ch.setFormatter(logging.Formatter('%(asctime)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s'))
+ch.setLevel(logging.INFO)
+ch.setFormatter(formatter)
 # add ch to logger
 LOG.addHandler(ch)
+LOG.addHandler(fh)
 ```
 
 ## call CPP library from python
