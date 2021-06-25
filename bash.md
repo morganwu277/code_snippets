@@ -1,3 +1,28 @@
+## Good bash template
+```sh
+#!/bin/bash
+
+DIR=$( cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P )
+cd $DIR
+
+_term() { 
+  echo "Caught SIGTERM signal! Will kill pid1: $pid1 pid2: $pid2"
+  kill -15 "$pid1" 2>/dev/null
+  kill -15 "$pid2" 2>/dev/null
+  exit 1
+}
+trap _term SIGTERM SIGINT SIGKILL SIGHUP
+
+function log_err() {
+  >&2 echo "[`date`] [ERROR] $1"
+}
+
+function log_info() {
+  echo "[`date`] [INFO] $1"
+}
+
+```
+
 ## debug bash script
 ```sh
 set -o errexit
