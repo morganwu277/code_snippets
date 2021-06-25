@@ -355,6 +355,7 @@ better to use child process handling... this also works in Jenkins shell...
 _term() { 
   echo "Caught SIGTERM signal!" 
   kill -TERM "$child" 2>/dev/null
+  exit 1 # ensure we exit after kill and clean resources
 }
 
 trap _term SIGTERM SIGINT SIGKILL SIGHUP
