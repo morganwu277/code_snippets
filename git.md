@@ -1,7 +1,7 @@
 ## about gitlink
 1. in vscode
-- install `gitlens`
-- copy `gitlens`
+- install `gitlens` plugin
+- configure `gitlens`
 ```
 // more to see https://github.com/eamodio/vscode-gitlens/#remote-provider-integration-settings-
     "gitlens.remotes": [{
@@ -24,7 +24,7 @@
 ```
 - select lines and use command `Copy Remote File Url` at right context menu
 2. in intellij / idea
-- install `gitlink`
+- install `gitlink` plugin
 - configure custom
 ```
 - file at commit: {remote:url:host}/stash/projects/{remote:url:path:2}/repos/{remote:url:path:3}/browse/{file:path}/{file:name}?at={commit}#{line:start}-{line:end}
