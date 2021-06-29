@@ -1,3 +1,38 @@
+## about gitlink
+1. in vscode
+- install `gitlens`
+- copy `gitlens`
+```
+// more to see https://github.com/eamodio/vscode-gitlens/#remote-provider-integration-settings-
+    "gitlens.remotes": [{
+        "domain": "git.xxxxxxxx.ca",
+        "type": "Custom",
+        "name": "My Company",
+        "protocol": "https",
+        "urls": {
+            "repository": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}",
+            "branches": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}/branches",
+            "branch": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}/browse?at=${branch}",
+            "commit": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}/browse?at=${id}",
+            "file": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}/browse/${file}",
+            "fileInBranch": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}/browse/${file}?at=${branch}${line}",
+            "fileInCommit": "https://git.xxxxxxxx.ca/stash/projects/${repoBase}/repos/${repoPath}/browse/${file}?at=${id}${line}",
+            "fileLine": "#${line}",
+            "fileRange": "#${start}-${end}"
+            }
+        }]
+```
+- select lines and use command `Copy Remote File Url` at right context menu
+2. in intellij / idea
+- install `gitlink`
+- configure custom
+```
+- file at commit: {remote:url:host}/stash/projects/{remote:url:path:2}/repos/{remote:url:path:3}/browse/{file:path}/{file:name}?at={commit}#{line:start}-{line:end}
+- file on branch: {remote:url:host}/stash/projects/{remote:url:path:2}/repos/{remote:url:path:3}/browse/{file:path}/{file:name}?at={branch}#{line:start}-{line:end} 
+- commit: {remote:url:host}/stash/projects/{remote:url:path:2}/repos/{remote:url:path:3}/browse/?at={commit}#{line:start}-{line:end} 
+```
+- select lines and right click `Copy Custom Link`
+
 ## git submodule update and delete
 https://zhuanlan.zhihu.com/p/87053283
 
