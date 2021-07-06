@@ -9,6 +9,13 @@ log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n
 ```
+- dependencies: next three as the very minimal requirements
+```
+    implementation 'log4j:log4j:1.2.17' // log4j
+    implementation 'org.slf4j:slf4j-log4j12:1.7.31' // connect log4j and slf4j
+    implementation 'org.slf4j:slf4j-api:1.7.31' //slf4j
+```
+
 
 ### TrustStore & KeyStore
 1. put key/crt/pem into keystore
