@@ -1,4 +1,4 @@
-### log4j slf4j
+### log4j slf4j , minimal configuration
 - log4j.properties
 ```
 # Root logger option
