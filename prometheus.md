@@ -32,3 +32,14 @@ NOTE: only regex matched metric samples will be changed.
             - __name__
           targetLabel: __name__
 ```
+
+it turns
+```
+com_ps_he_tpool_app_pool_active{container="sw-auth",xxxxxx,xxxxx}
+
+```
+into
+```
+com_ps_he_tpool{attribute="active",pool_name="app_pool",container="sw-auth",xxxxxx,xxxxx}
+```
+
