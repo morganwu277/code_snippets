@@ -1,3 +1,15 @@
+### log4j slf4j
+- log4j.properties
+```
+# Root logger option
+log4j.rootLogger=INFO, stdout
+
+# Direct log messages to stdout
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n
+```
+
 ### TrustStore & KeyStore
 1. put key/crt/pem into keystore
 https://gist.github.com/eransharv/9de8e94faae5bde70dfcdfa7d8e6157b#gistcomment-2123071 
