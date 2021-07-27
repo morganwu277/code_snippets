@@ -1,3 +1,5 @@
+
+
 ### log4j slf4j , minimal configuration
 - log4j.properties
 ```
@@ -407,5 +409,50 @@ mvn install:install-file -Dfile=./lib/GlobalPayWSClient.jar \
         standaloneConfiguration.setHostName("10.5.5.5");
         standaloneConfiguration.setPort(32768);
         return new LettuceConnectionFactory(standaloneConfiguration, clientConfig);
+    }
+```
+
+### mock static java method
+1. ensure `mockito` version > 3.4
+2. add mvn dependency
+```
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>3.8.0</version>
+            <scope>test</scope>
+        </dependency>
+```
+
+Next is sample code on static method with chain calls:
+```
+    @Test
+    public void testMock() {
+        // ref: https://www.baeldung.com/mockito-mock-static-methods
+        final MockedStatic<RIP> ripMockedStatic = Mockito.mockStatic(RIP.class);
+        // this is for cascading mock on chain calls
+        final Local mockLocal = Mockito.mock(Local.class, RETURNS_DEEP_STUBS);
+        // this is for static method mock
+        ripMockedStatic.when(RIP::local).thenReturn(mockLocal);
+        final String mockString = "this is my region name";
+        Mockito.when(mockLocal.region(Mockito.anyString()).name()).thenReturn(mockString);
+        final String returnString = RIP.local().region("xxx").name();
+        Assertions.assertEquals(returnString, mockString);
+    }
+
+    static class RIP {
+        public static Local local(){
+            return new Local();
+        }
+    }
+    static class Local{
+        public Region region(String a){
+            return new Region();
+        }
+    }
+    static class Region {
+        public String name(){
+            return "region";
+        }
     }
 ```
