@@ -1,3 +1,11 @@
+## zsh add timestamp
+add `RPROMPT="[%D{%c}]"` into ~/.zshrc
+
+```sh
+➜  ~ cd go                                                                                   [Fri 26 Nov 01:19:24 2021]
+➜  go ls                                                                                     [Fri 26 Nov 01:19:27 2021]
+```
+
 ## Good bash template
 ```sh
 #!/bin/bash
