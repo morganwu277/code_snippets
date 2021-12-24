@@ -1,3 +1,6 @@
+PS: here is another version of LogBack customized Appender. https://www.baeldung.com/custom-logback-appender 
+
+
 In this post, we gonna create customized appender. Next is just an example of JTextArea.
 1. We need a genearal appender class. `append()` method needs to be override and put logs to correct places. In the next it's `GUIClient.log(new String(bytes));`
     ```java
