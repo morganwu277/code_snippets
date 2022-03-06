@@ -13,6 +13,17 @@
 by using this way, we are able to git clone xxxx.
 This needs to be done first before oh-my-zsh
 
+## oh-my-zsh PROMPT
+put next in your ~/.zshrc
+```
+PROMPT='%{$fg[yellow]%}[%D{%f/%m/%y %T}] '$PROMPT
+```
+and then try it as:
+```
+[5/03/22 20:35:51] (py_env_3) ➜  ~ ls dump.rdb 
+dump.rdb
+```
+
 ## about gitlink
 1. in vscode
 - install `gitlens` plugin
