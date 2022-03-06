@@ -1,3 +1,18 @@
+## git behind proxy
+`~/.gitconfig` content:
+```
+[http]
+        sslVerify = false
+        proxy = http://user:pass@host:port
+        proxyAuthMethod = basic
+[https]
+        sslVerify = false
+        proxy = http://user:pass@host:port
+        proxyAuthMethod = basic
+```
+by using this way, we are able to git clone xxxx.
+This needs to be done first before oh-my-zsh
+
 ## about gitlink
 1. in vscode
 - install `gitlens` plugin
