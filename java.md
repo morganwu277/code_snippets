@@ -1,4 +1,30 @@
 
+### BlockHound Usage for Reactor Projects
+1. pom.xml dependency
+```xml
+        <dependency>
+            <groupId>io.projectreactor.tools</groupId>
+            <artifactId>blockhound</artifactId>
+            <version>1.0.6.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+```
+2. add next code into Spring `main()` fuction, just before `SpringApplication.run(AuthApplication.class, args);` line
+```java
+    if (StringUtils.isNotEmpty(System.getenv("BLOCK_HOUND_DEBUG"))) {
+      // under dev env
+      BlockHound.install(
+              builder -> {
+                builder.allowBlockingCallsInside("org.apache.logging.log4j.core.config.LoggerConfig", "callAppenders");
+                builder.blockingMethodCallback(
+                  method -> log.error("BlockHoundException", new RuntimeException("Blocking Call !!! On method: " + method.toString()))
+                );
+              }
+      );
+    }
+```
+
+and then all your blocking calls will be printed with ERROR logs.
 
 ### log4j slf4j , minimal configuration
 - log4j.properties
