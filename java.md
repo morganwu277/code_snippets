@@ -24,7 +24,7 @@
     }
 ```
 
-and then all your blocking calls will be printed with ERROR logs.
+and then all your blocking calls will be printed with ERROR logs when you have `BLOCK_HOUND_DEBUG` environment values.
 
 ### log4j slf4j , minimal configuration
 - log4j.properties
