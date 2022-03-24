@@ -1,9 +1,16 @@
-## zsh add timestamp
-add `RPROMPT="[%D{%c}]"` into ~/.zshrc
+## zsh remove escape backslash symbol when pasting URL
+We have to put next lines in the header part of `~/.zshrc`
+```zsh
+# disable auto paste zsh backslash escape \
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+export DISABLE_MAGIC_FUNCTIONS=true
+```
 
-```sh
-➜  ~ cd go                                                                                   [Fri 26 Nov 01:19:24 2021]
-➜  go ls                                                                                     [Fri 26 Nov 01:19:27 2021]
+## zsh add timestamp
+add next into ~/.zshrc
+```
+PROMPT='%{$fg[yellow]%}[%D{%y/%m/%d %T}] '$PROMPT
 ```
 
 ## Good bash template
