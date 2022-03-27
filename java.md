@@ -16,6 +16,7 @@
       BlockHound.install(
               builder -> {
                 builder.allowBlockingCallsInside("org.apache.logging.log4j.core.config.LoggerConfig", "callAppenders");
+		// won't exit app when getting blocking calls.
                 builder.blockingMethodCallback(
                   method -> log.error("BlockHoundException", new RuntimeException("Blocking Call !!! On method: " + method.toString()))
                 );
