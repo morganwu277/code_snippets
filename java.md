@@ -23,8 +23,10 @@
       );
     }
 ```
+3. setup `-Djdk.attach.allowAttachSelf=true` [params](https://github.com/raphw/byte-buddy/issues/612#issuecomment-463618016) in your target JVM. 
 
 and then all your blocking calls will be printed with ERROR logs when you have `BLOCK_HOUND_DEBUG` environment values.
+
 
 ### log4j slf4j , minimal configuration
 - log4j.properties
