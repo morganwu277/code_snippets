@@ -3,7 +3,7 @@ https://www.cnkirito.moe/cache-line/#%E4%BC%AA%E5%85%B1%E4%BA%AB
 If we have two data using same cacheline and written under different threads, then we are having data contention here.
 - Next is an example of CacheLine Padding. Normally a cacheline size is 64KB
 - We use 8 long var to use as cacheline padding. so ensure our int a and int b can be put into different cores, instead of let them sharing the same core.
-- Test result shows as, under GraalVM, with cacheline padding can be ~2.6x faster than non-cacheline padding one.
+- Test result shows as, under GraalVM, with **cacheline padding can be ~2.6x faster** than non-cacheline padding one.
 - Test is executed under JUnit test and Graavl VM.
 
 ```java
