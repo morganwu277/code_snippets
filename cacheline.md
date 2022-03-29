@@ -1,3 +1,5 @@
+https://zhuanlan.zhihu.com/p/374586744
+
 https://www.cnkirito.moe/cache-line/#%E4%BC%AA%E5%85%B1%E4%BA%AB
 
 If we have two data using same cacheline and written under different threads, then we are having data contention here.
