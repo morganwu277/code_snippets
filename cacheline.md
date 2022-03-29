@@ -27,9 +27,9 @@ Summary: When do we need cacheline optimization?
     }
     @Setter
     class CacheLineData implements DataSetter{
-        volatile int a;
-        volatile long x1,x2,x3,x4,x5,x6,x7; // 64bit cacheline padding
-        volatile int x8;        
+        volatile int a;                     // 4 bytes content
+        volatile long x1,x2,x3,x4,x5,x6,x7; // 56 bytes cacheline padding
+        volatile int x8;                    // 4 bytes cacheline padding
         volatile int b;
     }
 
