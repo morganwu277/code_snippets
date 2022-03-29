@@ -8,6 +8,11 @@ If we have two data using same cacheline and written under different threads, th
 - Test result shows as, under GraalVM, with **cacheline padding can be ~2.5x faster** than non-cacheline padding one.
 - Test is executed under JUnit test and Graavl VM.
 
+Summary: When do we need cacheline optimization?
+1. under concurrency scenario
+2. two piece of data are placed adjacent and are written by different threads
+3. these two piece of data can be filled into one cacheline size block (64 Bytes, or eight long variables)
+
 ```java
 
 
