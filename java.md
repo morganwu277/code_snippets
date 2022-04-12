@@ -1,3 +1,41 @@
+### PhantomReferenceTest
+1. `System.gc()` doesn't necessarily trigger STW full gc. [JVM相关 - 深入理解 System.gc()](https://zhuanlan.zhihu.com/p/352974252)
+2. `System.gc()` will try to add PhantomReference into the related ReferenceQueue
+3. and then we need to dequeue from ReferenceQueue and clean ourselves.
+
+So PhantomReference is born for those references that are not exactly sure about how the memory to be freed, eg. DirectByteBuffer. 
+
+```java
+public class PhantomReferenceTest {
+    public static void main(String[] args) throws InterruptedException {
+        // 1. -Xms10m -Xmx10m
+        // ref: https://docs.oracle.com/javase/8/docs/api/java/lang/ref/PhantomReference.html
+        // Phantom reference objects, which are enqueued
+        // after the collector determines that their referents may otherwise be reclaimed.
+        ReferenceQueue<byte[]> queue = new ReferenceQueue<>();
+        PhantomReference<byte[]> phantomReference = new PhantomReference<>(new byte[1024 * 1024 * 5], queue);
+        // null
+        System.out.println("phantomReference before gc: " + queue.poll());
+        System.gc();
+        Thread.sleep(300L);
+        // non-null after GC
+        System.out.println("phantomReference after gc: " + queue.poll());
+
+        /* will not cause the object to be enqueued
+         * or phantomReference == null,
+         * and then we are able to have next bytes allocated
+         */
+        phantomReference.clear();
+
+        byte[] bytes = new byte[1024 * 1024 * 6];
+        // 上述 是 PhantomReference 的手动释放。
+        // PhantomReference 如何自动释放？
+        // 像 https://blog.csdn.net/zbuger/article/details/70508450 的基本思路是：
+        // 1. 后台启动一个 Thread 尝试去 refQueue.remove() 而这个 refQueue 只有在 Full GC 之后 才会被 enqueue
+        // 2. 一旦 Enqueue 了之后 那么就可以 refQueue.remove() 出来 然后线程自动进行释放
+    }
+}
+```
 
 ### BlockHound Usage for Reactor Projects
 1. pom.xml dependency
