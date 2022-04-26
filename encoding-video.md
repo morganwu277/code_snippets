@@ -18,12 +18,8 @@ ffmpeg -i $input -vf scale=1920:-1 -vcodec libvpx-vp9 -an $output
 echo "please checkout $output"
 ```
 
-
-
-from: https://gist.github.com/Vestride/278e13915894821e1d6f
-
-
 # Encoding Video
+from: https://gist.github.com/Vestride/278e13915894821e1d6f
 
 ### Installing
 
