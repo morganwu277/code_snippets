@@ -1,3 +1,15 @@
+## quickly start a https-server
+from https://github.com/http-party/http-server#readme
+
+```sh
+# install package
+npm install --global http-server
+# create certs, needs to use local ip address
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem -subj "/CN=192.168.50.211"
+# start with basic auth user/pass
+http-server -S --username admin --password mypassword
+```
+
 ## zsh remove escape backslash symbol when pasting URL
 We have to put next lines in the header part of `~/.zshrc`
 ```zsh
