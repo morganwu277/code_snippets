@@ -1558,6 +1558,12 @@ view.file_name()
 # copy file name into clipboard
 sublime.set_clipboard(view.file_name())
 ```
+2. set sublime network proxy
+execute next script into sublime console during runtime, only one single line
+```python
+# we can include special chars in PASS, eg. @ etc.
+import os;proxy_server = 'http://USER:PASS@HOST:PORT';os.environ['http_proxy'] = proxy_server;os.environ['HTTP_PROXY'] = proxy_server;os.environ['https_proxy'] = proxy_server;os.environ['HTTPS_PROXY'] = proxy_server;os.environ['all_proxy'] = proxy_server;os.environ['ALL_PROXY'] = proxy_server;os.environ['ftp_proxy'] = proxy_server;os.environ['FTP_PROXY'] = proxy_server;
+```
 
 ## bash split by IFS, array manipulation 
 ```bash
