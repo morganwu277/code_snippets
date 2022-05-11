@@ -2,7 +2,7 @@
 Next code shows how we implement publish-subscribe using reactor-core library, basically it:
 1. create publisher (subject) 
 2. subscribe to the publisher and consume the messages from it
-3. publish two messages, and print it out using log4j
+3. publish several messages, and print it out using log4j
 ```java
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
