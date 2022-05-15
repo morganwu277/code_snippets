@@ -1,5 +1,7 @@
 # ngrok usage
-we can use next script to generate certs and start client/server
+we can use next script to generate certs and start client/server,
+
+NOTE: ngrok 1.x stopped development, a better forked version would be https://github.com/morganwu277/pgrok 
 ```sh
 #!/bin/sh
 
