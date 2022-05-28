@@ -635,7 +635,7 @@ Host *
 ## network debug
 * `ss -a`
 * `netstat -nalp`
-* `lsof -P -i:22`
+* `lsof -n -P -i:22` # -n : do not do DNS 
 * `nmap -sV xxx.xxx.xxx.xxx -p3333-3333`: connect to `xxx.xxx.xxx.xxx` on port of `3333`
 
 ## date command
