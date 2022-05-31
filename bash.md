@@ -1204,6 +1204,31 @@ tmux source-file ~/.tmux.conf
 
 **tmux support on zsh** https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/tmux#tmux
 
+### tmux programatically
+next example show that: 
+1) create a tmux session 
+2) split the session pane 
+3) run differnt long running comments in the pane 
+4) attach into the session
+```sh
+# step1. running a new session
+tmux new-session -s kafka_session -d "bin/zookeeper-server-start.sh config/zookeeper.properties"
+sleep 15 # sleep 15 seconds for ZK to start
+
+# step2. start three panes into the existing tmux session
+tmux split-window -d 'bin/kafka-server-start.sh config/server.0.properties' &
+tmux split-window -d 'bin/kafka-server-start.sh config/server.1.properties' &
+tmux split-window -d 'bin/kafka-server-start.sh config/server.2.properties' &
+sleep 5
+
+# step3. tune the layout back & forth, so we have average cut layout
+tmux next-layout -t kafka_session
+tmux previous-layout -t kafka_session
+
+# step4, (OPT) attach into the session
+tmux a -t kafka_session
+```
+
 ### cut screen, pane management
  - `ctrl+b+"`: vertical cut
  - `ctrl+b+%`: horizontal cut
