@@ -358,6 +358,9 @@ https://www.linode.com/docs/web-servers/nginx/configure-nginx-for-optimized-perf
 
 ### Deploy http & https website best-practice
 next will support webssocket + tls, more about websocket support: https://www.nginx.com/blog/websocket-nginx/
+
+The magic, is to set `Connection` and `Upgrade` header correctly and pass it to backend servers
+
 ```bash
 upstream today {
     ip_hash;
