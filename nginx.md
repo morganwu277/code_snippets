@@ -357,6 +357,7 @@ For new certificate signed by self-signed CA. https://medium.com/@kennychen_4986
 https://www.linode.com/docs/web-servers/nginx/configure-nginx-for-optimized-performance
 
 ### Deploy http & https website best-practice
+next will support webssocket + tls, more about websocket support: https://www.nginx.com/blog/websocket-nginx/
 ```bash
 upstream today {
     ip_hash;
