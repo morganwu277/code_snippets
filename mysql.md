@@ -1,3 +1,31 @@
+## sync slave with master if the process stopped
+1. on master, show master status/position
+```
+FLUSH TABLES WITH READ LOCK;
+SHOW MASTER STATUS
+UNLOCK TABLES
+```
+2. on slave, manually re-appoint the position
+```
+# stop salve sync
+STOP SLAVE;
+
+# set the sync position
+CHANGE MASTER TO MASTER_HOST='10.2.1.55',
+MASTER_PORT=3306,
+MASTER_USER='vagrant',
+MASTER_PASSWORD='vagrant',
+MASTER_LOG_FILE='mysql-bin.000001',
+MASTER_LOG_POS=117748;
+
+# start slave sync again
+START SLAVE;
+```
+3. check slave status
+```
+SHOW SLAVE STATUS;
+```
+
 ## DB transaction isolation levels
    Here is all kinds of transaction isolation levels 
    ![sql_join](attachments/tx_ios.png)
