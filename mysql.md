@@ -1,4 +1,4 @@
-## sync slave with master if the process stopped
+## manually sync slave with master after failure
 1. on master, show master status/position
 ```
 FLUSH TABLES WITH READ LOCK;
