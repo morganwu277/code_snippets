@@ -112,7 +112,7 @@ sudo service apparmor reload
   SET UNIQUE_CHECKS = 0;
 ```
 
-and drop the transaction isolation guarantee to UNCOMMITTED: `SET SESSION tx_isolation='READ-UNCOMMITTED'`
+and drop the transaction isolation guarantee to RU level: `SET SESSION tx_isolation='READ-UNCOMMITTED'`
 and turn off the binlog with: `SET sql_log_bin = 0`
 And when you’re done, don’t forget to turn it back on with:
 
