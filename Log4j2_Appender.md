@@ -1,3 +1,31 @@
+## add Log4j2 support into maven project
+1. add maven depedency
+    ```xml
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-slf4j-impl</artifactId>
+        <version>2.17.2</version>
+    </dependency>
+    ```
+3. add log4j2.xml
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Configuration monitorInterval="5">
+        <Appenders>
+            <Console name="Console" target="SYSTEM_OUT">
+                <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            </Console>
+        </Appenders>
+        <Loggers>
+            <Root level="info">
+                <AppenderRef ref="Console"/>
+            </Root>
+        </Loggers>
+    </Configuration>    
+    ```
+
+## Log4j2 Customized Appender on TextArea
+
 PS: here is another version of LogBack customized Appender. https://www.baeldung.com/custom-logback-appender 
 
 
