@@ -262,3 +262,19 @@ with concurrent.futures.ThreadPoolExecutor(max_workers=40) as executor:
 for x in futures:
   x.result()
 ```
+or 
+```python
+import concurrent.futures
+executor = concurrent.futures.ThreadPoolExecutor(max_workers=40)
+futures = []
+
+# submit job
+fut = executor.submit(downloadUrl, fileUrl, filePath)
+futures.append(fut)
+
+# do something else
+
+# wait for finish
+for x in futures:
+  x.result()
+```
