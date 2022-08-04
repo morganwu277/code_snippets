@@ -150,7 +150,7 @@ More python attributes to be outputed:  https://docs.python.org/3/library/loggin
 ```py
 LOG = logging.getLogger('sae')
 LOG.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s')
+formatter = logging.Formatter('%(asctime)s - %(threadName)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s')
 fh = logging.FileHandler("data-import.log", delay=True)
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
@@ -277,4 +277,26 @@ futures.append(fut)
 # wait for finish
 for x in futures:
   x.result()
+```
+
+## requests usage with Retry
+https://findwork.dev/blog/advanced-usage-python-requests-timeouts-retries-hooks/#setting-default-timeouts
+
+```python
+def getHttpSessionInstance():
+	retry_strategy = Retry(
+			total=3,
+			status_forcelist=[429, 500, 502, 503, 504],
+			allowed_methods=["HEAD", "GET", "OPTIONS"]
+	)
+	adapter = HTTPAdapter(max_retries=retry_strategy)
+	http = requests.Session()
+	http.mount("https://", adapter)
+	http.mount("http://", adapter)
+	return http
+
+# invoking with retry and timeout, saving as file...
+response = getHttpSessionInstance().get(fileUrl, headers=headers, timeout=60)
+with open(filePath, 'wb') as f:
+    f.write(response.content)
 ```
