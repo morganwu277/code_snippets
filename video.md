@@ -1,5 +1,6 @@
-```sh
 # help you to compress a video using webm format
+
+```bash
 
 #!/bin/sh
 
