@@ -1,4 +1,4 @@
-# help you to compress a video using webm format
+# convert a video to webm format
 
 ```bash
 
