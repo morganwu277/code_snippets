@@ -482,7 +482,7 @@ curl -s 'https://api.github.com/users/lambda' | \
 
 2. operate json from CLI in an easy way
 ```bash
-[09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/xue777hua | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
+[09:30 PM morganwu@morgan-yinnut ~]$ curl -s https://api.github.com/users/<user_name> | python -c 'import sys, json; print json.load(sys.stdin)["avatar_url"]'
 https://avatars.githubusercontent.com/u/3008959?v=3
 ```
 3. Read file into lines and doing string operations
@@ -1554,7 +1554,7 @@ certbot --version
 2. gen certs using certbot
 ```bash
 domain="xxx.cn"
-certbot certonly --nginx --email xue777hua@gmail.com -d www.$domain -d $domain
+certbot certonly --nginx --email <your_gmail@gmail.com> -d www.$domain -d $domain
 ```
 3. show generated certs
 ```bash
