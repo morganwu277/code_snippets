@@ -87,34 +87,34 @@ log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1
 
 
 ### TrustStore & KeyStore
-0. Redis TLS usage in JVM application, knowledge/commands would be useful for other JVM TLS application as well
-```sh
-### 1 GENERATE EMPTY JKS FILE
-# 1.1 generate a JKS file with teiid entry
-keytool -genkey -alias teiid -keyalg RSA -validity 365 -keystore server.keystore -storetype JKS -storepass MyPass123
-# 1.2 delete the teiid entry 
-keytool -delete -alias teiid -keystore server.keystore -storepass MyPass123
-# 1.3 list the entries
-keytool -list -keystore server.keystore -storepass MyPass123
+1. Redis TLS usage in JVM application, knowledge/commands would be useful for other JVM TLS application as well
+	```sh
+	### 1 GENERATE EMPTY JKS FILE
+	# 1.1 generate a JKS file with teiid entry
+	keytool -genkey -alias teiid -keyalg RSA -validity 365 -keystore server.keystore -storetype JKS -storepass MyPass123
+	# 1.2 delete the teiid entry 
+	keytool -delete -alias teiid -keystore server.keystore -storepass MyPass123
+	# 1.3 list the entries
+	keytool -list -keystore server.keystore -storepass MyPass123
 
 
-### 2 IMPORT CRT/KEY/CA INTO JKS
-# 2.1 package private and public crt/key into one single p12 file format
-openssl pkcs12 -export -in tls/redis.crt -inkey tls/redis.key -name redis-pkcs12 -out redis-pkcs12.p12
-> Export Password: MyPass123
-# 2.2 import single file p12 format into JKS
-keytool -importkeystore -deststorepass MyPass123 -destkeystore server.keystore -srckeystore redis-pkcs12.p12 -srcstoretype PKCS12
-# 2.3 also import CA into JKS
-keytool -import -alias redis-root-ca -trustcacerts -file tls/ca.crt -keystore server.keystore
+	### 2 IMPORT CRT/KEY/CA INTO JKS
+	# 2.1 package private and public crt/key into one single p12 file format
+	openssl pkcs12 -export -in tls/redis.crt -inkey tls/redis.key -name redis-pkcs12 -out redis-pkcs12.p12
+	> Export Password: MyPass123
+	# 2.2 import single file p12 format into JKS
+	keytool -importkeystore -deststorepass MyPass123 -destkeystore server.keystore -srckeystore redis-pkcs12.p12 -srcstoretype PKCS12
+	# 2.3 also import CA into JKS
+	keytool -import -alias redis-root-ca -trustcacerts -file tls/ca.crt -keystore server.keystore
 
-### 3. CONNECT 
-redis-cli --tls --cert ./redis.crt --key redis.key --cacert ca.crt -p 6443 -a redis2secure
+	### 3. CONNECT 
+	redis-cli --tls --cert ./redis.crt --key redis.key --cacert ca.crt -p 6443 -a redis2secure
 
-### OR See Other Java Library usage, eg. Redisson
-
-```
+	### OR See Other Java Library usage, eg. Redisson
+	```
 
 2. put key/crt/pem into keystore
+
 https://gist.github.com/eransharv/9de8e94faae5bde70dfcdfa7d8e6157b#gistcomment-2123071 
 
 Download the certificates through the UI. The zip contains 3 files:
@@ -146,7 +146,7 @@ bucket.set("1");
 System.out.println("bucket " + bucket.get());
 ```
 
-2. extract key/crt/pem from keystore
+3. extract key/crt/pem from keystore
 
 https://serverfault.com/a/715841
 
