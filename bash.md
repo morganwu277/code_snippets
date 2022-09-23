@@ -1590,6 +1590,24 @@ execute next script into sublime console during runtime, only one single line
 import os;proxy_server = 'http://USER:PASS@HOST:PORT';os.environ['http_proxy'] = proxy_server;os.environ['HTTP_PROXY'] = proxy_server;os.environ['https_proxy'] = proxy_server;os.environ['HTTPS_PROXY'] = proxy_server;os.environ['all_proxy'] = proxy_server;os.environ['ALL_PROXY'] = proxy_server;os.environ['ftp_proxy'] = proxy_server;os.environ['FTP_PROXY'] = proxy_server;
 ```
 
+## bash array easy use
+```sh
+#!/bin/bash
+
+ARR=(
+  1
+  2
+  3
+  4
+)
+
+for NUM in ${ARR[@]}; do
+  echo "current batch: $NUM"
+done
+
+
+```
+
 ## bash split by IFS, array manipulation 
 ```bash
   # here is var ignore_tables, split by using comma , symbol 
