@@ -329,11 +329,11 @@ LOG.addHandler(fh)
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=64)
 futures = []
 
-def save_json_to_file(file_path, obj):
+def write_json_to_file(file_path, obj):
     with open(file_path, 'w') as fp:
-        json.dump(obj, fp, indent=2, ensure_ascii=False) # ensure_ascii store utf-8 and other non-latin languages
+        json.dump(obj, fp, indent=2, ensure_ascii=False) # ensure_ascii=False, ensure we can write non-latin languages
 
-def load_obj_from_file(file_path):
+def read_json_from_file(file_path):
     if not os.path.exists(file_path):
         return None
     with open(file_path, 'r') as fp:
