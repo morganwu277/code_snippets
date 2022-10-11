@@ -300,3 +300,55 @@ response = getHttpSessionInstance().get(fileUrl, headers=headers, timeout=60)
 with open(filePath, 'wb') as f:
     f.write(response.content)
 ```
+
+## spider simple skeleton
+```py
+ #!/usr/bin/python
+ # -*- coding: utf-8 -*-
+ 
+import concurrent.futures
+import os
+import logging
+import json
+AppName="mp3_downloader"
+LOG = logging.getLogger(AppName)
+LOG.setLevel(logging.DEBUG)
+formatter = logging.Formatter(
+    '%(asctime)s - %(threadName)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s')
+fh = logging.FileHandler(AppName+".log", delay=True)
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+# create console handler and set level to debug
+ch = logging.StreamHandler()
+ch.setLevel(logging.INFO)
+ch.setFormatter(formatter)
+# add ch to logger
+LOG.addHandler(ch)
+LOG.addHandler(fh)
+
+executor = concurrent.futures.ThreadPoolExecutor(max_workers=64)
+futures = []
+
+def save_json_to_file(file_path, obj):
+    with open(file_path, 'w') as fp:
+        json.dump(obj, fp, indent=2, ensure_ascii=False) # ensure_ascii 存储的utf-8 以及中文
+
+def load_obj_from_file(file_path):
+    if not os.path.exists(file_path):
+        return None
+    with open(file_path, 'r') as fp:
+        obj = json.load(fp)
+        return obj
+
+# add your function here and then add your download script here
+
+# fut = executor.submit(download_single_model_panels, id)
+# futures.append(fut)
+
+LOG.debug("test")
+
+# wait for finish
+for x in futures:
+    x.result()
+
+```
