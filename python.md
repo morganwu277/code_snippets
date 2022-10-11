@@ -331,7 +331,7 @@ futures = []
 
 def save_json_to_file(file_path, obj):
     with open(file_path, 'w') as fp:
-        json.dump(obj, fp, indent=2, ensure_ascii=False) # ensure_ascii 存储的utf-8 以及中文
+        json.dump(obj, fp, indent=2, ensure_ascii=False) # ensure_ascii store utf-8 and other non-latin languages
 
 def load_obj_from_file(file_path):
     if not os.path.exists(file_path):
