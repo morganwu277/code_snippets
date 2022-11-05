@@ -106,6 +106,17 @@ Test backdoor:
 echo "ls -al " | nc -v xxx.xxx.xx.xxx 6996 
 ```
 
+## nc command to send logs
+Server side accepting logs:
+```
+nc -u -vv -k -l 0.0.0.0 5678 |grep -v xxx_log_stmt_to_remove > filter.log
+```
+Client side sending logs:
+```
+echo "[INFO] this is the log" | nc -v -u x.x.x.x 5678
+```
+NOTE: `-u` means udp, do not use this flag for tcp traffic.
+
 ## assert var not empty
 ```bash
 # if var empty, then exit
