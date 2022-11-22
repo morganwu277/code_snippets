@@ -1099,6 +1099,11 @@ iptables -A INPUT -s 1.2.3.4 -p tcp --dport 21 -j ACCEPT
 -rw-r--r-- 1 root root 192M Aug 25 12:49 ./1f848715be222b4f94304d00bc5b265a03c1c1253c9e4a980387fa636cd0d76f/layer.tar
 -rw-r--r-- 1 root root  16M Aug 25 12:49 ./0b0141ebf39d736914c6858ddc84f6ee3d46371e077ed9ecee2e1e7b2d726e37/layer.tar
 ```
+what if path is with space? https://stackoverflow.com/a/32589977
+- Linux/GNU: `ls *.mp3 | xargs -d '\n' mplayer`
+- MacOS/BSD: `ls *.mp3 | tr \\n \\0 | xargs -0 mplayer`
+
+for `mdfind` on macOS, should be with `-0`: `mdfind 'kMDItemFSName="*.doc"' -0 | xargs -0  ls -al|sort -k5n`
 
 ## output string to stderr
 ```bash
