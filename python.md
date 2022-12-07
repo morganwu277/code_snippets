@@ -1,4 +1,5 @@
 ## signal handler sample code
+parent process kill child process:
 ```py
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
