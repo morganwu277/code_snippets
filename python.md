@@ -1,3 +1,31 @@
+## signal handler sample code
+```py
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import os  
+import signal
+import traceback
+from time import sleep  
+   
+def myHandler(signum, frame):  
+    print 'I received: ', signum, ', my pid: ', os.getpid(), ', \nHere is traceback: '
+    traceback.print_stack(frame)
+
+# signal.signal(signal.SIGCHLD, myHandler) # 20, child change 
+signal.signal(signal.SIGTERM, myHandler) # 15, terminate
+signal.signal(signal.SIGINT, myHandler)  # 2, cancel from terminal
+
+pid = os.fork()  
+if pid == 0:  # child 
+   print 'I am child process, pid: ',os.getpid()  
+   sleep(2)
+else:         # parent
+    print 'I am parent process, pid: ',os.getpid() ,', child pid: ', pid
+    sleep(1)
+    os.kill(pid, signal.SIGTERM)
+    sleep(1000)
+```
 ## small python tricks
 1. `sys.argv[1]` means 1st parameter string format
 
