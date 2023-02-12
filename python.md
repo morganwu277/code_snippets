@@ -174,6 +174,25 @@ countdown 0.008917808532714844
 
 
 ## python logging facilities
+a better one is here:
+```
+APP='linkedin'
+formatter = logging.Formatter(
+    '%(asctime)s - %(threadName)s - %(name)s - {%(filename)s:%(lineno)d} - %(levelname)s - %(message)s')
+# file handler
+fh = logging.FileHandler(f'{APP}.log', delay=True)
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+# console handler
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+ch.setFormatter(formatter)
+logging.basicConfig(handlers=[fh, ch])
+# packgage log level
+logging.getLogger('urllib3').setLevel(logging.WARN)
+```
+
+TLDR
 More python attributes to be outputed:  https://docs.python.org/3/library/logging.html#logrecord-attributes
 
 ```py
