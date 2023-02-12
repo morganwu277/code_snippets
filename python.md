@@ -192,7 +192,7 @@ logging.basicConfig(handlers=[fh, ch])
 logging.getLogger('urllib3').setLevel(logging.WARN)
 ```
 
-TLDR
+TL;DR   
 More python attributes to be outputed:  https://docs.python.org/3/library/logging.html#logrecord-attributes
 
 ```py
