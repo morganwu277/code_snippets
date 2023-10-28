@@ -383,7 +383,7 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_cache_bypass $http_upgrade;
-        proxy_pass http://today;
+        proxy_pass http://today; # WE CANNOT HAVE / ENDED, which is a URI here...
     }
 }
 
