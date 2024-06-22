@@ -10,6 +10,54 @@ openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out c
 http-server -S --username admin --password mypassword
 ```
 
+## auto format in vscode project
+
+1. 安装 prettier 插件
+```sh
+pnpm add -g prettier
+```
+2. 然后vscode 安装 esbenp.prettier-vscode 插件
+
+3. 然后再当前的project  的 settings.json 文件设置
+
+{
+    "prettier.prettierPath": "/home/mwu/.local/share/pnpm/global/5/.pnpm/prettier@3.3.2/node_modules/prettier",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "editor.formatOnSave": true
+}
+
+4. pretteir 配置文件 `.prettierrc.mjs`
+```ts
+/**
+ * @type {import('prettier').Options}
+ */
+export default {
+  printWidth: 80,
+  tabWidth: 2,
+  useTabs: false,
+  semi: false,
+  singleQuote: false,
+  trailingComma: "none",
+  bracketSpacing: true,
+  bracketSameLine: true,
+  plugins: ["@ianvs/prettier-plugin-sort-imports"],
+  importOrder: [
+    "<BUILTIN_MODULES>", // Node.js built-in modules
+    "<THIRD_PARTY_MODULES>", // Imports not matched by other special words or groups.
+    "", // Empty line
+    "^@plasmo/(.*)$",
+    "",
+    "^@plasmohq/(.*)$",
+    "",
+    "^~(.*)$",
+    "",
+    "^[./]"
+  ]
+}
+```
+
+
 ## zsh remove escape backslash symbol when pasting URL
 We have to put next lines in the header part of `~/.zshrc`
 ```zsh
