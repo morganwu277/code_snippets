@@ -1,3 +1,50 @@
+# Base Example of Ansible Playbook
+1. 创建 hosts 文件
+```ini
+# hosts with python and ssh args
+[all:vars]
+ansible_python_interpreter=/opt/miniconda3/bin/python3.9
+ansible_ssh_common_args='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
+[dev:vars]
+become_user=s_user_d
+
+[dev]
+xxx1 ansible_host=xxx1.host.net x_boolean_var1=true
+xxx2 ansible_host=xxx2.host.net x_boolean_var1=true
+xxx3 ansible_host=xxx3.host.net x_boolean_var1=false
+```
+
+2. 创建 playbook.yml 文件
+```yml
+# playbook.yml
+---
+- hosts: all
+  gather_facts: no
+  become: true
+  become_user: "{{become_user}}"
+  become_method: sudo
+  become_flags: '-i -S -H -n -u {{become_user}}'
+  tasks:
+    - name: Check user as {{become_user}}
+      command: whoami
+      tags:
+        - init
+        - check
+        - run
+```
+
+3. 创建 run.sh 文件
+```shell
+# Usage: bash run.sh -e "var1=val1 var2=val2" -t tag1,tag2 -v
+ansible-playbook -f 10 -i hosts playbook.yml --become-password-file ./pass -v "$@"
+```
+NOTE: 这里的 pass 文件里面是明文的 sudo 密码
+
+4. 运行
+```shell
+bash run.sh -t run -v [...other args]
+```
 
 # ansible vault
 
