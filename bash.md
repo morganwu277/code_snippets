@@ -19,14 +19,15 @@ pnpm add -g prettier
 2. 然后vscode 安装 esbenp.prettier-vscode 插件
 
 3. 然后再当前的project  的 settings.json 文件设置
-
+```js
+// 注意 prettier的 路径
 {
     "prettier.prettierPath": "/home/mwu/.local/share/pnpm/global/5/.pnpm/prettier@3.3.2/node_modules/prettier",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSaveMode": "modificationsIfAvailable",
     "editor.formatOnSave": true
 }
-
+```
 4. pretteir 配置文件 `.prettierrc.mjs`
 ```ts
 /**
