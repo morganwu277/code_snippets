@@ -1244,6 +1244,34 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 - use `screen -r id` to attach
 - use `Ctrl+ad` to detach
 
+## tmux pane split and run commands
+```
+#!/bin/bash
+
+
+cd /home/data/
+tmux new-session -d -s mySession
+
+# 垂直分割出第一个窗格
+tmux split-window -v -t mySession
+
+# 水平分割出剩下的 4 个窗格
+for i in {1..4}; do
+    tmux select-layout -t mySession even-vertical
+    tmux split-window -v -t mySession
+done
+
+# C-m 是回车键
+tmux send-keys -t mySession:0.0 './start.sh x1' C-m
+tmux send-keys -t mySession:0.1 './start.sh x2' C-m
+tmux send-keys -t mySession:0.2 './start.sh x3' C-m
+tmux send-keys -t mySession:0.3 './start.sh x4' C-m
+tmux send-keys -t mySession:0.4 'top' C-m
+
+# attach到tmux会话
+tmux attach -t mySession
+```
+
 ## save tmux session
 use https://github.com/tmux-plugins/tmux-resurrect
 
