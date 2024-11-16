@@ -1257,7 +1257,7 @@ tmux split-window -v -t mySession
 
 # 水平分割出剩下的 4 个窗格
 for i in {1..4}; do
-    tmux select-layout -t mySession even-vertical
+    tmux select-layout -t mySession tiled
     tmux split-window -v -t mySession
 done
 
