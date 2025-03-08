@@ -1252,12 +1252,9 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 cd /home/data/
 tmux new-session -d -s mySession
 
-# 垂直分割出第一个窗格
-tmux split-window -v -t mySession
-
-# 水平分割出剩下的 4 个窗格
-for i in {1..4}; do
-    tmux select-layout -t mySession tiled
+# 水平分割出剩下的 4 个窗格 (注意 分割 3 次，其实就是有 4 个窗格）
+for i in {1..3}; do
+    tmux select-layout -t mySession tiled # tiled 是平铺布局
     tmux split-window -v -t mySession
 done
 
