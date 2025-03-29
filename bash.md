@@ -10,6 +10,27 @@ openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out c
 http-server -S --username admin --password mypassword
 ```
 
+## access into docker container files
+solution: ssh-server in container + sshfs from host + npx http-server to expose externally
+```sh
+# install ssh-server
+# docker exec -it <container_id>  and then execute next commands
+apt-get update
+apt-get install -y openssh-server
+mkdir /var/run/sshd
+# and then setup ssh and generate ssh host keys, ref: https://github.com/ashleykleynhans/facefusion-docker/blob/a51318297956dbdf7d27d844cca44cce9d46b97f/scripts/start.sh#L106-L143
+
+# install sshfs on host
+apt-get install -y sshfs
+# mount the container file system to host, we allow other user to access
+sshfs -o allow_other,IdentityFile=/home/mwu/.ssh/id_rsa -p 2222 root@localhost:/ /mnt/sshfs
+
+# install npx http-server
+npx http-server -S --username admin --password mypassword
+```
+
+Then we can access the container file system via `http://localhost:8080`
+
 ## auto format in vscode project
 
 1. 安装 prettier 插件
