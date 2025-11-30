@@ -1266,6 +1266,16 @@ screen -XS lc screen tail -f /var/log/nginx/access.log
 - use `Ctrl+ad` to detach
 
 ## tmux pane split and run commands
+
+0. tmux new -s SESSION 名 (新建一个 SESSION, 你自己来执行)
+1. tmux ls (列出所有 SESSION)
+2. tmux send-keys -t SESSION 名 指令 (发送指令)
+3. tmux send-keys -t SESSION 名 C-m (相当于发送回车)
+4. tmux capture-pane -p -t SESSION 名 (获取制定 SESSION 显示中的内容)
+5. tmux capture-pane -p -S -1000 -t SESSION 名 (获取制定 SESSION 最近 1000 行的内容)
+6. tmux capture-pane -p -S - -t SESSION 名 (获取制定 SESSION 里所有的内容, 有上限)
+
+sample:
 ```
 #!/bin/bash
 
